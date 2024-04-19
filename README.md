@@ -46,7 +46,7 @@ After Tinder aims to provide tools for healthy love relationships.
 
 ## Guidelines
 - NOTE: in the backend, the login logic is held in the XXXXXXXX file and the logic to post entries is held in XXXXXXX.js.
-- NOTE: your database tables will be empty when you first open the app. After configuration, you should be able to populate them XXXXXXXXXX... If you need to manually test it in Postman, there's a sample code and instructions in client/src/components/testcode. This file is not connected to the app: it's used to try and store code samples that might be useful for the developing process.
+- NOTE: your database tables will be empty when you first open the app. After configuration, you should be able to populate them XXXXXXXXXX... If you need to manually test it in Postman, there's a sample code and instructions in client/src/assets/testcode. This file is not connected to the app: it's used to try and store code samples that might be useful for the developing process.
 
 
 - Resources you may need: XXXXXXXXXXX
