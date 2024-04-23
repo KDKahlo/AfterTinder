@@ -2,10 +2,8 @@
 After Tinder aims to provide tools for healthy love relationships.
 ## Current Bugs/ Things that need to be fixed/added
 
-- ❌ model/Init_db.sql: needs to be updated with the correct tables names.
-- ❌ .env: needs to be updated with correct DB name.
-- ❌ model/database.js: needs to be updated with correct DB name.
-- NOTE: we can't do 'run npm migrate' until all this is correctly done.
+- ❌ README file: section "Guidelines" must be updated with current project info.
+
 
 ## Setup
 
@@ -18,31 +16,27 @@ After Tinder aims to provide tools for healthy love relationships.
 
 - 1. Access the MySQL interface in your terminal by running `mysql -u root -p`. (Or your password, if not 'root')
 
-- 2. Create a new database called 'XXXXXXXXX' by running the command `create database XXXXXXXXX`. If you already have a table called XXXXXXXXXX, give the database the name you prefer and follow these steps: 
-    · Inside "model" folder, in the database.js file (around line 14), change the name "XXXXXXXXX" for the name of your database.
+- 2. Create a new database called 'AfterTinder' by running the command `create database AfterTinder;`. If you already have a table called AfterTinder, give the database the name you prefer and follow these steps: 
+    · Inside "model" folder, in the database.js file (around line 14), change the name "AfterTinder" for the name of your database.
           const con = mysql.createConnection({
             host: DB_HOST || "127.0.0.1",
             user: DB_USER || "root",
             password: DB_PASS,
-            database: DB_NAME || "XXXXXXXXX" (HERE THE NAME OF YOUR DATABASE),
+            database: DB_NAME || "AfterTinder" (HERE THE NAME OF YOUR DATABASE),
             multipleStatements: true,
         });
-    · Set the name of your database in model/database.js (line 14).
-
 
 - 3. - Create an `.env` file in the project folder (the root) of this repository containing the MySQL authentication information for MySQL user. For example:
 
 ```bash
   DB_HOST=localhost
   DB_USER=root
-  DB_NAME=NAMEOFYOURDATABASE
+  DB_NAME=AfterTinder (or NAMEOFYOURDATABASE)
   DB_PASS=YOURPASSWORD
   SUPER_SECRET=yourSuperSecretKey
 ```
 
-- 4. 
-
-- 5. Run `npm run migrate` in a new terminal window in the project folder of this repository. This will create a table called called 'users' and a table called 'entries' in the database.
+- 4. Run `npm run migrate` in a new terminal window in the project folder of this repository. This will create 3 tables: 'users', 'relationships' and 'users_relationships' in the database.
 
 ## Guidelines
 - NOTE: in the backend, the login logic is held in the XXXXXXXX file and the logic to post entries is held in XXXXXXX.js.
@@ -65,4 +59,3 @@ After Tinder aims to provide tools for healthy love relationships.
   - [React calendar](https://www.npmjs.com/package/react-calendar)
   - [React chartsjs-2](https://react-chartjs-2.js.org/)
  - [MDN docs window.alert](https://developer.mozilla.org/es/docs/Web/API/Window/alert)
-   
