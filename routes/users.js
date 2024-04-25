@@ -6,7 +6,12 @@ require("dotenv").config();
 var bcrypt = require("bcrypt");
 const saltRounds = 10;
 
+const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
+
+const supersecret = process.env.SUPER_SECRET;
+
 /* GET users listing. */
+//Initial code in the scaffolding. Nothing to do with our app.
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
@@ -23,6 +28,37 @@ router.post("/register", async (req, res) => {
   } catch (err) {
     res.status(400).send({ message: err.message });
   }
+});
+
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+//check if the user exists so we can compare the password
+const result = await db(`SELECT * FROM users WHERE email = "${email}"`);
+//result is an array that holds an object with all the data of the user.
+//we should receive just one object
+//we can access the object by index [0]
+const user = result.data[0]
+//if I have a user
+if (user) {
+  //store user id in a variable
+  const user_id = user.id
+  //I want to compare the password. this returns a boolean.
+  const correctPassword = await bcrypt.compare(password, user.password)
+  //if password incorrect, throw error
+  if(!correctPassword) {
+    throw new Error ("Incorrect password");
+  }
+  //if password is correct, create token. jwt.sign(payload, secret). 
+  //Payload is an object {user_id : user_id}
+  const token = jwt.sign({user_id}, supersecret);
+  res.send({ message: "Login successful, here is your token", token })
+}
+//else: I don't have a user
+  } catch(err) {
+    res.status(400).send({message: err.message})
+  }
+
 });
 
 //register new relationship and populate relationships table
