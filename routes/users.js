@@ -43,4 +43,20 @@ router.post("/relationships", async (req, res) => {
   }
 });
 
+router.post("/users_relationships", async (req, res) => {
+  const { user_id, relationship_id } = req.body;
+
+  try {
+
+    await db(
+      `INSERT INTO users_relationships (user_id, relationship_id) VALUES ("${user_id}","${relationship_id}" )`
+    );
+
+    res.send({ message: "Register successful" });
+  } catch (err) {
+    console.log(err)
+    res.status(400).send({ message: err.message });
+  }
+});
+
 module.exports = router;
