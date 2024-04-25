@@ -14,8 +14,19 @@
 //     "password": "password123"
 //   }
 
+
+//USER LOGIN CODE TO TEST IN POSTMAN
+//URL: http://localhost:4000/users/login
+//Body:
+// {
+//     "email": "example2@example.com",
+//     "password": "password1234"
+//   }
+
+
 //RELATIONSHIP REGISTRATION CODE TO TEST IN POSTMAN
 //URL: http://localhost:4000/users/relationships
+//Token: the token you receive when you log in. It can be found in Postman's response for the login or in the browser--> inspect-->application(key and value table. when there's a token, ke key is "token" and the value is the token itself)
 //Body:
 // {
 //     "code": "12345678"
@@ -24,6 +35,7 @@
 
 //USERS_RELATIONSHIP REGISTRATION CODE TO TEST IN POSTMAN
 //URL: http://localhost:4000/users/users_relationships
+//Token: the token you receive when you log in. It can be found in Postman's response for the login or in the browser--> inspect-->application(key and value table. when there's a token, ke key is "token" and the value is the token itself)
 //Body:
 // {
 //     "user_id": "2",
