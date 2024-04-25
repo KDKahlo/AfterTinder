@@ -20,7 +20,7 @@ SET foreign_key_checks = 1;
 
 CREATE TABLE Relationships(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    code VARCHAR(255) NOT NULL
+    code VARCHAR(255) NOT NULL,
     UNIQUE (code)
 );
 CREATE TABLE users(
