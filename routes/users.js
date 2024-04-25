@@ -61,16 +61,25 @@ if (user) {
 
 });
 
-//register new relationship and populate relationships table
 router.post("/relationships", userShouldBeLoggedIn, async (req, res) => {
+  //User is sending the code
   const { code } = req.body;
+  //the guard is sending the user_id
+  const user_id = req.user_id
   try {
+    //populate relationships table with the code.
     await db(
       `INSERT INTO relationships (code) VALUES ("${code}")`
     );
-    const result = await db(`SELECT * FROM relationships WHERE code = "${code}" `)
-      
-    res.send({ message: "Register successful" });
+    // Get the relationship_id that corresponds with the code we entered.
+    const result = await db(`SELECT id FROM relationships WHERE code = "${code}" `)
+    const relationship_id = result.data[0].id;
+    
+    await db(
+      `INSERT INTO users_relationships (user_id, relationship_id) VALUES ("${user_id}","${relationship_id}" )`
+    );
+    
+    res.send({ message: "Relationship successfully registered" });
   } catch (err) {
     console.log("EEEEEERRRRROOOOOORRRRRR", err)
     //if the code already exists, the error message is:  { "message": "ER_DUP_ENTRY: Duplicate entry '12345678' for key 'relationships.code'"}
@@ -78,6 +87,24 @@ router.post("/relationships", userShouldBeLoggedIn, async (req, res) => {
     res.status(400).send({ message: err.message });
   }
 });
+
+//register new relationship and populate relationships table
+// router.post("/relationships", userShouldBeLoggedIn, async (req, res) => {
+//   const { code } = req.body;
+//   try {
+//     await db(
+//       `INSERT INTO relationships (code) VALUES ("${code}")`
+//     );
+//     const result = await db(`SELECT * FROM relationships WHERE code = "${code}" `)
+      
+//     res.send({ message: "Register successful" });
+//   } catch (err) {
+//     console.log("EEEEEERRRRROOOOOORRRRRR", err)
+//     //if the code already exists, the error message is:  { "message": "ER_DUP_ENTRY: Duplicate entry '12345678' for key 'relationships.code'"}
+//     //we can identify this error in the front end and use it to ask the user to re-generate code and and try again
+//     res.status(400).send({ message: err.message });
+//   }
+// });
 
 // //Get id from relationships table.
 // //Not sure we need this endpoint.
