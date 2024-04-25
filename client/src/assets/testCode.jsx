@@ -26,6 +26,8 @@
 
 //RELATIONSHIP REGISTRATION CODE TO TEST IN POSTMAN
 //URL: http://localhost:4000/users/relationships
+//AUTHORISATION
+//Type: bearer
 //Token: the token you receive when you log in. It can be found in Postman's response for the login or in the browser--> inspect-->application(key and value table. when there's a token, ke key is "token" and the value is the token itself)
 //Body:
 // {
@@ -35,6 +37,8 @@
 
 //USERS_RELATIONSHIP REGISTRATION CODE TO TEST IN POSTMAN
 //URL: http://localhost:4000/users/users_relationships
+//AUTHORISATION
+//Type: bearer
 //Token: the token you receive when you log in. It can be found in Postman's response for the login or in the browser--> inspect-->application(key and value table. when there's a token, ke key is "token" and the value is the token itself)
 //Body:
 // {

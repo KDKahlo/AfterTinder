@@ -7,6 +7,7 @@ var bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
+const relationshipExists = require("../guards/relationshipExists")
 
 const supersecret = process.env.SUPER_SECRET;
 
@@ -61,20 +62,13 @@ if (user) {
 
 });
 
-router.post("/relationships", userShouldBeLoggedIn, async (req, res) => {
-  //User is sending the code
-  const { code } = req.body;
-  //the guard is sending the user_id
+router.post("/relationships", userShouldBeLoggedIn, relationshipExists, async (req, res) => {
+ 
+  //the guard userShouldBeLoggedIn is sending the user_id
   const user_id = req.user_id
+  //the guard relationshipExists is sending the user_id
+  const relationship_id= req.relationship_id
   try {
-    //populate relationships table with the code.
-    await db(
-      `INSERT INTO relationships (code) VALUES ("${code}")`
-    );
-    // Get the relationship_id that corresponds with the code we entered.
-    const result = await db(`SELECT id FROM relationships WHERE code = "${code}" `)
-    const relationship_id = result.data[0].id;
-    
     await db(
       `INSERT INTO users_relationships (user_id, relationship_id) VALUES ("${user_id}","${relationship_id}" )`
     );
@@ -121,21 +115,21 @@ router.post("/relationships", userShouldBeLoggedIn, async (req, res) => {
 //   }
 // });
 
-//Populate users_relationships table to relate a specific user to a specific relationship.
-router.post("/users_relationships", userShouldBeLoggedIn, async (req, res) => {
-  const { user_id, relationship_id } = req.body;
+// //Populate users_relationships table to relate a specific user to a specific relationship.
+// router.post("/users_relationships", userShouldBeLoggedIn, async (req, res) => {
+//   const { user_id, relationship_id } = req.body;
 
-  try {
+//   try {
 
-    await db(
-      `INSERT INTO users_relationships (user_id, relationship_id) VALUES ("${user_id}","${relationship_id}" )`
-    );
+//     await db(
+//       `INSERT INTO users_relationships (user_id, relationship_id) VALUES ("${user_id}","${relationship_id}" )`
+//     );
 
-    res.send({ message: "Register successful" });
-  } catch (err) {
-    console.log(err)
-    res.status(400).send({ message: err.message });
-  }
-});
+//     res.send({ message: "Register successful" });
+//   } catch (err) {
+//     console.log(err)
+//     res.status(400).send({ message: err.message });
+//   }
+// });
 
 module.exports = router;
