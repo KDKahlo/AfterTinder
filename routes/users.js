@@ -28,4 +28,19 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.post("/relationships", async (req, res) => {
+  const { code } = req.body;
+
+  try {
+
+    await db(
+      `INSERT INTO relationships (code) VALUES ("${code}")`
+    );
+
+    res.send({ message: "Register successful" });
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+});
+
 module.exports = router;
