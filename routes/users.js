@@ -66,7 +66,7 @@ router.post("/relationships", userShouldBeLoggedIn, relationshipExists, async (r
  
   //the guard userShouldBeLoggedIn is sending the user_id
   const user_id = req.user_id
-  //the guard relationshipExists is sending the user_id
+  //the guard relationshipExists is sending the relationship_id
   const relationship_id= req.relationship_id
   try {
     await db(
@@ -82,7 +82,7 @@ router.post("/relationships", userShouldBeLoggedIn, relationshipExists, async (r
   }
 });
 
-//register new relationship and populate relationships table
+// //register new relationship and populate relationships table
 // router.post("/relationships", userShouldBeLoggedIn, async (req, res) => {
 //   const { code } = req.body;
 //   try {
@@ -115,7 +115,7 @@ router.post("/relationships", userShouldBeLoggedIn, relationshipExists, async (r
 //   }
 // });
 
-// //Populate users_relationships table to relate a specific user to a specific relationship.
+// // //Populate users_relationships table to relate a specific user to a specific relationship.
 // router.post("/users_relationships", userShouldBeLoggedIn, async (req, res) => {
 //   const { user_id, relationship_id } = req.body;
 
