@@ -27,6 +27,7 @@ function App() {
                     <Link to="/ChatwithAI">Chat with AI</Link>
                 </li>
             </ul>
+           
             <Routes>
                 <Route path="/Registration" element={<Registration />} />
                 <Route path="/Login" element={<Login />} />
