@@ -1,2 +1,4 @@
 import React from "react";
-export default Login;
+export default function Login() {
+    return "Login page"
+};

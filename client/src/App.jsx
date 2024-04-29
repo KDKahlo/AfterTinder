@@ -18,7 +18,7 @@ function App() {
                     <Link to="/Login">Login</Link>
                 </li>
                 <li>
-                    <Link to="/Home">Home</Link>
+                    <Link to="/">Home</Link>
                 </li>
                 <li>
                     <Link to="/Quiz">Quiz</Link>
@@ -30,7 +30,7 @@ function App() {
             <Routes>
                 <Route path="/Registration" element={<Registration />} />
                 <Route path="/Login" element={<Login />} />
-                <Route path="/Home" element={<Home />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/Quiz" element={<Quiz />} />
                 <Route path="/ChatwithAI" element={<ChatwithAI />} />
             </Routes>

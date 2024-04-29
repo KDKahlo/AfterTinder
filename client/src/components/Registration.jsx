@@ -1,3 +1,5 @@
 import React from "react";
 
-export default Registration;
+export default function Registration() {
+    return "Registration page"
+};
