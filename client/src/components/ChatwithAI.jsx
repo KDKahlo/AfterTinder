@@ -1,4 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import "../App.css";
+
+const { VITE_BARD_API_KEY } = import.meta.env;
+
 export default function ChatWithAI() {
-return "This is the chat view"
+const [generatedText, setGeneratedText] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  async function runGenerativeAI() {
+    setLoading(true);
+    try {
+      const genAI = new GoogleGenerativeAI(VITE_BARD_API_KEY); // Enviroment Variable
+
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+      const prompt =
+        "Give recommendations for a date night out?";
+
+      // Generate content based on the prompt
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = await response.text();
+
+      setGeneratedText(text);
+    } catch (error) {
+      setGeneratedText("There was an error in your petition");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={runGenerativeAI} disabled={loading}>
+          {loading ? "Generating..." : "Generate Text"}
+        </button>
+        {generatedText !== null && <p>Generated Text: {generatedText}</p>}
+      </div>
+    </>
+  );
 };
