@@ -53,7 +53,7 @@ export default function Login() {
                     />
                 </div>
                 <div>
-                    <label>Password:</label>
+                    <label>PasswordXXXX:</label>
                     <input
                         type="password"
                         name="password"
