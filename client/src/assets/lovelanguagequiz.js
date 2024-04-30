@@ -1,8 +1,8 @@
 // Credit: Pokemon data accessed from here: https://media.5lovelanguages.com/a3a05ec6-d8ff-4e09-92d8-82b9d204d8d3/PersonalProfileforSingles5LL.pdf
-module.exports =[
+const quizData =[
 {
     "Instructions": "This quiz contains 30 paired statements. Please chose the statement that best defines what is most meaningful to you in your relationship. Both statements may (or may not) sound like they fit your situation but please choose the statement that captures the essence of what is most meaningful to you, the majority of the time. Allow 10 to 15 minutes to complete the profile. Take it when you are relaxed, and try not to rush through it.",
-    "Quizz": {
+    "Quiz": {
       "Statement": "It's more meaningful to me when…",
       "Options": [
         {
@@ -154,3 +154,5 @@ module.exports =[
     "Disclaimer": "This profile is an excerpt from The 5 Love Languages (©2015. Northfield Publishing) Reproduction and distribution for use, personal and/or professional (workshops, organizations, churches, nonprofits, small groups, etc.), is permitted provided the profiles are distributed free of charge. You may not under any circumstances upload, share, transmit, or distribute this file digitally."
   }
   ]
+
+  export default quizData;
