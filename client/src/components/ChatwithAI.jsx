@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import "../App.css";
 
 const { VITE_BARD_API_KEY } = import.meta.env;
 
 export default function ChatWithAI() {
+
+
 const [generatedText, setGeneratedText] = useState(null);
-  const [loading, setLoading] = useState(false);
+const [loading, setLoading] = useState(false);
 
   async function runGenerativeAI() {
     setLoading(true);
     try {
-      const genAI = new GoogleGenerativeAI(VITE_BARD_API_KEY); // Enviroment Variable
+       // Enviroment Variable
+        const genAI = new GoogleGenerativeAI(VITE_BARD_API_KEY);
 
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
@@ -21,7 +23,7 @@ const [generatedText, setGeneratedText] = useState(null);
       // Generate content based on the prompt
       const result = await model.generateContent(prompt);
       const response = await result.response;
-      const text = await response.text();
+      const text = response.text();
 
       setGeneratedText(text);
     } catch (error) {
