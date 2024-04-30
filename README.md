@@ -38,9 +38,19 @@ After Tinder aims to provide tools for healthy love relationships.
 
 - 4. Run `npm run migrate` in a new terminal window in the project folder of this repository. This will create 3 tables: 'users', 'relationships' and 'users_relationships' in the database.
 
+### Gemini API set up
+
+- 1. Make sure you have a VPN connected to a country where Gemini API is available. You can check a list of available regions and languages in the Gemini API documentation.
+
+- 2. Follow the documentation instructions (https://ai.google.dev/gemini-api/docs/get-started/node) to get an API.
+
+- 3. Store your API in the .env file as shown: 
+  VITE_BARD_API_KEY = YourGeminiAPIKey
+
+
 ## Guidelines
-- NOTE: in the backend, the login logic is held in the XXXXXXXX file and the logic to post entries is held in XXXXXXX.js.
-- NOTE: your database tables will be empty when you first open the app. After configuration, you should be able to populate them XXXXXXXXXX... If you need to manually test it in Postman, there's a sample code and instructions in client/src/assets/testcode. This file is not connected to the app: it's used to try and store code samples that might be useful for the developing process.
+- NOTE: in the backend, the login logic is held in the users file and the logic to get/post other data is held in index.js.
+- NOTE: your database tables will be empty when you first open the app. After configuration, you should be able to populate them using the front end. If you need to manually test it in Postman, there's a sample code and instructions in client/src/assets/testcode. This file is not connected to the app: it's used to try and store code samples that might be useful for the developing process.
 
 
 - Resources you may need: XXXXXXXXXXX
@@ -54,6 +64,8 @@ After Tinder aims to provide tools for healthy love relationships.
   - [React-router docs](https://reactrouter.com/en/main/hooks/use-outlet-context)
   - [Bootstrap docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
   - [Axios docs](https://axios-http.com/es/docs/intro)
+  - [Love quotes API](https://rapidapi.com/colebidex-mO-Ew1CYzUS/api/love-quote)
+  - [Gemini API docs](https://ai.google.dev/gemini-api/docs/get-started/node)
 
 
   - [React calendar](https://www.npmjs.com/package/react-calendar)

@@ -1,4 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import LoveQuote from './LoveQuote';
+
 export default function Home() {
-    return "Home page"
+   
+
+    return (
+        <>
+        <h4>Home page</h4>
+        <LoveQuote/>
+        </>)
 };

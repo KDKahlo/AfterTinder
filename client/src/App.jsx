@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import Quiz from "./components/Quiz";
 import ChatwithAI from "./components/ChatwithAI";
+import QuizInstructions from './components/QuizInstructions';
 import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
@@ -27,11 +28,13 @@ function App() {
                     <Link to="/ChatwithAI">Chat with AI</Link>
                 </li>
             </ul>
+           
             <Routes>
                 <Route path="/Registration" element={<Registration />} />
                 <Route path="/Login" element={<Login />} />
                 <Route path="/" element={<Home />} />
-                <Route path="/Quiz" element={<Quiz />} />
+                <Route path="/Quiz" element={<QuizInstructions />} />
+                <Route path="/Quiz/questions" element={<Quiz />} />
                 <Route path="/ChatwithAI" element={<ChatwithAI />} />
             </Routes>
         </>
