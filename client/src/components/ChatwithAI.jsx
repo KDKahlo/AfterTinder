@@ -11,10 +11,10 @@ const [loading, setLoading] = useState(false);
 //this ifo should come from a get request to the database.
 const [userLoveLanguages, setUserLoveLanguages] = useState(
   {
-    touch: "10",
+    nonSexualIntimacy: "60",
     wordsOfaffirmation: "0",
-    actsOfService: "10",
-    receiveGifts:"70",
+    actsOfService: "20",
+    receiveGifts:"10",
     qualityTime:"10"
   }
 )
@@ -28,7 +28,7 @@ const [askRecommendationsInput, setAskRecommendationsInput] = useState ({
 })
 
 //prompt to get recommendations based on the person's love language.
-const promptLoveLanguage = `Based on the book called The 5 Love Languages, give a list of recommendations to show appreciation to a person who's loves languages are: touch ${userLoveLanguages.touch}%, gifts ${userLoveLanguages.receiveGifts}%, acts of service${userLoveLanguages.actsOfService}%, words of affirmation ${userLoveLanguages.wordsOfaffirmation}%, quality time ${userLoveLanguages.qualityTime}%. Don't include recommendations for love languages that have a percentage of 0. DO NOT write any percentages in your response. Send recommendations without introduction text, just a list of recommendations. No titles`;
+const promptLoveLanguage = `Based on the book called The 5 Love Languages, give a list of recommendations to show appreciation to a person who's loves languages are: touch ${userLoveLanguages.nonSexualIntimacy}%, gifts ${userLoveLanguages.receiveGifts}%, acts of service${userLoveLanguages.actsOfService}%, words of affirmation ${userLoveLanguages.wordsOfaffirmation}%, quality time ${userLoveLanguages.qualityTime}%. Don't include recommendations for love languages that have a percentage of 0. DO NOT write any percentages in your response. Send recommendations without introduction text, just a list of recommendations. No titles`;
 //prompt to get recommendations based on the user's input.
 const promptUserInput = `Based on the book called The 5 Love Languages, give a list of recommendations of ${askRecommendationsInput.type} to show appreciation during ${askRecommendationsInput.occasion} to a person who's primary love language is ${askRecommendationsInput.primaryLoveLanguage}. Send recommendations without introduction text, just a list of recommendations. No titles`;
 
