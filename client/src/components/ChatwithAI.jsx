@@ -6,16 +6,15 @@ export default function ChatWithAI() {
 
 const [generatedText, setGeneratedText] = useState([]);
 const [loading, setLoading] = useState(false);
-
 //store user's love languages percentages. 
 //this ifo should come from a get request to the database.
 const [userLoveLanguages, setUserLoveLanguages] = useState(
   {
-    nonSexualIntimacy: "60",
+    nonSexualIntimacy: "90",
     wordsOfaffirmation: "0",
-    actsOfService: "20",
+    actsOfService: "0",
     receiveGifts:"10",
-    qualityTime:"10"
+    qualityTime:"0"
   }
 )
 //store user's input to ask for recommendations.
@@ -78,11 +77,91 @@ function refineText(rawAIText) {
     console.log(refinedText)
    }
 
+//    const type = [
+//     { label: 'Gifts', value: 'gifts' },
+//     { label: 'Plans', value: 'plans' },
+//     { label: 'Compliments', value: 'compliments' },
+//     { label: 'Physical touch gestures', value: 'non sexual intimacy gestures' },  
+//     { label: 'Act of service', value: 'act of service' },
+//     { label: 'Trips', value: 'trips' },  
+// ];
+
+// const occasion = [
+//   { label: 'Birthday', value: 'birthday' },
+//   { label: 'Romantic date', value: 'romantic date' },
+//   { label: 'Normal day', value: 'normal day' },
+//   { label: 'Weekend trip', value: 'weekend trip' },  
+//   { label: 'Holidays', value: 'holidays' },
+//   { label: 'Anniversary', value: 'anniversary' },  
+// ];
+
+// const primaryLoveLanguage = [
+//   { label: 'Physical touch', value: 'non sexual intimacy' },
+//   { label: 'Words of affirmation', value: 'Words of affirmation' },
+//   { label: 'Acts of service', value: 'Acts of service' },
+//   { label: 'Receive gifts', value: 'Receive gifts' },  
+//   { label: 'Quality time', value: 'Quality time' },  
+// ];
+
+// function handleSelectDropdown(event){
+//   const value = event.target.value;
+//   const name = event.target.name;
+
+//   //setInput remembers previous state and it updates it with the new name and value. That means that when I write the lastname, it doesn't forget the firstname.
+//   setCompleteEntry(state => ({
+//     ...state,
+//     [name]: value
+//   }));
+//   // addEntry(dropdownEntry)
+// }
+
 
   return (
     <>
-      <h1>Vite + React</h1>
+      <h1>Ask the AI</h1>
       <div className="card">
+      {/* <form 
+        className='input-form col col-12'
+        onSubmit={handleSubmit}>
+
+        <label > Hours of sleep
+            <select 
+                className="input-box"
+                value={completeEntry.hours} 
+                onChange={handleSelectDropdown}
+                name = "hours">
+            {hours.map((hour,index) => (
+                <option 
+                    value={hour.value}
+                    key = {index}>{hour.label}</option>
+            ))}
+            </select>
+        </label>
+        <label> Meditation
+            <select 
+                className="input-box"
+                value={completeEntry.meditation} 
+                name = "meditation"
+                onChange={handleSelectDropdown}>
+            {meditation.map((option, index) => (
+                <option 
+                    value={option.value}
+                    key = {index}>{option.label}</option>
+            ))}
+            </select>
+        </label>
+        <label> Exercise
+            <select 
+                className="input-box"
+                value={completeEntry.exercise} 
+                name = "exercise"
+                onChange={handleSelectDropdown}>
+            {exercise.map((option, index) => (
+                <option value={option.value}
+                key = {index}>{option.label}</option>
+            ))}
+            </select>
+        </label> */}
         <h5>Get recommendations based on love language</h5>
         <button onClick={(event)=>handleSubmitRecommendation("Love language", event)} disabled={loading}>
           {loading ? "Generating..." : "Generate Text"}
@@ -91,6 +170,7 @@ function refineText(rawAIText) {
         <button onClick={(event)=>handleSubmitRecommendation("User input", event)} disabled={loading}>
           {loading ? "Generating..." : "Generate Text"}
         </button>
+       
         {/* {generatedText !== null && <p>Generated Text: {generatedText}</p>} */}
         {generatedText && Array.isArray(generatedText) && generatedText.map((recommendation, index)=>  (<p key={index}>{recommendation}</p>))}
       </div>

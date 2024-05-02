@@ -76,3 +76,20 @@
 //   }
 
 "- Offer physical affection such as hugs, kisses, or massages.\n- Give thoughtful gifts that demonstrate your understanding of their interests and needs.\n- Perform acts of service to lighten their load, such as running errands or cooking dinner.\n- Spend quality time together, engaging in activities that they enjoy.\n- Express appreciation through handwritten notes or small tokens of affection.\n- Purchase items that they have been expressing interest in.\n- Plan special outings or experiences that cr..."
+
+// const [askRecommendationsInput, setAskRecommendationsInput] = useState ({
+//     type: "trip",
+//     occasion: "birthday",
+//     primaryLoveLanguage: "recieve gifts",
+//     city: "no specific city"
+//   })
+
+// const [userLoveLanguages, setUserLoveLanguages] = useState(
+//     {
+//       nonSexualIntimacy: "90",
+//       wordsOfaffirmation: "0",
+//       actsOfService: "0",
+//       receiveGifts:"10",
+//       qualityTime:"0"
+//     }
+//   )
