@@ -5,7 +5,7 @@ export default function Login() {
     // State to hold form data
     const [formData, setFormData] = useState({
         email: '',
-        password: ''
+        password: '',
     });
 
     // State to display any error or success messages
@@ -23,16 +23,19 @@ export default function Login() {
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();  // Prevent default form submission behavior
-        setMessage('');  // Clear any previous messages
 
         try {
             // Send a POST request to the backend
-            const response = await axios.post("http://localhost:4000/users/login", formData);
-            // If login is successful, store the token (here we would like to redirect or do something else here... context!)
+            const response = await axios({
+                method: "POST",
+                url:"http://localhost:4000/users/login",
+                data: formData,
+            });
+            // If login is successful, store the token
             localStorage.setItem('token', response.data.token);
-            setMessage('Login successful');
+            setMessage("Login successful");
         } catch (error) {
-            // Display error message
+            // Display error message using response from server or default to generic message
             setMessage(error.response?.data?.message || 'Error occurred during login');
         }
     };
@@ -53,7 +56,7 @@ export default function Login() {
                     />
                 </div>
                 <div>
-                    <label>PasswordXXXX:</label>
+                    <label>Password:</label>
                     <input
                         type="password"
                         name="password"
