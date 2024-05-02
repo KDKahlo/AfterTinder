@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AuthContext from '../contexts/AuthContext';
 
 export default function Login() {
     // State to hold form data
     const [formData, setFormData] = useState({
-        email: '',
-        password: '',
+        email: "",
+        password: "",
     });
 
     // State to display any error or success messages
     const [message, setMessage] = useState('');
+
+    //Login function from context
+    const { login } = useContext(AuthContext);
+
+    //Hook for navigation
+    const navigate = useNavigate();
 
     // Update state when form inputs change
     const handleChange = (e) => {
@@ -22,21 +30,15 @@ export default function Login() {
 
     // Handle form submission
     const handleSubmit = async (e) => {
-        e.preventDefault();  // Prevent default form submission behavior
-
+        e.preventDefault();
         try {
-            // Send a POST request to the backend
-            const response = await axios({
-                method: "POST",
-                url:"http://localhost:4000/users/login",
-                data: formData,
-            });
-            // If login is successful, store the token
-            localStorage.setItem('token', response.data.token);
-            setMessage("Login successful");
+            await login(formData);  // Call login from context with form data
+            navigate("/");  // Navigate to the home page after successful login
         } catch (error) {
-            // Display error message using response from server or default to generic message
-            setMessage(error.response?.data?.message || 'Error occurred during login');
+            // Update message state to display an error message
+            setMessage("Login failed: " + (error.response?.data?.message || 'Invalid username or password'));
+            // Optionally clear the password field
+            setFormData(prevFormData => ({ ...prevFormData, password: '' }));
         }
     };
 
