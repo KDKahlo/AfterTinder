@@ -54,8 +54,17 @@
 
 
 
-
-
+//USERS LOVE LANGUAGES UPDATE REGISTRATION TO TEST IN POSTMAN
+//URL: 
+//Token: the token you receive when you log in. It can be found in Postman's response for the login or in the browser--> inspect-->application(key and value table. when there's a token, ke key is "token" and the value is the token itself)
+//BODY:
+// {
+//     "touch": 40,
+//     "wordsOfAffirmation": 10,
+//     "actsOfService":0,
+//     "receiveGifts": 0,
+//     "qualityTime": 50
+//   }
 
 
 

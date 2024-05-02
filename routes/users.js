@@ -31,19 +31,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-//Register new user and populate users table.
-router.post("/loveLanguage", userShouldBeLoggedIn, async (req, res) => {
-  const { touch, wordsOfAffirmation, actsOfService, receiveGifts, qualityTime } = req.body;
-  const user_id = req.user_id
-  try {
-    await db(
-      `UPDATE users SET Percentage_Physical_Touch = "${touch}", Percentage_Words_of_Affirmation = "${wordsOfAffirmation}", Percentage_Acts_of_Service = "${actsOfService}", Percentage_Receiving_Gifts = "${receiveGifts}", Percentage_Quality_Time = "${qualityTime}" WHERE id = "${user_id}";`
-    );
-    res.send({ message: "Register successful" });
-  } catch (err) {
-    res.status(400).send({ message: err.message });
-  }
-});
+
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -73,11 +61,41 @@ if (user) {
   } catch(err) {
     res.status(400).send({message: err.message})
   }
-
 });
 
+//update user's table with qiz results.
+router.post("/loveLanguage", userShouldBeLoggedIn, async (req, res) => {
+  //all this comes from the frontend
+  const { touch, wordsOfAffirmation, actsOfService, receiveGifts, qualityTime } = req.body;
+  //user_id comes from userShouldBeLoggedIn
+  const user_id = req.user_id
+  try {
+    await db(
+      `UPDATE users SET Percentage_Physical_Touch = "${touch}", Percentage_Words_of_Affirmation = "${wordsOfAffirmation}", Percentage_Acts_of_Service = "${actsOfService}", Percentage_Receiving_Gifts = "${receiveGifts}", Percentage_Quality_Time = "${qualityTime}" WHERE id = "${user_id}";`
+    );
+    res.send({ message: "Register successful" });
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+});
+
+//Check user's id (with userShouldBeLoggeIn)
+//get info from that user.
+//send the data in the response.
+router.get("/loveLanguage", userShouldBeLoggedIn, async (req, res) => {
+  const user_id = req.user_id
+  try {
+    const result = await db(
+      `SELECT Percentage_Physical_Touch, Percentage_Words_of_Affirmation, Percentage_Acts_of_Service, Percentage_Receiving_Gifts, Percentage_Quality_Time FROM users WHERE id = "${user_id}";`
+    );
+    res.send(result.data);
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+});
+
+
 router.post("/relationships", userShouldBeLoggedIn, relationshipExists, async (req, res) => {
- 
   //the guard userShouldBeLoggedIn is sending the user_id
   const user_id = req.user_id
   //the guard relationshipExists is sending the relationship_id
