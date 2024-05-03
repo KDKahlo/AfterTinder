@@ -54,107 +54,34 @@
 
 
 
-
-
+//USERS LOVE LANGUAGES UPDATE REGISTRATION TO TEST IN POSTMAN
+//URL: 
+//Token: the token you receive when you log in. It can be found in Postman's response for the login or in the browser--> inspect-->application(key and value table. when there's a token, ke key is "token" and the value is the token itself)
+//BODY:
+// {
+//     "touch": 40,
+//     "wordsOfAffirmation": 10,
+//     "actsOfService":0,
+//     "receiveGifts": 0,
+//     "qualityTime": 50
+//   }
 
 
 
 //CHAT AI
-// import { useState } from "react";
-// import { GoogleGenerativeAI } from "@google/generative-ai";
-
-// const geminiAPIKey= process.env.REACT_APP_API_KEY
-
-// export default function ChatWithAI() {
-
-// const genAI = new GoogleGenerativeAI(geminiAPIKey);
-
-// const [generatedText, setGeneratedText] = useState(null);
-// const [loading, setLoading] = useState(false);
-
-//   async function runGenerativeAI() {
-//     setLoading(true);
-//     try {
-//        // Enviroment Variable
-
-//       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-//       const prompt =
-//         "Give recommendations for a date night out?";
-
-//       // Generate content based on the prompt
-//       const result = await model.generateContent(prompt);
-//       const response = await result.response;
-//       const text = response.text();
-
-//       setGeneratedText(text);
-//     } catch (error) {
-//       setGeneratedText("There was an error in your petition");
-//     } finally {
-//       setLoading(false);
-//     }
-//   }
-
-//   return (
-//     <>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={runGenerativeAI} disabled={loading}>
-//           {loading ? "Generating..." : "Generate Text"}
-//         </button>
-//         {generatedText !== null && <p>Generated Text: {generatedText}</p>}
-//       </div>
-//     </>
-//   );
-// };
-
-
-
-// import { useState } from "react";
-// import { GoogleGenerativeAI } from "@google/generative-ai";
-
-// const { VITE_BARD_API_KEY } = import.meta.env;
-
-// export default function ChatWithAI() {
-
-
-// const [generatedText, setGeneratedText] = useState(null);
-// const [loading, setLoading] = useState(false);
-
-// //   async function runGenerativeAI() {
-// //     setLoading(true);
-// //     try {
-// //        // Enviroment Variable
-// //         const genAI = new GoogleGenerativeAI(VITE_BARD_API_KEY);
-// // console.log(VITE_BARD_API_KEY)
-// //       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-// //       const prompt =
-// //         "Give recommendations for a date night out?";
-
-// //       // Generate content based on the prompt
-// //       const result = await model.generateContent(prompt);
-// //       const response = await result.response;
-// //       const text = response.text();
-
-// //       setGeneratedText(text);
-// //     } catch (error) {
-// //     console.log(error)
-// //       setGeneratedText("There was an error in your petition");
-// //     } finally {
-// //       setLoading(false);
-// //     }
+// function refineText(rawAIText) {
+//     const lines = rawAIText.split('\n')
+//     const refinedText = lines.forEach(line=> {
+//       line.substring(2, line.length)
+//     })
+// //     console.log(refinedText)
 // //   }
 
-//   return (
-//     <>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={runGenerativeAI} disabled={loading}>
-//           {loading ? "Generating..." : "Generate Text"}
-//         </button>
-//         {generatedText !== null && <p>Generated Text: {generatedText}</p>}
-//       </div>
-//     </>
-//   );
-// };
+// unction refineText(rawAIText) {
+//     const lines = rawAIText.split('\n')
+//     setGeneratedText(lines);
+   
+//     console.log(lines)
+//   }
+
+"- Offer physical affection such as hugs, kisses, or massages.\n- Give thoughtful gifts that demonstrate your understanding of their interests and needs.\n- Perform acts of service to lighten their load, such as running errands or cooking dinner.\n- Spend quality time together, engaging in activities that they enjoy.\n- Express appreciation through handwritten notes or small tokens of affection.\n- Purchase items that they have been expressing interest in.\n- Plan special outings or experiences that cr..."
