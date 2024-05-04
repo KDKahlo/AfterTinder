@@ -31,6 +31,8 @@ router.post("/register", async (req, res) => {
   }
 });
 
+
+
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -59,18 +61,48 @@ if (user) {
   } catch(err) {
     res.status(400).send({message: err.message})
   }
-
 });
 
+//update user's table with qiz results.
+router.post("/loveLanguage", userShouldBeLoggedIn, async (req, res) => {
+  //all this comes from the frontend
+  const { touch, wordsOfAffirmation, actsOfService, receiveGifts, qualityTime } = req.body;
+  //user_id comes from userShouldBeLoggedIn
+  const user_id = req.user_id
+  try {
+    await db(
+      `UPDATE users SET Percentage_Physical_Touch = "${touch}", Percentage_Words_of_Affirmation = "${wordsOfAffirmation}", Percentage_Acts_of_Service = "${actsOfService}", Percentage_Receiving_Gifts = "${receiveGifts}", Percentage_Quality_Time = "${qualityTime}" WHERE id = "${user_id}";`
+    );
+    res.send({ message: "Register successful" });
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+});
+
+//Check user's id (with userShouldBeLoggeIn)
+//get info from that user.
+//send the data in the response.
+router.get("/loveLanguage", userShouldBeLoggedIn, async (req, res) => {
+  const user_id = req.user_id
+  try {
+    const result = await db(
+      `SELECT Percentage_Physical_Touch, Percentage_Words_of_Affirmation, Percentage_Acts_of_Service, Percentage_Receiving_Gifts, Percentage_Quality_Time FROM users WHERE id = "${user_id}";`
+    );
+    res.send(result.data);
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+});
+
+
 router.post("/relationships", userShouldBeLoggedIn, relationshipExists, async (req, res) => {
- 
   //the guard userShouldBeLoggedIn is sending the user_id
   const user_id = req.user_id
   //the guard relationshipExists is sending the relationship_id
   const relationship_id= req.relationship_id
   try {
     await db(
-      `INSERT INTO users_relationships (user_id, relationship_id) VALUES ("${user_id}","${relationship_id}" )`
+      `INSERT INTO users_relationships (user_id, relationship_id) VALUES ("${user_id}","${relationship_id}")`
     );
     
     res.send({ message: "Relationship successfully registered" });
@@ -82,54 +114,5 @@ router.post("/relationships", userShouldBeLoggedIn, relationshipExists, async (r
   }
 });
 
-// //register new relationship and populate relationships table
-// router.post("/relationships", userShouldBeLoggedIn, async (req, res) => {
-//   const { code } = req.body;
-//   try {
-//     await db(
-//       `INSERT INTO relationships (code) VALUES ("${code}")`
-//     );
-//     const result = await db(`SELECT * FROM relationships WHERE code = "${code}" `)
-      
-//     res.send({ message: "Register successful" });
-//   } catch (err) {
-//     console.log("EEEEEERRRRROOOOOORRRRRR", err)
-//     //if the code already exists, the error message is:  { "message": "ER_DUP_ENTRY: Duplicate entry '12345678' for key 'relationships.code'"}
-//     //we can identify this error in the front end and use it to ask the user to re-generate code and and try again
-//     res.status(400).send({ message: err.message });
-//   }
-// });
-
-// //Get id from relationships table.
-// //Not sure we need this endpoint.
-// //I created it to explore how we can get the id of a relationship so that we can send it to the users_relationships table.
-// router.get("/relationships", async (req, res) => {
-//   const { code } = req.body;
-//   try {
-//     const result = await db(`SELECT id FROM relationships WHERE code = "${code}" `)
-//     console.log(result)
-  
-//      res.send(result.data[0]);
-//   } catch (err) {
-//     res.status(400).send({ message: err.message });
-//   }
-// });
-
-// // //Populate users_relationships table to relate a specific user to a specific relationship.
-// router.post("/users_relationships", userShouldBeLoggedIn, async (req, res) => {
-//   const { user_id, relationship_id } = req.body;
-
-//   try {
-
-//     await db(
-//       `INSERT INTO users_relationships (user_id, relationship_id) VALUES ("${user_id}","${relationship_id}" )`
-//     );
-
-//     res.send({ message: "Register successful" });
-//   } catch (err) {
-//     console.log(err)
-//     res.status(400).send({ message: err.message });
-//   }
-// });
 
 module.exports = router;
