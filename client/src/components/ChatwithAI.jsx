@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import PartnersData from "./PartnersData";
 
 
 export default function ChatWithAI() {
@@ -8,15 +9,7 @@ const [generatedText, setGeneratedText] = useState([]);
 const [loading, setLoading] = useState(false);
 //store user's love languages percentages. 
 //this ifo should come from a get request to the database.
-const [userLoveLanguages, setUserLoveLanguages] = useState(
-  {
-    nonSexualIntimacy: "90",
-    wordsOfaffirmation: "0",
-    actsOfService: "0",
-    receiveGifts:"10",
-    qualityTime:"0"
-  }
-)
+const [userLoveLanguages, setUserLoveLanguages] = useState({})
 //store user's input to ask for recommendations.
 //this info should come from a drop down menu input.
 const [askRecommendationsInput, setAskRecommendationsInput] = useState ({
@@ -42,7 +35,10 @@ function handleSubmitRecommendation(action, event){
   event.preventDefault()
   if (action === "User input") {
     runGenerativeAI(promptUserInput)
-  } else {runGenerativeAI(promptLoveLanguage)}
+  } 
+  if (action === "Love language" && userLoveLanguages.Percentage_Words_of_Affirmation) {
+    runGenerativeAI(promptLoveLanguage)
+  } else {window.alert("Please select a partner")}
 }
 
 //request to AI
@@ -114,11 +110,14 @@ function handleSelectDropdown(event){
     [name]: value
   }));
 }
-
+function updateUserLoveLanguages(user) {
+  setUserLoveLanguages(user)
+}
 
   return (
     <>
       <h1>Ask the AI</h1>
+      
       <div className="card">
       <h5>Get recommendations based on user input</h5>
       <form>
@@ -167,14 +166,14 @@ function handleSelectDropdown(event){
         </button>
 
         <h5>Get recommendations based on love language</h5>
+        <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
         <button onClick={(event)=>handleSubmitRecommendation("Love language", event)} disabled={loading}>
           {loading ? "Generating..." : "Generate Text"}
         </button>
         
 
-       
-        {/* {generatedText !== null && <p>Generated Text: {generatedText}</p>} */}
-        {generatedText && Array.isArray(generatedText) && generatedText.map((recommendation, index)=>  (<p key={index}>{recommendation}</p>))}
+        {userLoveLanguages && <h5>Here's your recommendations for {userLoveLanguages.firstname}:</h5>}
+        {generatedText && Array.isArray(generatedText) && generatedText.map((recommendation, index)=>  (<p key={index}> {recommendation}</p>))}
       </div>
     </>
   );
