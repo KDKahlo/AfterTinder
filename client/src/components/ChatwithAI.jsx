@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import PartnersData from "./PartnersData";
+import AIDropDownInput from "./AIDropdownInput";
 
 
 export default function ChatWithAI() {
@@ -12,12 +13,7 @@ const [loading, setLoading] = useState(false);
 const [userLoveLanguages, setUserLoveLanguages] = useState({})
 //store user's input to ask for recommendations.
 //this info should come from a drop down menu input.
-const [askRecommendationsInput, setAskRecommendationsInput] = useState ({
-  type: "",
-  occasion: "",
-  primaryLoveLanguage: "",
-  city: "no specific city"
-})
+const [askRecommendationsInput, setAskRecommendationsInput] = useState ({})
 
 useEffect(() => {
   setUserLoveLanguages({})
@@ -42,7 +38,7 @@ const promptUserInput = `Based on the book called The 5 Love Languages, give a l
   } 
   if (action === "Love language" && userLoveLanguages.Percentage_Words_of_Affirmation) {
     runGenerativeAI(promptLoveLanguage)
-  } else {window.alert("Please select a partner")}
+  } else if (action === "Love language" && !userLoveLanguages.Percentage_Words_of_Affirmation){window.alert("Please select a partner")}
 }
 
 //request to AI
@@ -77,46 +73,13 @@ function refineText(rawAIText) {
     console.log(refinedText)
    }
 
-//these variables store the labels and the values of the options in the drop down menu where user can select their choice.
-   const type = [
-    { label: 'Gifts', value: 'gifts' },
-    { label: 'Plans', value: 'plans' },
-    { label: 'Compliments', value: 'compliments' },
-    { label: 'Physical touch gestures', value: 'non sexual intimacy gestures' },  
-    { label: 'Act of service', value: 'act of service' },
-    { label: 'Trips', value: 'trips' },  
-];
 
-const occasion = [
-  { label: 'Birthday', value: 'birthday' },
-  { label: 'Romantic date', value: 'romantic date' },
-  { label: 'Normal day', value: 'normal day' },
-  { label: 'Weekend trip', value: 'weekend trip' },  
-  { label: 'Holidays', value: 'holidays' },
-  { label: 'Anniversary', value: 'anniversary' },  
-];
-
-const primaryLoveLanguage = [
-  { label: 'Physical touch', value: 'non sexual intimacy' },
-  { label: 'Words of affirmation', value: 'Words of affirmation' },
-  { label: 'Acts of service', value: 'Acts of service' },
-  { label: 'Receive gifts', value: 'Receive gifts' },  
-  { label: 'Quality time', value: 'Quality time' },  
-];
-
-function handleSelectDropdown(event){
-  const value = event.target.value;
-  const name = event.target.name;
-
-  //setAskRecommendationsInput remembers previous state and it updates it with the new name and value. That means that when I select occasion, it doesn't forget the the type or the primary love language.
-  setAskRecommendationsInput(state => ({
-    ...state,
-    [name]: value
-  }));
-}
-function updateUserLoveLanguages(user) {
-  
+function updateUserLoveLanguages(user) { 
   setUserLoveLanguages(user)
+}
+
+function updateUserInput(input) {
+  setAskRecommendationsInput(input)
 }
 
   return (
@@ -125,50 +88,11 @@ function updateUserLoveLanguages(user) {
       
       <div className="card">
       <h5>Get recommendations based on user input</h5>
-      <form>
-
-        <label > Type of recommendation
-            <select 
-                className="input-box"
-                value={askRecommendationsInput.type} 
-                onChange={handleSelectDropdown}
-                name = "type">
-            {type.map((type,index) => (
-                <option 
-                    value={type.value}
-                    key = {index}>{type.label}</option>
-            ))}
-            </select>
-        </label>
-        <label> Select occasion
-            <select 
-                className="input-box"
-                value={askRecommendationsInput.occasion} 
-                name = "occasion"
-                onChange={handleSelectDropdown}>
-            {occasion.map((option, index) => (
-                <option 
-                    value={option.value}
-                    key = {index}>{option.label}</option>
-            ))}
-            </select>
-        </label>
-        <label> Select primary love language
-            <select 
-                className="input-box"
-                value={askRecommendationsInput.primaryLoveLanguage} 
-                name = "primaryLoveLanguage"
-                onChange={handleSelectDropdown}>
-            {primaryLoveLanguage.map((option, index) => (
-                <option value={option.value}
-                key = {index}>{option.label}</option>
-            ))}
-            </select>
-        </label>
-        </form>
-        <button onClick={(event)=>handleSubmitRecommendation("User input", event)} disabled={loading}>
-          {loading ? "Generating..." : "Generate Text"}
-        </button>
+      <AIDropDownInput 
+        handleSubmitRecommendation={(action, event)=>handleSubmitRecommendation(action, event)}
+        loading={loading}
+        updateUserInput={(input)=>updateUserInput(input)}/>
+      
 
         <h5>Get recommendations based on love language</h5>
         <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
