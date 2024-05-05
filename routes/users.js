@@ -114,5 +114,17 @@ router.post("/relationships", userShouldBeLoggedIn, relationshipExists, async (r
   }
 });
 
+router.get("/partners_data", userShouldBeLoggedIn, async (req, res) => {
+  const user_id = req.user_id
+  try {
+    const result = await db(
+      `SELECT DISTINCT u2.firstname, u2.Percentage_Words_of_Affirmation, u2.Percentage_Quality_Time, u2.Percentage_Receiving_Gifts, u2.Percentage_Acts_of_Service, u2.Percentage_Physical_Touch FROM users u1 JOIN users_relationships ur1 ON u1.id = ur1.user_id JOIN relationships r1 ON ur1.relationship_id = r1.id JOIN users_relationships ur2 ON r1.id = ur2.relationship_id JOIN users u2 ON ur2.user_id = u2.id WHERE u1.id = ${user_id} AND u2.id != ${user_id};`
+    );
+    console.log(result.data)
+    res.send(result.data);
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+});
 
 module.exports = router;
