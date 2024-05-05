@@ -19,11 +19,13 @@ const [askRecommendationsInput, setAskRecommendationsInput] = useState ({
   city: "no specific city"
 })
 
-
-
 useEffect(() => {
-  console.log(generatedText);
-}, [generatedText]); 
+  setUserLoveLanguages({})
+}, []); 
+
+// useEffect(() => {
+//   console.log(generatedText);
+// }, [generatedText]); 
 
 //Trigger the query to the AI
 //Send the correspondent prompt depending on which button is clicked.
@@ -113,6 +115,7 @@ function handleSelectDropdown(event){
   }));
 }
 function updateUserLoveLanguages(user) {
+  
   setUserLoveLanguages(user)
 }
 
@@ -174,7 +177,7 @@ function updateUserLoveLanguages(user) {
         </button>
         
 
-        {userLoveLanguages && <h5>Here's your recommendations for {userLoveLanguages.firstname}:</h5>}
+        {userLoveLanguages.firstname && <h5>Recommendations for {userLoveLanguages.firstname}:</h5>}
         {generatedText && Array.isArray(generatedText) && generatedText.map((recommendation, index)=>  (<p key={index}> {recommendation}</p>))}
       </div>
     </>
