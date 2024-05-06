@@ -17,7 +17,7 @@
 
 //USER LOGIN CODE TO TEST IN POSTMAN
 //URL: http://localhost:4000/users/login
-//Body:
+// Body:
 // {
 //     "email": "example2@example.com",
 //     "password": "password1234"
@@ -68,20 +68,3 @@
 
 
 
-//CHAT AI
-// function refineText(rawAIText) {
-//     const lines = rawAIText.split('\n')
-//     const refinedText = lines.forEach(line=> {
-//       line.substring(2, line.length)
-//     })
-// //     console.log(refinedText)
-// //   }
-
-// unction refineText(rawAIText) {
-//     const lines = rawAIText.split('\n')
-//     setGeneratedText(lines);
-   
-//     console.log(lines)
-//   }
-
-"- Offer physical affection such as hugs, kisses, or massages.\n- Give thoughtful gifts that demonstrate your understanding of their interests and needs.\n- Perform acts of service to lighten their load, such as running errands or cooking dinner.\n- Spend quality time together, engaging in activities that they enjoy.\n- Express appreciation through handwritten notes or small tokens of affection.\n- Purchase items that they have been expressing interest in.\n- Plan special outings or experiences that cr..."

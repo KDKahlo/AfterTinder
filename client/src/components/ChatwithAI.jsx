@@ -1,49 +1,44 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import PartnersData from "./PartnersData";
+import AIDropDownInput from "./AIDropdownInput";
 
 
 export default function ChatWithAI() {
 
 const [generatedText, setGeneratedText] = useState([]);
 const [loading, setLoading] = useState(false);
-
 //store user's love languages percentages. 
 //this ifo should come from a get request to the database.
-const [userLoveLanguages, setUserLoveLanguages] = useState(
-  {
-    touch: "10",
-    wordsOfaffirmation: "0",
-    actsOfService: "10",
-    receiveGifts:"70",
-    qualityTime:"10"
-  }
-)
+const [userLoveLanguages, setUserLoveLanguages] = useState({})
 //store user's input to ask for recommendations.
 //this info should come from a drop down menu input.
-const [askRecommendationsInput, setAskRecommendationsInput] = useState ({
-  type: "trip",
-  occasion: "birthday",
-  primaryLoveLanguage: "recieve gifts",
-  city: "no specific city"
-})
-
-//prompt to get recommendations based on the person's love language.
-const promptLoveLanguage = `Based on the book called The 5 Love Languages, give a list of recommendations to show appreciation to a person who's loves languages are: touch ${userLoveLanguages.touch}%, gifts ${userLoveLanguages.receiveGifts}%, acts of service${userLoveLanguages.actsOfService}%, words of affirmation ${userLoveLanguages.wordsOfaffirmation}%, quality time ${userLoveLanguages.qualityTime}%. Don't include recommendations for love languages that have a percentage of 0. DO NOT write any percentages in your response. Send recommendations without introduction text, just a list of recommendations. No titles`;
-//prompt to get recommendations based on the user's input.
-const promptUserInput = `Based on the book called The 5 Love Languages, give a list of recommendations of ${askRecommendationsInput.type} to show appreciation during ${askRecommendationsInput.occasion} to a person who's primary love language is ${askRecommendationsInput.primaryLoveLanguage}. Send recommendations without introduction text, just a list of recommendations. No titles`;
-
+const [askRecommendationsInput, setAskRecommendationsInput] = useState ({})
 
 useEffect(() => {
-  console.log(generatedText);
-}, [generatedText]); 
+  setUserLoveLanguages({})
+}, []); 
+
+// useEffect(() => {
+//   console.log(generatedText);
+// }, [generatedText]); 
 
 //Trigger the query to the AI
 //Send the correspondent prompt depending on which button is clicked.
 function handleSubmitRecommendation(action, event){
   event.preventDefault()
+
+  //prompt to get recommendations based on the person's love language.
+const promptLoveLanguage = `Based on the book called The 5 Love Languages, give a list of recommendations to show appreciation to a person who's loves languages are: touch ${userLoveLanguages.nonSexualIntimacy}%, gifts ${userLoveLanguages.receiveGifts}%, acts of service${userLoveLanguages.actsOfService}%, words of affirmation ${userLoveLanguages.wordsOfaffirmation}%, quality time ${userLoveLanguages.qualityTime}%. Don't include recommendations for love languages that have a percentage of 0. DO NOT write any percentages in your response. Send recommendations without introduction text, just a list of recommendations. No titles`;
+//prompt to get recommendations based on the user's input.
+const promptUserInput = `Based on the book called The 5 Love Languages, give a list of recommendations of ${askRecommendationsInput.type} to show appreciation during ${askRecommendationsInput.occasion} to a person who's primary love language is ${askRecommendationsInput.primaryLoveLanguage}. Send recommendations without introduction text, just a list of recommendations. No titles`;
+
   if (action === "User input") {
     runGenerativeAI(promptUserInput)
-  } else {runGenerativeAI(promptLoveLanguage)}
+  } 
+  if (action === "Love language" && userLoveLanguages.Percentage_Words_of_Affirmation) {
+    runGenerativeAI(promptLoveLanguage)
+  } else if (action === "Love language" && !userLoveLanguages.Percentage_Words_of_Affirmation){window.alert("Please select a partner")}
 }
 
 //request to AI
@@ -79,20 +74,35 @@ function refineText(rawAIText) {
    }
 
 
+function updateUserLoveLanguages(user) { 
+  setUserLoveLanguages(user)
+}
+
+function updateUserInput(input) {
+  setAskRecommendationsInput(input)
+}
+
   return (
     <>
-      <h1>Vite + React</h1>
+      <h1>Ask the AI</h1>
+      
       <div className="card">
+      <h5>Get recommendations based on user input</h5>
+      <AIDropDownInput 
+        handleSubmitRecommendation={(action, event)=>handleSubmitRecommendation(action, event)}
+        loading={loading}
+        updateUserInput={(input)=>updateUserInput(input)}/>
+      
+
         <h5>Get recommendations based on love language</h5>
+        <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
         <button onClick={(event)=>handleSubmitRecommendation("Love language", event)} disabled={loading}>
           {loading ? "Generating..." : "Generate Text"}
         </button>
-        <h5>Get recommendations based on user input</h5>
-        <button onClick={(event)=>handleSubmitRecommendation("User input", event)} disabled={loading}>
-          {loading ? "Generating..." : "Generate Text"}
-        </button>
-        {/* {generatedText !== null && <p>Generated Text: {generatedText}</p>} */}
-        {generatedText && Array.isArray(generatedText) && generatedText.map((recommendation, index)=>  (<p key={index}>{recommendation}</p>))}
+        
+
+        {userLoveLanguages.firstname && <h5>Recommendations for {userLoveLanguages.firstname}:</h5>}
+        {generatedText && Array.isArray(generatedText) && generatedText.map((recommendation, index)=>  (<p key={index}> {recommendation}</p>))}
       </div>
     </>
   );

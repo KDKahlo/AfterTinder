@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 export default function LoveQuote() {
-const[loveQuote, setLoveQuote]= useState("")
+const[loveQuote, setLoveQuote]= useState(null)
 
 useEffect(() => {
     
     getLoveQuote()
     
     }, []);
+
+
+const getLoveQuote = async () => {
 
 //this is the syntax proposed by RapidAPI. 
 //Instead of passing headers, method and url inside the request, it creates an object called options that holds all the necessary info.
@@ -20,10 +23,9 @@ const options = {
     'X-RapidAPI-Host': 'love-quote.p.rapidapi.com'
   }
 };
-const getLoveQuote = async () => {
 
 try {
-	const response = await axios.request(options);
+	const response = await axios(options);
 	console.log(response.data);
     setLoveQuote(response.data)
 } catch (error) {
@@ -31,5 +33,7 @@ try {
 }
 }
 
-return (<h6>{loveQuote.quote}({loveQuote.author})</h6>)
+  return 
+  (<>{loveQuote && <h6>{loveQuote.quote}({loveQuote.author})</h6>}</>)
+
 };

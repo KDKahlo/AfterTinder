@@ -9,8 +9,10 @@ const relationshipExists = async (req, res, next) => {
     try{
        const result = await db(`SELECT id FROM relationships WHERE code = "${code}"`)
         if (result.data.length > 0) {
+          console.log("******************", result.data[0].id)
             // Relationship exists, proceed to the next middleware or route handler
-            next();
+            const relationship_id = result.data[0].id;      
+            req.relationship_id = relationship_id
           } else {
             await db(
                 `INSERT INTO relationships (code) VALUES ("${code}")`
