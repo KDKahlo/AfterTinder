@@ -43,32 +43,57 @@ export default function Login() {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            {message && <p>{message}</p>}  
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
+        <div className="container col-lg-8 position-absolute top-50 start-50 translate-middle bg-white shadow-sm rounded-4">
+            <div className="row justify-content-center align-items-center text-center">
+                <div className="col-lg-8 p-4 w-50">
+                    
+
+                    <div className="mb-3 text-center">
+                        <img src="src/assets/After_tinder_logo.png" className="img-fluid w-80" alt="" />
+                        <p className="mt-2">welcome back!</p>
+                    </div>
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <input
+                                type="email"
+                                name="email"
+                                className="form-control p-3 shadow-none rounded-pill"
+                                placeholder="Email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <input
+                                type="password"
+                                name="password"
+                                className="form-control p-3 shadow-none rounded-pill"
+                                placeholder="Password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="mb-3">
+                            <button type="submit" className="btn btn-primary p-3 shadow-none rounded-pill w-100">
+                                Sign in
+                            </button>
+                        </div>
+                    </form>
+
+                    <div className="mb-3">
+                        <button className="btn btn-outline-dark p-3 shadow-none rounded-pill w-100">
+                            Connect with Facebook
+                        </button>
+                    </div>
+                    <div className="my-3">
+                        <p>New user? Register <a href="/registration">here</a></p>
+                    </div>
                 </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <button type="submit">Login</button>
-            </form>
+            </div>
         </div>
     );
 }
