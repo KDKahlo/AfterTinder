@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 export default function LoveQuote() {
-const[loveQuote, setLoveQuote]= useState(null)
+const[loveQuote, setLoveQuote]= useState(null) // This line initializes the "loveQuote" state variable to null. This state will later hold the data fetched from the API.
 
 useEffect(() => {
-    
     getLoveQuote()
-    
     }, []);
 
 

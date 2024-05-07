@@ -74,6 +74,17 @@ export default function Registration() {
                     </div>
                     <div className="mb-3">
                         <input
+                            type="firstname"
+                            name="firstname"
+                            className="form-control p-3 shadow-none rounded-pill"
+                            placeholder="First Name"
+                            value={formData.firstname}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input
                             type="password"
                             name="password"
                             className="form-control p-3 shadow-none rounded-pill"
