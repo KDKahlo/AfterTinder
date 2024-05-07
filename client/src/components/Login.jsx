@@ -38,6 +38,7 @@ export default function Login() {
       await login(formData); // Call login from context with form data
       navigate("/"); // Navigate to the home page after successful login
     } catch (error) {
+        console.error("Login error:", error.response?.data?.message || error.message);
         setMessage(error.response?.data?.message || 'Login error');
         setShowModal(true); // Show the modal on error
       // Optionally clear the password field
