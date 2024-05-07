@@ -75,7 +75,7 @@ function handleSubmit(event) {
 
     return (
         <>
-         <h5>Show your partner you care about them! do you want some recommendations?</h5>
+         <h5>Show you care! do you want some recommendations?</h5>
         <form onSubmit={(event)=>handleSubmit(event)}>
         <label > Type of recommendation
             <select 
