@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
-import PartnersData from "./PartnersData";
-import AIDropDownInput from "./AIDropdownInput";
+
 
 
 export default function ChatWithAI() {
 
 const [generatedText, setGeneratedText] = useState([]);
 const [loading, setLoading] = useState(false);
-//store user's love languages percentages. 
-//this ifo should come from a get request to the database.
-const [userLoveLanguages, setUserLoveLanguages] = useState({})
-//store user's input to ask for recommendations.
-//this info should come from a drop down menu input.
-const [askRecommendationsInput, setAskRecommendationsInput] = useState ({})
+// //store user's love languages percentages. 
+// //this ifo should come from a get request to the database.
+// const [userLoveLanguages, setUserLoveLanguages] = useState({})
+// //store user's input to ask for recommendations.
+// //this info should come from a drop down menu input.
+// const [askRecommendationsInput, setAskRecommendationsInput] = useState ({})
 
 useEffect(() => {
   setUserLoveLanguages({})
@@ -95,7 +94,7 @@ function updateUserInput(input) {
       
 
         <h5>Get recommendations based on love language</h5>
-        <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
+       
         <button onClick={(event)=>handleSubmitRecommendation("Love language", event)} disabled={loading}>
           {loading ? "Generating..." : "Generate Text"}
         </button>

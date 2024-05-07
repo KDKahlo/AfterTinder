@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import AIQuery from "./AIQuery";
 
-export default function AIDropDownInput({updateUserInput, handleSubmitRecommendation, loading}) {
+export default function AIDropDownInput() {
 
 //store user's input to ask for recommendations.
 //this info should come from a drop down menu input.
@@ -10,10 +11,14 @@ const [recommendationsInput, setRecommendationsInput] = useState ({
     primaryLoveLanguage: "",
     city: "no specific city"
   })
+  const [loading, setLoading] = useState(false);
+  const [prompt, setPrompt] = useState("")
+
+const promptUserInput = `Based on the book called The 5 Love Languages, give a list of recommendations of ${recommendationsInput.type} to show appreciation during ${recommendationsInput.occasion} to a person who's primary love language is ${recommendationsInput.primaryLoveLanguage}. Send recommendations without introduction text, just a list of recommendations. No titles`;
 
   useEffect(() => {
-    updateUserInput(recommendationsInput)
-  }, [recommendationsInput]); 
+    setPrompt("")
+  }, []); 
    
 //these variables store the labels and the values of the options in the drop down menu where user can select their choice.
 const type = [
@@ -56,15 +61,22 @@ function handleSelectDropdown(event){
   }));
 }
 
-function handleSubmit(action, event) {
-    event.preventDefault()
-    handleSubmitRecommendation(action, event)
+function handleLoading(status) {
+    setLoading(status)
 }
 
+function handleSubmit(event) {
+    event.preventDefault();
+    if (!recommendationsInput.type.length || !recommendationsInput.occasion.length || !recommendationsInput.primaryLoveLanguage.length){
+        window.alert("please, select type, occasion and Primary love language")
+
+} else {setPrompt(promptUserInput)}
+  }
 
     return (
         <>
-        <form onSubmit={(event)=>handleSubmit("User input", event)}>
+         <h5>Show your partner you care about them! do you want some recommendations?</h5>
+        <form onSubmit={(event)=>handleSubmit(event)}>
         <label > Type of recommendation
             <select 
                 className="input-box"
@@ -107,6 +119,7 @@ function handleSubmit(action, event) {
           {loading ? "Generating..." : "Generate Text"}
         </button>
         </form>
+        <AIQuery prompt={prompt} handleLoading={(status)=> handleLoading(status)}/>
         
         </>)
 };
