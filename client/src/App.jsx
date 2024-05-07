@@ -6,7 +6,6 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Quiz from "./components/Quiz";
-import ChatwithAI from "./components/ChatwithAI";
 import QuizInstructions from "./components/QuizInstructions";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import { Routes, Route } from "react-router-dom";

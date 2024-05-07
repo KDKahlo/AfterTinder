@@ -4,8 +4,6 @@ import ShowPartnersData from "./ShowPartnersData";
 
 export default function () {
     const [userLoveLanguages, setUserLoveLanguages] = useState(null)
-
-
     useEffect(() => {
         setUserLoveLanguages(null)
         }, []);
@@ -14,7 +12,6 @@ export default function () {
         setUserLoveLanguages(user)
       }
     
-
     return(
         <>
         

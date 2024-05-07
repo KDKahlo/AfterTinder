@@ -17,7 +17,7 @@ useEffect(() => {
 
 //request to AI
 //it posts the prompt with axios.
-async function runGenerativeAI() {
+async function runGenerativeAI(prompt) {
   //Make sure generatedText variable is empty before doing anything else.
   setGeneratedText([])
   handleLoading(true);
