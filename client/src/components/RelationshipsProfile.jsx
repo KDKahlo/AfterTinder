@@ -14,14 +14,9 @@ export default function () {
     
     return(
         <>
-        
         {userLoveLanguages ? 
-        <>
-        <h2>{userLoveLanguages.firstname}</h2>
-        <ShowPartnersData userLoveLanguages={userLoveLanguages} updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
-        </>
-        : <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/> }
-         
+       <ShowPartnersData userLoveLanguages={userLoveLanguages} updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
+        : <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>}
         </>
     )
 }

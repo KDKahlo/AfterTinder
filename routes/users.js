@@ -138,4 +138,17 @@ router.get("/partners_data", userShouldBeLoggedIn, async (req, res) => {
   }
 });
 
+router.get("/user_data", userShouldBeLoggedIn, async (req, res) => {
+  const user_id = req.user_id;
+  try {
+    const result = await db(
+      `SELECT firstname, Percentage_Words_of_Affirmation, Percentage_Quality_Time, Percentage_Receiving_Gifts, Percentage_Acts_of_Service, Percentage_Physical_Touch FROM users WHERE users.id = ${user_id};`
+    );
+    console.log(result.data);
+    res.send(result.data);
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+});
+
 module.exports = router;
