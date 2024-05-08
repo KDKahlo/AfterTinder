@@ -18,6 +18,7 @@ function Navbar() {
                 <>
                     <Link to="/quiz">Quiz</Link>
                     <Link to="/chatwithai">Chat with AI</Link>
+                    <Link to="/Profile">Profile</Link>
                     <button onClick={handleLogout}>Logout</button>
                 </>
             ) : (
