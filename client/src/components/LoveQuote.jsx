@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
-export default function LoveQuote() {
+export default function LoveQuote() { // This function fetches a love quote from a remote API using Axios and then display the quote and author's name
 const[loveQuote, setLoveQuote]= useState(null) // This line initializes the "loveQuote" state variable to null. This state will later hold the data fetched from the API.
 
-useEffect(() => {
+useEffect(() => { 
     getLoveQuote()
     }, []);
 
@@ -31,7 +31,7 @@ try {
 }
 }
 
-  return 
-  (<>{loveQuote && <h6>{loveQuote.quote}({loveQuote.author})</h6>}</>)
-
-};
+return (
+  <>{loveQuote && <h6>{loveQuote.quote} ({loveQuote.author})</h6>}</>
+);
+}
