@@ -6,12 +6,13 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Quiz from "./components/Quiz";
-import ChatwithAI from "./components/ChatwithAI";
 import QuizInstructions from "./components/QuizInstructions";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import Profile from "./components/Profile.jsx";
 import { Routes, Route } from "react-router-dom";
 import AuthContext from './contexts/AuthContext';
+import AIDropDownInput from "./components/AIDropdownInput.jsx";
+import RelationshipsProfile from "./components/RelationshipsProfile.jsx";
 
 
 function App() {
@@ -57,8 +58,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
         <Route path="/quiz" element={<PrivateRoute><Quiz/></PrivateRoute>}/>
-        <Route path="/chatwithai" element={<PrivateRoute><ChatwithAI /></PrivateRoute>}/>
         <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>}/>
+        <Route path="/relationships" element={<PrivateRoute><RelationshipsProfile/></PrivateRoute>}/>
+        <Route path="/chatwithai" element={<PrivateRoute><AIDropDownInput /></PrivateRoute>}/>
       </Routes>
     </AuthContext.Provider>
   );

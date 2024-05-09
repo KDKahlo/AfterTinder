@@ -26,8 +26,6 @@ export default function PartnersData({updateUserLoveLanguages}) {
                 authorization: `Bearer ${token}`,
               }
             })
-            
-            console.log(data)
             isThereData(data)
             //setData with received data
             setPartnersData(data)
