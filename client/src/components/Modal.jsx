@@ -1,4 +1,9 @@
-export default function Modal() {
+
+export default function Modal({message, handleClose, showModal, header}) {
+
+    function closeModal(){
+        handleClose(false)
+    }
     return (
         <>
                 <div
@@ -9,7 +14,7 @@ export default function Modal() {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title">Login Error</h5>
+                  <h5 className="modal-title">{header}</h5>
                   <button
                     type="button"
                     className="btn-close"
@@ -23,7 +28,7 @@ export default function Modal() {
                   <button
                     type="button"
                     className="btn btn-secondary"
-                    onClick={handleClose}
+                    onClick={closeModal}
                   >
                     Close
                   </button>

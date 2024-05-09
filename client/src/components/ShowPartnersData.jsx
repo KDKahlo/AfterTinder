@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import AIQuery from "./AIQuery";
 import { useNavigate } from "react-router-dom";
 import DonutChart from "./DonutChart";
+import quizData from "../assets/lovelanguagequiz"
 
 export default function ShowPartnersData({userLoveLanguages, updateUserLoveLanguages}){
     const [loveLanguages, setLoveLanguages] = useState({})
     const [loading, setLoading] = useState(false);
     const [prompt, setPrompt] = useState("")
+    const resultsExplanation= quizData[0].Interpretation.oneselfResults
 
 
 //prompt to get recommendations based on the person's love language.
@@ -33,7 +35,7 @@ function handleGoBackClick() {
         <>
         <h2>{userLoveLanguages.firstname}</h2>
 
-        <DonutChart userLoveLanguages= {userLoveLanguages}/>;
+        <DonutChart results={resultsExplanation} userLoveLanguages={userLoveLanguages}/>;
         
         <AIQuery prompt={prompt} handleLoading={(status)=> handleLoading(status)}/>
         <button  
