@@ -18,20 +18,11 @@ export default function Modal({message, handleClose, showModal, header}) {
                   <button
                     type="button"
                     className="btn-close"
-                    onClick={handleClose}
+                    onClick={closeModal}
                   ></button>
                 </div>
                 <div className="modal-body">
                   <p>{message}</p>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={closeModal}
-                  >
-                    Close
-                  </button>
                 </div>
               </div>
             </div>

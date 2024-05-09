@@ -28,7 +28,8 @@ export default function DonutChart({userLoveLanguages, results}) {
     //store the label of the clicked element.
     const segmentLabel = data.labels[clickedSegmentIndex];
     //Store the label, so that we can send it to the modal
-    setModalHeader(segmentLabel)
+    const segmentValue = data.datasets[0].data[clickedSegmentIndex]
+    setModalHeader(`${segmentLabel} ${segmentValue}%`)
     //make sure results is not empty
     if (results) {
     for (let result in results) {
@@ -40,7 +41,7 @@ export default function DonutChart({userLoveLanguages, results}) {
       }
     }}
     setShowModal(true); // Show the modal
-    console.log(message)
+    console.log(segmentValue)
   }
 };
 
