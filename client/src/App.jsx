@@ -17,7 +17,7 @@ import RelationshipsProfile from "./components/RelationshipsProfile.jsx";
 
 function App() {
   // State to track if a user is logged in
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token")); // The state never stars as false, but instead it will check if the token is there or not every time the page refreshes
 
   useEffect(() => {
     //Check for token in localStorage
