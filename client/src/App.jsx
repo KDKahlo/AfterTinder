@@ -13,6 +13,7 @@ import { Routes, Route } from "react-router-dom";
 import AuthContext from './contexts/AuthContext';
 import AIDropDownInput from "./components/AIDropdownInput.jsx";
 import RelationshipsProfile from "./components/RelationshipsProfile.jsx";
+import QuizResults from "./components/QuizResults"
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
         <Route path="/relationships" element={<PrivateRoute><RelationshipsProfile/></PrivateRoute>}/>
         <Route path="/chatwithai" element={<PrivateRoute><AIDropDownInput /></PrivateRoute>}/>
         <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>}/> 
+        <Route path="/QuizResults" element={<PrivateRoute><QuizResults /></PrivateRoute>}/> 
       </Routes>
     </AuthContext.Provider>
   );
