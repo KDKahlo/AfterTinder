@@ -54,11 +54,12 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home/>} />
-        <Route path="/quiz" element={<PrivateRoute><Quiz/></PrivateRoute>}/>
+        <Route path="/QuizQuestions/" element={<PrivateRoute><Quiz/></PrivateRoute>}/>
         <Route path="/relationships" element={<PrivateRoute><RelationshipsProfile/></PrivateRoute>}/>
         <Route path="/chatwithai" element={<PrivateRoute><AIDropDownInput /></PrivateRoute>}/>
         <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>}/> 
         <Route path="/QuizResults" element={<PrivateRoute><QuizResults /></PrivateRoute>}/> 
+        <Route path="/QuizInstructions" element={<PrivateRoute><QuizInstructions /></PrivateRoute>}/> 
       </Routes>
     </AuthContext.Provider>
   );

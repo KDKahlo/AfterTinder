@@ -16,10 +16,10 @@ export default function QuizInstructions() {
     <>
     <p>{quizData[0].Instructions}</p>
     <Link 
-        to={"/Quiz/questions"}>
-            take quiz
+        to={"/QuizQuestions"}>
+            <button onClick={getQuizQuestions}>Start quiz</button>
         </Link>
-    <button onClick={getQuizQuestions}>get quiz</button>
+    
     </>
     )  
 };

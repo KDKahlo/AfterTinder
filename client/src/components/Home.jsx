@@ -19,7 +19,7 @@ export default function Home() {
                         <div className="card-body">
                             <h5 className="card-title">Quizzes</h5>
                             <p className="card-text">Start with our Love Languages Quiz to discover more about your relationship.</p>
-                            <Link to={"/quiz"}>
+                            <Link to={"/QuizInstructions"}>
                                 <button className="btn btn-primary">Start Quiz</button>
                             </Link>
                         </div>
