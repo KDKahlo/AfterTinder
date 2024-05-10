@@ -50,7 +50,7 @@ router.post("/login", async (req, res) => {
     // Compare the password
     const correctPassword = await bcrypt.compare(password, user.password);
     if (!correctPassword) {
-      console.error("Login attempt failed: Incorrect password for user ${email}");
+      console.error(`Login attempt failed: Incorrect password for user ${email}`);
       return res.status(401).send({ message: "Incorrect password" });
     }
 

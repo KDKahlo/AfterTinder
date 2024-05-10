@@ -16,14 +16,10 @@ import RelationshipsProfile from "./components/RelationshipsProfile.jsx";
 
 function App() {
   // State to track if a user is logged in
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
   useEffect(() => {
-    //Check for token in localStorage
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true); // Set logged in state if token is found
-    }
+
   }, []);
 
   // Function to handle user login
@@ -55,7 +51,7 @@ function App() {
       <Routes>
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+        <Route path="/" element={<Home/>} />
         <Route path="/quiz" element={<PrivateRoute><Quiz/></PrivateRoute>}/>
         <Route path="/relationships" element={<PrivateRoute><RelationshipsProfile/></PrivateRoute>}/>
         <Route path="/chatwithai" element={<PrivateRoute><AIDropDownInput /></PrivateRoute>}/>
