@@ -1,67 +1,98 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import AuthContext from '../contexts/AuthContext';
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
 
 function Profile() {
-    const { user } = useContext(AuthContext); // Confirm if user info is stored in AuthContext
-    const [userDetails, setUserDetails] = useState(null);
-    const [inviteCode, setInviteCode] = useState("");
-    const [partnerCode, setPartnerCode] = useState("");
+  const [userData, setUserData] = useState([]);
+  useEffect(() => {
+    // Make sure usersData is empty before populating it with db data.
+    setUserData([]);
+    getUserData();
+  }, []);
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        // fetchUserDetails();
-        generateInviteCode();
-    }, []);
+  //Fetch data from DB
+  //Populate userData with the name of the user
 
-    // const fetchUserDetails = async () => {
-    //     try {
-    //         const response = await axios.get('Update URL'); // Adjust URL or this should come from context?
-    //         setUserDetails(response.data);
-    //     } catch (error) {
-    //         console.error('Failed to fetch user details', error);
-    //     }
-    // };
+  const getUserData = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await axios.get("http://localhost:4000/users/user_data", {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      setUserData(data);
+    } catch (err) {
+      console.error("Error fetching user data:", err);
+      //console.log(err)
+      window.alert("failed to get your data");
+      //set data to null if something goes wrong
+      setUserData(null);
+    }
+  };
 
-    const generateInviteCode = () => {
-        // Simple random code generator, consider a more robust approach or backend generation
-        setInviteCode(Math.random().toString(36).substring(2, 8).toUpperCase());
-    };
+  return (
+    <div className="container col-lg-8 position-absolute top-50 start-50 translate-middle bg-white shadow-sm rounded-4">
+      <div className="row justify-content-center align-items-center text-center">
+        <div className="col-lg-8 p-4 w-50">
+          <div className="mb-3 text-center">
+          <h2>Profile</h2>
+            {userData && userData.length > 0 &&
+              <p>Welcome, {userData[0].firstname}</p>
+            }
+            <img
+              src="src/assets/TestPic.JPG"
+              alt="Profile"
+              className="img-fluid w-90"
+              style={{ width: "150px", height: "150px", objectFit: "cover" }}
+            />
+          </div>
 
-    const handleCopyCode = () => {
-        navigator.clipboard.writeText(inviteCode);
-        alert('Code copied to clipboard!');
-    };
+          <div className="mb-3">
+            <button
+              onClick={() => navigate("/pairing")}
+              className="btn btn-primary p-3 shadow-none rounded-pill w-100"
+            >
+              Pair with a Partner
+            </button>
+          </div>
 
-    const handlePartnerCodeSubmit = async () => {
-        try {
-            const response = await axios.post('/api/relationships', { code: partnerCode });
-            alert('Partner added successfully!');
-        } catch (error) {
-            alert('Failed to add partner');
-        }
-    };
+          <div className="mb-3">
+            <button
+              onClick={() => navigate("/quiz")}
+              className="btn btn-primary p-3 shadow-none rounded-pill w-100"
+            >
+              My Quiz
+            </button>
+          </div>
 
-    return (
-        <div>
-            <h1>Profile</h1>
-            {userDetails && (
-                <div>
-                    <img src="src/assets/TestPic.jpg" alt="Profile" />
-                    <p>{userDetails.name}</p>
-                </div>
-            )}
-            <div>
-                <p>My code: {inviteCode}</p>
-                <button onClick={handleCopyCode}>Copy Code</button>
-            </div>
-            <div>
-                <input type="text" value={partnerCode} onChange={(e) => setPartnerCode(e.target.value)} placeholder="Enter partner's code" />
-                <button onClick={handlePartnerCodeSubmit}>Enter Partner's Code</button>
-            </div>
-            <button onClick={() => { /* Navigate to Quiz Results */ }}>My Quiz</button>
-            <button onClick={() => { /* Navigate to Manage Relationships */ }}>My Relationships</button>
+          <div className="mb-3">
+            <button
+              onClick={() => navigate("/relationships")}
+              className="btn btn-primary p-3 shadow-none rounded-pill w-100"
+            >
+              My Relationships
+            </button>
+          </div>
+
+          <div className="mb-3">
+            <button
+              onClick={() => {
+                logout();
+                navigate("/login");
+              }}
+              className="btn btn-outline-dark p-3 shadow-none rounded-pill w-100"
+            >
+              Logout
+            </button>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default Profile;
