@@ -35,6 +35,7 @@ function Profile() {
   };
 
   return (
+    <div className="main-container">
     <div className="container col-lg-8 position-absolute top-50 start-50 translate-middle bg-white shadow-sm rounded-4">
       <div className="row justify-content-center align-items-center text-center">
         <div className="col-lg-8 p-4 w-50">
@@ -53,8 +54,8 @@ function Profile() {
 
           <div className="mb-3">
             <button
-              onClick={() => navigate("/pairing")}
-              className="btn btn-primary p-3 shadow-none rounded-pill w-100"
+              onClick={() => navigate("/pairwithpartner")}
+              className="btn custom-btn p-3 shadow-none rounded-pill w-100"
             >
               Pair with a Partner
             </button>
@@ -63,7 +64,7 @@ function Profile() {
           <div className="mb-3">
             <button
               onClick={() => navigate("/quiz")}
-              className="btn btn-primary p-3 shadow-none rounded-pill w-100"
+              className="btn custom-btn p-3 shadow-none rounded-pill w-100"
             >
               My Quiz
             </button>
@@ -72,7 +73,7 @@ function Profile() {
           <div className="mb-3">
             <button
               onClick={() => navigate("/relationships")}
-              className="btn btn-primary p-3 shadow-none rounded-pill w-100"
+              className="btn custom-btn p-3 shadow-none rounded-pill w-100"
             >
               My Relationships
             </button>
@@ -91,6 +92,7 @@ function Profile() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

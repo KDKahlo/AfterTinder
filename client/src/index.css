@@ -1,0 +1,18 @@
+.main-container {
+  background-color: #D5DBFF;
+  min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+}
+
+.custom-btn {
+    background-color: #857ff0; 
+    color: #ffffff; 
+  }
+
+.generated-code {
+    color: #857ff0; 
+    font-weight: bold;
+}
+
+.copy-icon {
+    color:#857ff0;
+}

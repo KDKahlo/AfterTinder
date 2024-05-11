@@ -6,6 +6,7 @@ require("dotenv").config();
 var bcrypt = require("bcrypt");
 const saltRounds = 10;
 
+
 const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 const relationshipExists = require("../guards/relationshipExists");
 
@@ -50,7 +51,9 @@ router.post("/login", async (req, res) => {
     // Compare the password
     const correctPassword = await bcrypt.compare(password, user.password);
     if (!correctPassword) {
-      console.error("Login attempt failed: Incorrect password for user ${email}");
+      console.error(
+        "Login attempt failed: Incorrect password for user ${email}"
+      );
       return res.status(401).send({ message: "Incorrect password" });
     }
 
@@ -150,7 +153,5 @@ router.get("/user_data", userShouldBeLoggedIn, async (req, res) => {
     res.status(400).send({ message: err.message });
   }
 });
-
-
 
 module.exports = router;
