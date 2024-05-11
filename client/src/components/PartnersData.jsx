@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import{useNavigate } from "react-router-dom"
 
 export default function PartnersData({updateUserLoveLanguages}) {
+    const navigate = useNavigate()
     const [partnersData, setPartnersData]= useState([])
     useEffect(() => {
         //Make sure partnersData is empty before populating it with db data.
@@ -42,22 +44,13 @@ export default function PartnersData({updateUserLoveLanguages}) {
     function isThereData (data) {
         if (!data.length) {
             return window.alert("You haven't registered any relationship yet")
-        }
+        } else{ sendLoveLanguageToParent(data)}
     }
 
-    function sendLoveLanguageToParent(partner){
-        updateUserLoveLanguages(partner)
-        console.log("********", partner)
+    function sendLoveLanguageToParent(data){
+        updateUserLoveLanguages(data)
+
     }
 
-    return (
-        <>
-        <h4>Your partners:</h4>
-        <ul>
-        {partnersData && partnersData.map((partner, index)=>
-            (<li key= {index}
-                onClick={()=>sendLoveLanguageToParent(partnersData[index])}>{partner.firstname}</li>)
-        )}
-        </ul>
-        </>)
+    return 
 };

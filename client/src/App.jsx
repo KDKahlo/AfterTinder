@@ -14,6 +14,7 @@ import AuthContext from './contexts/AuthContext';
 import AIDropDownInput from "./components/AIDropdownInput.jsx";
 import RelationshipsProfile from "./components/RelationshipsProfile.jsx";
 import QuizResults from "./components/QuizResults"
+import ShowPartnersData from "./components/ShowPartnersData.jsx";
 
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/QuizQuestions/" element={<PrivateRoute><Quiz/></PrivateRoute>}/>
         <Route path="/relationships" element={<PrivateRoute><RelationshipsProfile/></PrivateRoute>}/>
+        <Route path="/relationships/:idx" element={<PrivateRoute><ShowPartnersData /></PrivateRoute>}/>
         <Route path="/chatwithai" element={<PrivateRoute><AIDropDownInput /></PrivateRoute>}/>
         <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>}/> 
         <Route path="/QuizResults" element={<PrivateRoute><QuizResults /></PrivateRoute>}/> 

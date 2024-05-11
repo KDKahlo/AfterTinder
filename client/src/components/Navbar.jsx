@@ -16,7 +16,7 @@ function Navbar() {
             <Link to="/">Home</Link>
             {isLoggedIn ? (
                 <>
-                    <Link to="/quiz">Quiz</Link>
+                    <Link to="/QuizInstructions">Quiz</Link>
                     <Link to="/chatwithai">Romantic Ideas</Link>
                     <Link to="/Profile">Profile</Link>
                     <Link to="/relationships">Relationships</Link>
