@@ -16,3 +16,8 @@
 .copy-icon {
     color:#857ff0;
 }
+
+.custom-outline-button {
+    color: #857ff0; 
+    border-color: #857ff0;
+  }
