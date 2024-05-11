@@ -4,7 +4,6 @@ import quizData from "../assets/lovelanguagequiz";
 
 export default function Quiz() {
     const [index, setIndex] = useState(0);
-    const [tempSelectedOption, setTempSelectedOption] = useState("");
     const [userAnswers, setUserAnswers] = useState([]);
     const [results, setResults] = useState({
         A: 0,
@@ -15,15 +14,13 @@ export default function Quiz() {
     });
 
     function handleOptionSelect(optionLetter) {
-        setTempSelectedOption(optionLetter);
+        setUserAnswers ([...userAnswers,optionLetter])
     }
 
     function handleIndex(action) {
         if (action === "next") {
-            if (tempSelectedOption !== "") {
-                setUserAnswers([...userAnswers, tempSelectedOption]);
-                calculateResults([...userAnswers, tempSelectedOption]);
-                setTempSelectedOption("");
+            if (userAnswers.length >0) {
+               calculateResults(userAnswers);
             }
 
             if (index < quizData[0].Quiz.Options.length - 1) {
@@ -77,21 +74,28 @@ export default function Quiz() {
     return (
         <>
             <h3>{quizData[0].Quiz.Statement}</h3>
-            <ul>
-                {Object.entries(quizData[0].Quiz.Options[index]).map(([key, value]) => (
-                    <li key={key} onClick={() => handleOptionSelect(key)}>{value}</li>
-                ))}
-            </ul>
+            {Object.entries(quizData[0].Quiz.Options[index]).map(([key, value], index) => (
+                <div key={index}> 
+                <input 
+                  key={key}
+                    type="radio"
+                    id={key}
+                    name="options"
+                    value={value}
+                    onChange={() => handleOptionSelect(key)} />
+                    <label >{value}</label>
+                    </div>
+            ))}
             <button type="button" onClick={() => handleIndex("prev")}>‹‹</button>
             <button type="button" onClick={() => handleIndex("next")}>››</button>
-
+    
             <h4>User Answers:</h4>
             <ul>
                 {userAnswers.map((answer, index) => (
                     <li key={index}>{answer}</li>
                 ))}
             </ul>
-
+    
             <h4>Results:</h4>
             <ul>
                 {Object.entries(results).map(([letter, percentage]) => (
@@ -99,5 +103,5 @@ export default function Quiz() {
                 ))}
             </ul>
         </>
-    );
-}
+    )
+} 
