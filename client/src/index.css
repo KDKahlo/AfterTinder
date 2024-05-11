@@ -1,3 +1,41 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* SETUP */
+
+/* Color Styles*/
+:root {
+  --primary: #FBC257;
+  --primary-light: #FCCC73;
+  --dark-brown: #341413;
+  --gray-1: #798092;
+  --gray-2: #E9E9ED;
+  --white: #FFFFFF;
+
+  /* Font Size Desktop*/
+  --header-1: 64px;
+  --header-2: 48px;
+  --header-3: 42px;
+  --header-4: 32px;
+
+  --text-medium: 18px;
+  --text-regular: 16px;
+  --text-light: 13px;
+}
+
+/* Font Weight*/
+:root {
+  --font-weight-bold: 700;
+  --font-weight-semi-bold: 600;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+  --font-weight-light: 300;
+}
+
+
+body {
+  font-family: "Poppins", sans-serif;
+}
 .main-container {
   background-color: #D5DBFF;
   min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
@@ -10,7 +48,7 @@
 
 .generated-code {
     color: #857ff0; 
-    font-weight: bold;
+    
 }
 
 .copy-icon {
@@ -21,3 +59,35 @@
     color: #857ff0; 
     border-color: #857ff0;
   }
+
+  section.hero {
+    margin: 5rem 0;
+  }
+  
+  .text-label,
+  .text-hero-bold,
+  .text-hero-regular {
+    margin: 24px 0;
+  }
+  
+  .text-label {
+    color: var(--primary);
+    font-size: var(--text-regular);
+    font-weight: var(--font-weight-regular);
+    line-height: 31px;
+  }
+  
+  .text-hero-bold {
+    color: var(--dark-brown);
+    font-size: var(--header-1); 
+    font-weight: var(--font-weight-bold);
+    line-height: 74px;
+  }
+  
+  .text-hero-regular {
+    color: var(--gray-1);
+    font-size: var(--text-regular);
+    font-weight: var(--font-weight-regular);
+    line-height: 31px;
+  }
+  
