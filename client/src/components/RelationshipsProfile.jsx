@@ -1,22 +1,41 @@
 import React, { useState, useEffect } from "react";
 import PartnersData from "./PartnersData";
 import ShowPartnersData from "./ShowPartnersData";
+import{Link, Outlet } from "react-router-dom"
 
-export default function () {
-    const [userLoveLanguages, setUserLoveLanguages] = useState(null)
+export default function RelationshipsProfile() {
+
+    const [userLoveLanguages, setUserLoveLanguages] = useState([])
+
     useEffect(() => {
-        setUserLoveLanguages(null)
+        setUserLoveLanguages([])
         }, []);
     
-    function updateUserLoveLanguages(user) { 
-        setUserLoveLanguages(user)
+    function updateUserLoveLanguages(data) { 
+        setUserLoveLanguages(data)
       }
     
     return(
+
+    <>
+       <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
+    
+        {userLoveLanguages && userLoveLanguages.length ? (
         <>
-        {userLoveLanguages ? 
-       <ShowPartnersData userLoveLanguages={userLoveLanguages} updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
-        : <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>}
+        <h4>Your partners:</h4> 
+        {userLoveLanguages.map((partner, index)=>(
+            <div key= {index}>
+                <Link 
+                to={{
+                    pathname: `/relationships/${index}`,
+                }}
+                state= {partner}
+                >{partner.firstname}</Link>
+            </div>
+        ))}
         </>
+        ): <p>Loading partners...</p>}    
+         
+    </>
     )
 }

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useParams } from "react";
 import axios from "axios";
 import quizData from "../assets/lovelanguagequiz";
+import { useNavigate } from "react-router-dom";
 
 export default function Quiz() {
+    const navigate = useNavigate()
     const [index, setIndex] = useState(0);
     const [userAnswers, setUserAnswers] = useState([]);
     const [results, setResults] = useState({
@@ -66,8 +68,11 @@ export default function Quiz() {
     }
 
     useEffect(() => {
-        if (index === quizData[0].Quiz.Options.length) {
+        if (index === quizData[0].Quiz.Options.length -1) {
             sendResultsToBackend(results);
+            //This takes user to the results page
+            //This line can be commented out during quiz building if it's more comfortable.
+            navigate("/QuizResults")
         }
     }, [results, index]);
 

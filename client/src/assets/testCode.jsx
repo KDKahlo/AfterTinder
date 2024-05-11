@@ -179,193 +179,45 @@
 //   );
 // };
 
+//********************MODAL****************************** */
 
+// export default function Modal({message, handleClose, showModal, header}) {
 
-//****************************************AI INPUT COMPONENT********************************************* */
-// import React, { useState, useEffect } from "react";
-
-// export default function AIDropDownInput({updateUserInput, handleSubmitRecommendation, loading}) {
-
-// //store user's input to ask for recommendations.
-// //this info should come from a drop down menu input.
-// const [recommendationsInput, setRecommendationsInput] = useState ({
-//     type: "",
-//     occasion: "",
-//     primaryLoveLanguage: "",
-//     city: "no specific city"
-//   })
-
-//   useEffect(() => {
-//     updateUserInput(recommendationsInput)
-//   }, [recommendationsInput]); 
-   
-// //these variables store the labels and the values of the options in the drop down menu where user can select their choice.
-// const type = [
-//     { label: 'Select...', value: '' },
-//     { label: 'Gifts', value: 'gifts' },
-//     { label: 'Plans', value: 'plans' },
-//     { label: 'Compliments', value: 'compliments' },
-//     { label: 'Physical touch gestures', value: 'non sexual intimacy gestures' },  
-//     { label: 'Act of service', value: 'act of service' },
-//     { label: 'Trips', value: 'trips' },  
-// ];
-
-// const occasion = [
-//     { label: 'Select...', value: '' },
-//     { label: 'Birthday', value: 'birthday' },
-//   { label: 'Romantic date', value: 'romantic date' },
-//   { label: 'Normal day', value: 'normal day' },
-//   { label: 'Weekend trip', value: 'weekend trip' },  
-//   { label: 'Holidays', value: 'holidays' },
-//   { label: 'Anniversary', value: 'anniversary' },  
-// ];
-
-// const primaryLoveLanguage = [
-//     { label: 'Select...', value: '' },
-//     { label: 'Physical touch', value: 'non sexual intimacy' },
-//   { label: 'Words of affirmation', value: 'Words of affirmation' },
-//   { label: 'Acts of service', value: 'Acts of service' },
-//   { label: 'Receive gifts', value: 'Receive gifts' },  
-//   { label: 'Quality time', value: 'Quality time' },  
-// ];
-
-// function handleSelectDropdown(event){
-//   const value = event.target.value;
-//   const name = event.target.name;
-
-//   //setAskRecommendationsInput remembers previous state and it updates it with the new name and value. That means that when I select occasion, it doesn't forget the the type or the primary love language.
-//   setRecommendationsInput(state => ({
-//     ...state,
-//     [name]: value
-//   }));
-// }
-
-// function handleSubmit(action, event) {
-//     event.preventDefault()
-//     handleSubmitRecommendation(action, event)
-// }
-
-
+//     function closeModal(){
+//         handleClose(false)
+//     }
 //     return (
 //         <>
-//         <form onSubmit={(event)=>handleSubmit("User input", event)}>
-//         <label > Type of recommendation
-//             <select 
-//                 className="input-box"
-//                 value={recommendationsInput.type} 
-//                 onChange={handleSelectDropdown}
-//                 name = "type">
-//             {type.map((type,index) => (
-//                 <option 
-//                     value={type.value}
-//                     key = {index}>{type.label}</option>
-//             ))}
-//             </select>
-//         </label>
-//         <label> Occasion
-//             <select 
-//                 className="input-box"
-//                 value={recommendationsInput.occasion} 
-//                 name = "occasion"
-//                 onChange={handleSelectDropdown}>
-//             {occasion.map((option, index) => (
-//                 <option 
-//                     value={option.value}
-//                     key = {index}>{option.label}</option>
-//             ))}
-//             </select>
-//         </label>
-//         <label> Primary love language
-//             <select 
-//                 className="input-box"
-//                 value={recommendationsInput.primaryLoveLanguage} 
-//                 name = "primaryLoveLanguage"
-//                 onChange={handleSelectDropdown}>
-//             {primaryLoveLanguage.map((option, index) => (
-//                 <option value={option.value}
-//                 key = {index}>{option.label}</option>
-//             ))}
-//             </select>
-//         </label>
-//         <button  disabled={loading}>
-//           {loading ? "Generating..." : "Generate Text"}
-//         </button>
-//         </form>
-        
-//         </>)
-// };
-
-
-
-
-
-
-
-
-
-//****************************PARTNERS DATA COMPONENT ************************************* */
-// import React, { useState, useEffect } from "react";
-// import axios from 'axios';
-
-// export default function PartnersData({updateUserLoveLanguages}) {
-//     const [partnersData, setPartnersData]= useState([])
-//     useEffect(() => {
-//         //Make sure partnersData is empty before populating it with db data.
-//         setPartnersData([])
-//         getPartnersData()
-        
-//         }, []);
-    
-    
-//       //Fetch data from DB
-//       //Populate partnersData with the hours of sleep of the user.
-//     const getPartnersData = async () => {
-//          //get the token from the local storage
-//         const token = localStorage.getItem("token");
-//           try {
-//             //when creating the frontend routes to nested children, the path to the backend was not valid anymore
-//             //had to write the right specific path to the 4000 port
-//             //axios.get doesn't need to specify the method.
-//             //we need to pass the token in the headers.
-//             const {data} = await axios("http://localhost:4000/users/partners_data", {
-//               headers: {
-//                 authorization: `Bearer ${token}`,
-//               }
-//             })
-            
-//             console.log(data)
-//             isThereData(data)
-//             //setData with received data
-//             setPartnersData(data)
-        
-//             }catch (err) {
-//                 console.error("Error fetching partners data:", err);
-//                 //console.log(err)
-//                 window.alert("failed to get your data")
-//                 //set data to null if something goes wrong
-//                 setPartnersData(null)
-//             }
-//           };
-    
-//     function isThereData (data) {
-//         if (!data.length) {
-//             return window.alert("You haven't registered any relationship yet")
-//         }
-//     }
-
-//     function sendLoveLanguageToParent(partner){
-//         updateUserLoveLanguages(partner)
-//         console.log("********", partner)
-//     }
-
-//     return (
-//         <>
-//         <h4>Your partners:</h4>
-//         <ul>
-//         {partnersData && partnersData.map((partner, index)=>
-//             (<li key= {index}
-//                 onClick={()=>sendLoveLanguageToParent(partnersData[index])}>{partner.firstname}</li>)
-//         )}
-//         </ul>
-//         </>)
-// };
+//                 <div
+//             className={`modal ${showModal ? "show" : ""}`}
+//             tabIndex="-1"
+//             style={{ display: showModal ? "block" : "none" }}
+//           >
+//             <div className="modal-dialog">
+//               <div className="modal-content">
+//                 <div className="modal-header">
+//                   <h5 className="modal-title">{header}</h5>
+//                   <button
+//                     type="button"
+//                     className="btn-close"
+//                     onClick={closeModal}
+//                   ></button>
+//                 </div>
+//                 <div className="modal-body">
+//                   <p>{message}</p>
+//                 </div>
+//                 <div className="modal-footer">
+//                   <button
+//                     type="button"
+//                     className="btn btn-secondary"
+//                     onClick={closeModal}
+//                   >
+//                     Close
+//                   </button>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </>
+//     )
+// }
