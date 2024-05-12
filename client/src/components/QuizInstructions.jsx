@@ -16,7 +16,7 @@ export default function QuizInstructions() {
     <>
     <p>{quizData[0].Instructions}</p>
     <Link 
-        to={"/QuizQuestions"}>
+        to={"/QuizQuestions/0"}>
             <button onClick={getQuizQuestions}>Start quiz</button>
         </Link>
     

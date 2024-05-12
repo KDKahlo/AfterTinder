@@ -55,7 +55,7 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home/>} />
-        <Route path="/QuizQuestions/" element={<PrivateRoute><Quiz/></PrivateRoute>}/>
+        <Route path="/QuizQuestions/:index" element={<PrivateRoute><Quiz/></PrivateRoute>}/>
         <Route path="/relationships" element={<PrivateRoute><RelationshipsProfile/></PrivateRoute>}/>
         <Route path="/relationships/:idx" element={<PrivateRoute><ShowPartnersData /></PrivateRoute>}/>
         <Route path="/chatwithai" element={<PrivateRoute><AIDropDownInput /></PrivateRoute>}/>
