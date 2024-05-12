@@ -32,6 +32,21 @@ try {
 }
 
 return (
-  <>{loveQuote && <h6>{loveQuote.quote} ({loveQuote.author})</h6>}</>
+  <div>
+      {loveQuote && 
+          <div className="row">
+              <div className="col-md-12">
+                  <h6>{loveQuote.quote}</h6>
+              </div>
+          </div>
+      }
+      {loveQuote && 
+          <div className="row">
+              <div className="col-md-12">
+                  <p className="text-muted">{loveQuote.author}</p>
+              </div>
+          </div>
+      }
+  </div>
 );
-}
+};

@@ -36,6 +36,13 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+
+/* Home Styling */
+
+.home-container {
+  background-color: #F3F2FF; /* Set background color for the Home component */
+}
+
 .main-container {
   
   min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
@@ -43,12 +50,49 @@ body {
 
 .btn-primary {
     color: #ffffff;
+    background-color: #857ff0;
+    border-color: #857ff0;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #857ff0c8;
+  border-color: #857ff0; 
+}
+
+.btn-primary:active,
+btn-primary:active {
+  background-color: #857ff0c8;
+  border-color: #857ff0;
 }
 
 .custom-btn {
-    background-color: #857ff0; 
-    color: #ffffff; 
+    background-color: #ffffff; 
+    color: #857ff0; 
   }
+
+.custom-btn:hover{
+  color: #fff;
+  background-color: #857ff0c8;
+  border-color: #857ff0; 
+}
+
+.colored-section {
+  background-color: #F3F2FF;
+}
+
+.padded-section{
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+
+
+
+
+
+
+
+
 
 .generated-code {
     color: #857ff0; 
