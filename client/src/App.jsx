@@ -15,11 +15,13 @@ import AIDropDownInput from "./components/AIDropdownInput.jsx";
 import RelationshipsProfile from "./components/RelationshipsProfile.jsx";
 import QuizResults from "./components/QuizResults"
 import ShowPartnersData from "./components/ShowPartnersData.jsx";
+import PairWithPartner from "./components/PairWithPartner.jsx";
+
 
 
 function App() {
   // State to track if a user is logged in
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token")); // The state never stars as false, but instead it will check if the token is there or not every time the page refreshes
 
   useEffect(() => {
 
@@ -56,6 +58,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home/>} />
         <Route path="/QuizQuestions/:index" element={<PrivateRoute><Quiz/></PrivateRoute>}/>
+        <Route path="/pairwithpartner" element={<PrivateRoute><PairWithPartner /></PrivateRoute>}/>
         <Route path="/relationships" element={<PrivateRoute><RelationshipsProfile/></PrivateRoute>}/>
         <Route path="/relationships/:idx" element={<PrivateRoute><ShowPartnersData /></PrivateRoute>}/>
         <Route path="/chatwithai" element={<PrivateRoute><AIDropDownInput /></PrivateRoute>}/>

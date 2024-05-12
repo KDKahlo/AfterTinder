@@ -1,11 +1,14 @@
 import React from "react";
 import LoveQuote from './LoveQuote';
+import Hero from "./Hero";
+
 import{Link} from "react-router-dom"
 import{Outlet} from "react-router-dom"
 
 export default function Home() {
     return (
-        <>
+        <div>
+            <Hero /> 
         <div className="container mt-5">
             <h4 className="text-center mb-4">Home Page</h4>
             <div className="row">

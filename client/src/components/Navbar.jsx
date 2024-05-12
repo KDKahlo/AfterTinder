@@ -32,4 +32,24 @@ function Navbar() {
     );
 }
 
+//         <nav>
+//             <Link to="/">Home</Link>
+//             {isLoggedIn ? (
+//                 <>
+//                     <Link to="/quiz">Quiz</Link>
+//                     <Link to="/chatwithai">Chat with AI</Link>
+//                     <Link to="/Profile">Profile</Link>
+//                     <Link to="/relationships">Relationships</Link>
+//                     <button onClick={handleLogout}>Logout</button>
+//                 </>
+//             ) : (
+//                 <>
+//                     <Link to="/login">Login</Link>
+//                     <Link to="/registration">Register</Link>
+//                 </>
+//             )}
+//         </nav>
+//     );
+// }
+
 export default Navbar;
