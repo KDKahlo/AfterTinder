@@ -4,16 +4,20 @@ import { useNavigate } from "react-router-dom";
 import {v4 as uuidv4} from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import Modal from "./Modal";
 
 function PairWithPartner() {
-    // It displays a random code generated from uuid
-    // It manages the Copy to Clipboard function, when the Copy my code button is clicked
-    // It allows you to paste a code that other user gave to you, and stores this code in the backend 
-    // when the Enter partner's code is clicked
+    /* - It displays a random code generated from uuid when you click on generate my code button
+       - It manages the Copy to Clipboard function, when the Copy my code button is clicked
+       - It allows you to paste a code that other user gave to you, and stores this code in the backend => to create the relationship
+         when the Enter partner's code is clicked
+       - It takes me to profile again, when the relationship is created */
+         
   
   const navigate = useNavigate();
   const [userCode, setUserCode] = useState("");
   const [partnerCode, setPartnerCode] = useState(""); // State to hold partner's code
+  const [showModal, setShowModal] = useState (false) // State variable to control modal visibility
 
 
   function generateCode() {
@@ -38,22 +42,29 @@ function PairWithPartner() {
     copyCode(); // Calls copyCode function when user clicks on the button
   }
 
-  // Logica para enviar el codigo proporcionado al backend y crear la relacion, una vez se da 
-  // clic en este boton, esto me lleva al componente "Relationships Profile" en donde aparece el 
-  // perfil del usuario que me compartio su codigo
+  /* Logica para enviar el codigo ingresado en el campo "Enter Code" al backend y crear la relacion,
+     una vez se da clic en este boton, esto añade al usuario en el "Relationships Profile" */
 
-  async function handleEnterCode() {
-    try {
-      // Send the partner's code to the backend
-      await axios.post("http://localhost:4000/users/relationships", { code: partnerCode });
-      console.log("Code sent to backend successfully!");
-
-      // Redirect to the Relationships Profile component
-      navigate("/relationshipsprofile");
-    } catch (error) {
-      console.error("Error sending code to backend:", error);
+     async function handleEnterCode() {
+      const token = localStorage.getItem("token");
+      try {
+        // Send the partner's code to the backend
+        await axios.post("http://localhost:4000/users/relationships", { code: partnerCode }, 
+        {
+          headers: {
+              authorization: `Bearer ${token}`,
+            }
+        });
+        console.log("Code sent to backend successfully!");
+        setShowModal(true);
+      } catch (error) {
+        console.error("Error sending code to backend:", error);
+      }
     }
-  }
+
+    function closeModal() {
+      setShowModal(false);
+    }
 
 
   return (
@@ -82,7 +93,7 @@ function PairWithPartner() {
                   type="text" 
                   className="form-control mb-2" 
                   placeholder="Enter code" 
-                  value={partnerCode}
+                  value={partnerCode} // THIS IS THE CODE THAT MUST BE SENT TO THE BACKEND
                   onChange={(e) => setPartnerCode(e.target.value)}
                 />
                 <button onClick={handleEnterCode} className="btn custom-btn">Enter partner's code</button>
@@ -92,7 +103,16 @@ function PairWithPartner() {
         </div>
       </div>
     </div>
+    <Modal
+        message="Relationship created successfully. You can see it now on the Relationships tab"
+        header="Success"
+        showModal={showModal}
+        handleClose={closeModal}
+      />
+  
+
     </div>
+    
   );
 }
 

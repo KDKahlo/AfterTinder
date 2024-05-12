@@ -5,10 +5,10 @@
 
 /* Color Styles*/
 :root {
-  --primary: #FBC257;
+  --primary: #FFFFFF;
   --primary-light: #FCCC73;
   --dark-brown: #341413;
-  --gray-1: #798092;
+  --gray-1: #FFFFFF;
   --gray-2: #E9E9ED;
   --white: #FFFFFF;
 
@@ -37,8 +37,12 @@ body {
   font-family: "Poppins", sans-serif;
 }
 .main-container {
-  background-color: #D5DBFF;
+  
   min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+}
+
+.btn-primary {
+    color: #ffffff;
 }
 
 .custom-btn {
@@ -61,7 +65,9 @@ body {
   }
 
   section.hero {
-    margin: 5rem 0;
+    background-color: #857ff0;
+    margin: 5rem 0 3 rem;
+    padding-bottom: 3rem;
   }
   
   .text-label,
