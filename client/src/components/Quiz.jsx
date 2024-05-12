@@ -11,6 +11,8 @@ export default function Quiz() {
     const location = useLocation();
     //this gets the path we're in(quizQuestions/:index) and will help us map through the json quiz object based on the index of the path.
     const pathIndex = parseInt(location.pathname.split("/")[2]);
+    const radioButtonElements = document.getElementsByName("options");
+    const isChecked = Array.from(radioButtonElements).some(element => element.checked);
     const [userAnswers, setUserAnswers] = useState({});
     const [results, setResults] = useState({
         A: 0,
@@ -26,30 +28,37 @@ export default function Quiz() {
 //it doesn't matter if the user goes back with the "previous" button or with the browser. it works bothways.
     function handleOptionSelect(event) {
         const value = event.target.value;
-        const questionIndex = pathIndex
+        const key = pathIndex
         setUserAnswers(prevState => ({
             ...prevState,
-            [questionIndex]: value
-          }));    
+            [key]: value
+          }));       
+    }
+
+    function clearInput(){
+        for(let i=0;i<radioButtonElements.length;i++)
+        radioButtonElements[i].checked = false;
     }
 
 //the buttons "<<" and ">>" send a previous or next action.
 //"previous" will take you to the previous question. And if you keep clicking it will take you to the instructions.
 //"next" will take you to next question. And if you already finished all questions, it will trigger the function to calculate results.
     function handleClick(action) {
+        clearInput()
         let nextIndex = pathIndex + 1
         let prevIndex = pathIndex -1
+        
         if (action === "next") {
-            if (pathIndex=== quizData[0].Quiz.Options.length-1 && Object.keys(userAnswers).length  <quizData[0].Quiz.Options.length) {
-                window.alert("you haven't completed the quiz")
-                
-             } else if (Object.keys(userAnswers).length ===quizData[0].Quiz.Options.length ) {
+            if(!isChecked){
+                window.alert("please, select an option")
+                return
+            } else if (Object.keys(userAnswers).length ===quizData[0].Quiz.Options.length ) {
                 const answers = Object.values(userAnswers);
                 console.log(answers)
                 calculateResults(answers);
                 
              } else {navigate(`/QuizQuestions/${nextIndex}`)
-            }  
+        }  
             
         } else if (action === "prev") {
             if (pathIndex > 1) {
@@ -99,17 +108,15 @@ export default function Quiz() {
     return (
         <>
             <h3>{quizData[0].Quiz.Statement}</h3>
-            {Object.entries(quizData[0].Quiz.Options[pathIndex]).map(([key, value], index) => (
+            {Object.entries(quizData[0].Quiz.Options[pathIndex]).map(([letter, option], index) => (
                 <div key={index}> 
                 <input 
                     key={index}
-                    value={key}
+                    value={letter}
                     type="radio"
-                    id={index}
                     name="options"
-                    required
                     onChange={handleOptionSelect} />
-                    <label>{value}</label>
+                    <label>{option}</label>
                     </div>
             ))}
             <button type="button" onClick={() => handleClick("prev")}>‹‹</button>
