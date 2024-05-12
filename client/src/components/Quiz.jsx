@@ -26,46 +26,45 @@ export default function Quiz() {
 //The userAnswers state is an object where the key is the index of the question, and the value is the answer of the user.
 //if the user changes their mind and go back, this will store the updated data.
 //it doesn't matter if the user goes back with the "previous" button or with the browser. it works bothways.
-    function handleOptionSelect(event) {
-        const value = event.target.value;
-        const key = pathIndex
-        setUserAnswers(prevState => ({
-            ...prevState,
-            [key]: value
-          }));       
-    }
+function handleOptionSelect(event) {
+    const value = event.target.value;
+    const key = pathIndex
+    setUserAnswers(prevState => ({
+        ...prevState,
+        [key]: value
+      }));       
+}
 
-    function clearInput(){
-        for(let i=0;i<radioButtonElements.length;i++)
-        radioButtonElements[i].checked = false;
-    }
-
+function clearInput(){
+    for(let i=0;i<radioButtonElements.length;i++)
+    radioButtonElements[i].checked = false;
+}
 //the buttons "<<" and ">>" send a previous or next action.
 //"previous" will take you to the previous question. And if you keep clicking it will take you to the instructions.
 //"next" will take you to next question. And if you already finished all questions, it will trigger the function to calculate results.
-    function handleClick(action) {
-        clearInput()
-        let nextIndex = pathIndex + 1
-        let prevIndex = pathIndex -1
-        
-        if (action === "next") {
-            if(!isChecked){
-                window.alert("please, select an option")
-                return
-            } else if (Object.keys(userAnswers).length ===quizData[0].Quiz.Options.length ) {
-                const answers = Object.values(userAnswers);
-                console.log(answers)
-                calculateResults(answers);
-                
-             } else {navigate(`/QuizQuestions/${nextIndex}`)
-        }  
+function handleClick(action) {
+    clearInput()
+    let nextIndex = pathIndex + 1
+    let prevIndex = pathIndex -1
+    
+    if (action === "next") {
+        if(!isChecked){
+            window.alert("please, select an option")
+            return
+        } else if (pathIndex===quizData[0].Quiz.Options.length -1 && Object.keys(userAnswers).length ===quizData[0].Quiz.Options.length ) {
+            const answers = Object.values(userAnswers);
+            console.log(answers)
+            calculateResults(answers);
             
-        } else if (action === "prev") {
-            if (pathIndex > 1) {
-                navigate(`/QuizQuestions/${prevIndex}`)
-            } else {navigate("/QuizInstructions")}
-        }
+         } else {navigate(`/QuizQuestions/${nextIndex}`)
+    }  
+        
+    } else if (action === "prev") {
+        if (pathIndex > 1) {
+            navigate(`/QuizQuestions/${prevIndex}`)
+        } else {navigate("/QuizInstructions")}
     }
+}
 
     function calculateResults(answers) {
         const count = {
@@ -87,27 +86,41 @@ export default function Quiz() {
             percentageResults[letter] = ((count[letter] / totalQuestions) * maxScore * 100 / maxScore).toFixed(0);
         console.log(percentageResults)
         });
-
-        // setResults(percentageResults); -->we don't need to store the results in a state variable  because we don't need them in the frontend. 
+//converting the percentage strings obtainted from percentages
+//into integers using parseInt
+        const loveLanguageScores = {
+            qualityTime: parseInt(percentageResults['A']),
+            touch: parseInt(percentageResults['B']),
+            wordsOfAffirmation: parseInt(percentageResults['C']),
+            actsOfService: parseInt(percentageResults['D']),
+            receiveGifts: parseInt(percentageResults['E'])
+        };
+        console.log(loveLanguageScores)
+        // setResults(percentageResults); -->we don't need to store the results in a state variable  because we don't need them in the frontend. But how are they stored then? temporarily?
         //we send them directly to the backend, because the component that fetches the user results, calls to the database directly.
-        sendResultsToBackend(percentageResults)
-    }
+        addDataToEntriesDB(loveLanguageScores) 
+     }
 
-    async function sendResultsToBackend(results) {
+     async function addDataToEntriesDB(loveLanguageScores) {
+        const token = localStorage.getItem("token");
         try {
-            await axios.post("/loveLanguage", results);
-            console.log("Results sent to backend successfully!");
-            //When post is finished with success, navigate to the results page.
+            console.log("Sending request to backend..."); // Add console log here
+            await axios.post("http://localhost:4000/users/loveLanguage", loveLanguageScores, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log("Request successful!"); 
             navigate("/QuizResults")
         } catch (error) {
-            console.error("Error sending results to backend:", error);
+            console.error("Error adding data to entries:", error); 
         }
     }
-
+    
 
     return (
         <>
-            <h3>{quizData[0].Quiz.Statement}</h3>
+           <h3>{quizData[0].Quiz.Statement}</h3>
             {Object.entries(quizData[0].Quiz.Options[pathIndex]).map(([letter, option], index) => (
                 <div key={index}> 
                 <input 
