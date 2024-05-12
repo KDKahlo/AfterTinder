@@ -13,6 +13,8 @@ import { Routes, Route } from "react-router-dom";
 import AuthContext from './contexts/AuthContext';
 import AIDropDownInput from "./components/AIDropdownInput.jsx";
 import RelationshipsProfile from "./components/RelationshipsProfile.jsx";
+import QuizResults from "./components/QuizResults"
+import ShowPartnersData from "./components/ShowPartnersData.jsx";
 import PairWithPartner from "./components/PairWithPartner.jsx";
 
 
@@ -22,11 +24,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token")); // The state never stars as false, but instead it will check if the token is there or not every time the page refreshes
 
   useEffect(() => {
-    //Check for token in localStorage
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true); // Set logged in state if token is found
-    }
+
   }, []);
 
   // Function to handle user login
@@ -58,12 +56,15 @@ function App() {
       <Routes>
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
-        <Route path="/quiz" element={<PrivateRoute><Quiz/></PrivateRoute>}/>
-        <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>}/>
+        <Route path="/" element={<Home/>} />
+        <Route path="/QuizQuestions/:index" element={<PrivateRoute><Quiz/></PrivateRoute>}/>
         <Route path="/pairwithpartner" element={<PrivateRoute><PairWithPartner /></PrivateRoute>}/>
         <Route path="/relationships" element={<PrivateRoute><RelationshipsProfile/></PrivateRoute>}/>
+        <Route path="/relationships/:idx" element={<PrivateRoute><ShowPartnersData /></PrivateRoute>}/>
         <Route path="/chatwithai" element={<PrivateRoute><AIDropDownInput /></PrivateRoute>}/>
+        <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>}/> 
+        <Route path="/QuizResults" element={<PrivateRoute><QuizResults /></PrivateRoute>}/> 
+        <Route path="/QuizInstructions" element={<PrivateRoute><QuizInstructions /></PrivateRoute>}/> 
       </Routes>
     </AuthContext.Provider>
   );

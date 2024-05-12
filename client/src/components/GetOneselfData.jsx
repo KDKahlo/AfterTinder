@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import{useNavigate } from "react-router-dom"
 
-export default function PartnersData({updateUserLoveLanguages}) {
-    const navigate = useNavigate()
-    const [partnersData, setPartnersData]= useState([])
+export default function GetOneselfData({updateUserLoveLanguages}) {
+    const [userData, setUserData]= useState([])
     useEffect(() => {
         //Make sure partnersData is empty before populating it with db data.
-        setPartnersData([])
-        getPartnersData()
+        setUserData([])
+        getData()
         
         }, []);
     
     
       //Fetch data from DB
       //Populate partnersData with the hours of sleep of the user.
-    const getPartnersData = async () => {
+    const getData = async () => {
          //get the token from the local storage
         const token = localStorage.getItem("token");
           try {
@@ -23,34 +21,41 @@ export default function PartnersData({updateUserLoveLanguages}) {
             //had to write the right specific path to the 4000 port
             //axios.get doesn't need to specify the method.
             //we need to pass the token in the headers.
-            const {data} = await axios("http://localhost:4000/users/partners_data", {
+            const {data} = await axios("http://localhost:4000/users/user_data", {
               headers: {
                 authorization: `Bearer ${token}`,
               }
             })
             isThereData(data)
-            //setData with received data
-            setPartnersData(data)
+            sendLoveLanguageToParent(data[0])
         
             }catch (err) {
-                console.error("Error fetching partners data:", err);
+                console.error("Error fetching data:", err);
                 //console.log(err)
                 window.alert("failed to get your data")
                 //set data to null if something goes wrong
-                setPartnersData(null)
+                setUserData(null)
             }
           };
     
     function isThereData (data) {
         if (!data.length) {
-            return window.alert("You haven't registered any relationship yet")
-        } else{ sendLoveLanguageToParent(data)}
+            return window.alert("It seems you haven't done the quizz yet")
+        } 
     }
 
     function sendLoveLanguageToParent(data){
         updateUserLoveLanguages(data)
-
+        console.log("********", data)
     }
 
-    return 
+    return (
+        <>
+        {/* <ul>
+        {userData && partnersData.map((partner, index)=>
+            (<li key= {index}
+                onClick={()=>sendLoveLanguageToParent(partnersData[index])}>{partner.firstname}</li>)
+        )}
+        </ul> */}
+        </>)
 };

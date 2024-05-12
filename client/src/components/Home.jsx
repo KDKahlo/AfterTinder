@@ -2,6 +2,8 @@ import React from "react";
 import LoveQuote from './LoveQuote';
 import Hero from "./Hero";
 
+import{Link} from "react-router-dom"
+import{Outlet} from "react-router-dom"
 
 export default function Home() {
     return (
@@ -20,7 +22,9 @@ export default function Home() {
                         <div className="card-body">
                             <h5 className="card-title">Quizzes</h5>
                             <p className="card-text">Start with our Love Languages Quiz to discover more about your relationship.</p>
-                            <button className="btn custom-btn">Start Quiz</button>
+                            <Link to={"/QuizInstructions"}>
+                                <button className="btn btn-primary">Start Quiz</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -29,7 +33,9 @@ export default function Home() {
                         <div className="card-body">
                             <h5 className="card-title">Relationships</h5>
                             <p className="card-text">Manage your relationships and settings here.</p>
-                            <button className="btn custom-btn">Manage Relationships</button>
+                            <Link to={"/relationships"}>
+                                <button className="btn btn-primary">Manage Relationships</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -40,12 +46,15 @@ export default function Home() {
                         <div className="card-body">
                             <h5 className="card-title">Romantic Ideas</h5>
                             <p className="card-text">Need ideas? Start a chat with our AI to get personalized romantic ideas based on your love language.</p>
-                            <button className="btn custom-btn">Chat with AI</button>
+                            <Link to={"/chatwithai"}>
+                                <button className="btn btn-primary">Chat with AI</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+        
+        </>
     );
 }
