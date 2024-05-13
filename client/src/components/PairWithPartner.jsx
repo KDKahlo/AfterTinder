@@ -5,6 +5,8 @@ import {v4 as uuidv4} from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import Modal from "./Modal";
+import HeroPairwithPartner from "./HeroPairWithPartner"
+
 
 function PairWithPartner() {
     /* - It displays a random code generated from uuid when you click on generate my code button
@@ -68,6 +70,8 @@ function PairWithPartner() {
 
 
   return (
+    <>
+    <HeroPairwithPartner />
     <div className="main-container">
     <div className="container col-lg-8 position-absolute top-50 start-50 translate-middle">
       <div className="row justify-content-center align-items-center text-center bg-white shadow-sm rounded-4 p-4">
@@ -112,8 +116,9 @@ function PairWithPartner() {
   
 
     </div>
-    
+    </>
   );
 }
+
 
 export default PairWithPartner;
