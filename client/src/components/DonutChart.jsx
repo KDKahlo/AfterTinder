@@ -54,21 +54,13 @@ export default function DonutChart({userLoveLanguages, results}) {
             label: 'Proportion (%)',
             data: [userLoveLanguages.Percentage_Physical_Touch, userLoveLanguages.Percentage_Receiving_Gifts, userLoveLanguages.Percentage_Acts_of_Service, userLoveLanguages.Percentage_Words_of_Affirmation, userLoveLanguages.Percentage_Quality_Time],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(199, 170, 205)',
+                'rgba(165, 80, 183)',
+                'rgba(112, 86, 111)',
+                'rgba(189, 156, 115)',
+                'rgba(215, 196, 146)'
             ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
-            borderWidth: 1,
+
           },
         ],
       };
@@ -79,23 +71,35 @@ export default function DonutChart({userLoveLanguages, results}) {
         plugins: {
           legend: {
             display: true,
+            labels: {
+              font: {
+                size: 14,
+                family: 'Poppins', // Tamaño y tipo de fuente de la leyenda
+              },
+            },
           },
           title: {
-            display: false,
+            display: true,
+            text: 'My Quiz Results', // Texto del título del gráfico
+            font: {
+              size: 18,
+              family: 'Poppins', 
+              weight: 'bold', // Peso de la fuente del título
+            },
           },
           tooltip: {
             callbacks: {
               label: function(context) {
                 let label = context.raw.toFixed(0) + '%';
-                
                 return label;
               }
             }
           },
-          
         },
         onClick: handleSegmentClick
-      }
+      };
+        
+      
 
       const handleClose = (status) => {
         setShowModal(status); // Hide the modal
