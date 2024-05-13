@@ -3,7 +3,8 @@ import axios from "axios";
 import quizData from "../assets/lovelanguagequiz";
 //useNavigate will take the user to the view we want programmatically. 
 //That means it doesn't depend on a user action. It depends on if a condition is met or not.
-//UseLocation is a react context and it allows us to  keep track of some data, like the URL path. 
+//UseLocation is a react context and it allows us to  keep track of some data, like the URL path.
+//I will modify this 
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Quiz() {
