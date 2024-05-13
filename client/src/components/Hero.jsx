@@ -19,12 +19,12 @@ export default function Hero() {
                 This is the after-tinder revolution. Join us to transform love connections together.
               </div>
               <div className="cta">
-                <a href="#" className="btn btn-primary shadow-none">Try it now!</a>
+                <a href="#" className="btn custom-btn">Try it now!</a>
               </div>
             </div>
           </div>
           <div className="col-md-6">
-            <img src="src/assets/After_tinder_logo.png" alt="img" />
+            <img src="src/assets/Home_Hero.png" alt="img" />
           </div>
         </div>
       </div>
