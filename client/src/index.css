@@ -141,3 +141,22 @@ btn-primary:active {
     line-height: 31px;
   }
   
+  /* NAVBAR */
+.navbar {
+  padding: 48px 0;
+  justify-content: center; /* Center horizontally */
+}
+.navbar-brand img {
+  padding-right: 16px;
+  max-width: 30%;
+}
+.navbar-brand span {
+  font-size: var(--text-medium);
+  font-weight: var(--font-weight-medium);
+  color: var(--dark-brown);
+}
+.nav-link {
+  margin-right: 39px;
+  font-size: var(--text-regular);
+  font-weight: var(--font-weight-regular);
+}
