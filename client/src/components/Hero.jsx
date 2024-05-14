@@ -15,7 +15,7 @@ export default function Hero() {
               <div className="text-hero-bold">
                 There is something else after a match.
               </div>
-              <div className="text-hero-regular">
+              <div className="text-hero-regular" style={{ fontSize: '20px' }}>
                 This is the after-tinder revolution. Join us to transform love connections together.
               </div>
               <div className="cta">

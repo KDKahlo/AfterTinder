@@ -32,21 +32,23 @@ try {
 }
 
 return (
-  <div>
-      {loveQuote && 
-          <div className="row">
-              <div className="col-md-12">
-                  <h6>{loveQuote.quote}</h6>
-              </div>
-          </div>
-      }
-      {loveQuote && 
-          <div className="row">
-              <div className="col-md-12">
-                  <p className="text-muted">{loveQuote.author}</p>
-              </div>
-          </div>
-      }
-  </div>
+    <div className="text-center">
+        {loveQuote && (
+            <div className="row">
+                <div className="col-md-12">
+                    <h6>"{loveQuote.quote}"</h6>
+                </div>
+            </div>
+        )}
+        {loveQuote && (
+            <div className="row">
+                <div className="col-md-12">
+                    <p className="text-muted">
+                        <span style={{ fontStyle: "italic" }}>{loveQuote.author}</span>
+                    </p>
+                </div>
+            </div>
+        )}
+    </div>
 );
 };

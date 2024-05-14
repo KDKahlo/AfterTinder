@@ -35,7 +35,10 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: #F3F2FF; /* Cambia esto al color deseado */
 }
+
+
 
 /* Home Styling */
 
@@ -72,8 +75,8 @@ btn-primary:active {
   }
 
 .custom-btn:hover{
-  color: #fff;
-  background-color: #857ff0c8;
+  color: #857ff0;
+  background-color: #ffffff;
   border-color: #857ff0; 
 }
 
@@ -159,8 +162,19 @@ btn-primary:active {
   text-align: center;
 }
 
+/* Navbar */
+.nav-link {
+  white-space: nowrap; /* Prevent text from wrapping onto the next line */
+}
 
 
+
+
+/* QUIZ */
+
+.banner-container {
+  background-color: #857ff0;
+}
 
 
 

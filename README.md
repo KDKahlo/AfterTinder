@@ -45,7 +45,7 @@ After Tinder aims to provide tools for healthy love relationships.
 - 2. Follow the documentation instructions (https://ai.google.dev/gemini-api/docs/get-started/node) to get an API.
 
 - 3. Store your API in the .env file as shown: 
-  VITE_BARD_API_KEY = YourGeminiAPIKey
+  BARD_API_KEY = YourGeminiAPIKey
 
 
 ## Guidelines
