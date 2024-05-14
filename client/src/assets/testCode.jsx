@@ -88,3 +88,14 @@
 // //     JOIN users u2 ON ur2.user_id = u2.id
 // //     WHERE ur1.user_id = 2 AND u2.firstname = 'Sara'
 // SELECT COUNT(u.firstname) FROM users u JOIN users_relationships ur ON u.id = ur.user_id WHERE ur.relationship_id IN (SELECT ur1.relationship_id FROM users_relationships ur1 JOIN users_relationships ur2 ON ur1.relationship_id = ur2.relationship_id JOIN users u2 ON ur2.user_id = u2.id WHERE ur1.user_id = 2 AND u2.firstname = 'Sara') GROUP BY ur.relationship_id;
+
+"SELECT * FROM users_relationships WHERE user_id = 2 AND relationship_id=33;"
+
+"SELECT COUNT(user_id) FROM users_relationships WHERE relationship_id=33;"
+
+`SELECT COUNT(u.firstname) AS count FROM users u JOIN users_relationships ur ON u.id = ur.user_id WHERE ur.relationship_id IN (SELECT ur1.relationship_id FROM users_relationships ur1 JOIN users_relationships ur2 ON ur1.relationship_id = ur2.relationship_id JOIN users u2 ON ur2.user_id = u2.id WHERE ur1.user_id = ${user_id} AND u2.firstname = "${firstname}") GROUP BY ur.relationship_id;`
+
+ // for (const relationship of relationship_ids){
+        //     const result = await db(`SELECT COUNT(user_id) AS count FROM users_relationships WHERE relationship_id= ${relationship.relationship_id};`)
+        // console.log(" isRelationshipActive QUERY RESULT", result.data)
+        // }

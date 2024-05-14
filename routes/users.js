@@ -9,6 +9,8 @@ const saltRounds = 10;
 
 const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 const relationshipExists = require("../guards/relationshipExists");
+const isRelationshipActive = require("../guards/IsRelationshipActive")
+const findSharedRelationship= require("../guards/findSharedRelationship")
 
 const supersecret = process.env.SUPER_SECRET;
 
@@ -128,14 +130,26 @@ router.post(
   }
 );
 
-router.get("/partners_data", userShouldBeLoggedIn, async (req, res) => {
+router.get("/relationships", userShouldBeLoggedIn, findSharedRelationship, isRelationshipActive, async (req, res) => {
+  //const {firstname} = req.body
   const user_id = req.user_id;
+  const relationships= req.relationships;
+  
+  console.log("isActive variable in users", isActive)
+  console.log("relationship_ids in users", relationships)
+  console.log()
   try {
-    const result = await db(
-      `SELECT DISTINCT u2.firstname, u2.Percentage_Words_of_Affirmation, u2.Percentage_Quality_Time, u2.Percentage_Receiving_Gifts, u2.Percentage_Acts_of_Service, u2.Percentage_Physical_Touch FROM users u1 JOIN users_relationships ur1 ON u1.id = ur1.user_id JOIN relationships r1 ON ur1.relationship_id = r1.id JOIN users_relationships ur2 ON r1.id = ur2.relationship_id JOIN users u2 ON ur2.user_id = u2.id WHERE u1.id = ${user_id} AND u2.id != ${user_id};`
-    );
-    console.log(result.data);
-    res.send(result.data);
+    if(isActive) {
+   for (const relationship_id of relationships) {
+     await db(`SELECT * FROM users_relationships WHERE user_id = ${user_id} AND relationship_id= ${relationship_id};`)
+   }
+
+  
+    res.status(200).send({ message: "relationship deleted in users"});
+  } else {
+    res.status(200).send({ message: "relationship deleted", data: result.data });
+  }
+    
   } catch (err) {
     res.status(400).send({ message: err.message });
   }
