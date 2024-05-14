@@ -71,20 +71,3 @@
 // //THIS RETURNS USER_ID AND RELATIONSHIP_ID
 // "SELECT DISTINCT ur1.user_id, ur1.relationship_id FROM users u1 JOIN users_relationships ur1 ON u1.id = ur1.user_id JOIN relationships r1 ON ur1.relationship_id = r1.id JOIN users_relationships ur2 ON r1.id = ur2.relationship_id JOIN users u2 ON ur2.user_id = u2.id WHERE u1.id = 2 AND u2.firstname = "john";"
 // "SELECT * FROM relationships WHERE relationship.id = "
-
-// `SELECT DISTINCT u2.firstname, FROM users u1 JOIN users_relationships ur1 ON u1.id = ur1.user_id JOIN relationships r1 ON ur1.relationship_id = r1.id JOIN users_relationships ur2 ON r1.id = ur2.relationship_id JOIN users u2 ON ur2.user_id = u2.id WHERE u1.id = 2 AND u2.firstname = "Sara";`
-// "SELECT DISTINCT ur3.user_id, ur3.relationship_id FROM users u1 JOIN users_relationships ur1 ON u1.id = ur1.user_id JOIN relationships r1 ON ur1.relationship_id = r1.id JOIN users_relationships ur2 ON r1.id = ur2.relationship_id JOIN users_relationships ur3 ON ur2.relationship_id = ur3.relationship_id JOIN users u2 ON ur3.user_id = u2.id WHERE u1.id = 2 AND u2.firstname = "Sara";"
-
-// "SELECT DISTINCT u2.firstname, ur3.user_id, ur3.relationship_id FROM users u1 JOIN users_relationships ur1 ON u1.id = ur1.user_id JOIN relationships r1 ON ur1.relationship_id = r1.id JOIN users_relationships ur2 ON r1.id = ur2.relationship_id JOIN users_relationships ur3 ON ur2.relationship_id = ur3.relationship_id JOIN users u2 ON ur3.user_id = u2.id WHERE u1.id = 2;"
-
-
-// // SELECT u.firstname
-// // FROM users u
-// // JOIN users_relationships ur ON u.id = ur.user_id
-// // WHERE ur.relationship_id IN (
-// //     SELECT ur1.relationship_id
-// //     FROM users_relationships ur1
-// //     JOIN users_relationships ur2 ON ur1.relationship_id = ur2.relationship_id
-// //     JOIN users u2 ON ur2.user_id = u2.id
-// //     WHERE ur1.user_id = 2 AND u2.firstname = 'Sara'
-// SELECT COUNT(u.firstname) FROM users u JOIN users_relationships ur ON u.id = ur.user_id WHERE ur.relationship_id IN (SELECT ur1.relationship_id FROM users_relationships ur1 JOIN users_relationships ur2 ON ur1.relationship_id = ur2.relationship_id JOIN users u2 ON ur2.user_id = u2.id WHERE ur1.user_id = 2 AND u2.firstname = 'Sara') GROUP BY ur.relationship_id;
