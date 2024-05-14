@@ -130,25 +130,25 @@ router.post(
   }
 );
 
-router.get("/relationships", userShouldBeLoggedIn, findSharedRelationship, isRelationshipActive, async (req, res) => {
+router.delete("/relationships", userShouldBeLoggedIn, findSharedRelationship, isRelationshipActive, async (req, res) => {
   //const {firstname} = req.body
   const user_id = req.user_id;
-  const relationships= req.relationships;
+  const checkedRelationships= req.checkedRelationships;
   
-  console.log("isActive variable in users", isActive)
-  console.log("relationship_ids in users", relationships)
+  console.log("relationships users", checkedRelationships)
   console.log()
   try {
-    if(isActive) {
-   for (const relationship_id of relationships) {
-     await db(`SELECT * FROM users_relationships WHERE user_id = ${user_id} AND relationship_id= ${relationship_id};`)
-   }
-
-  
-    res.status(200).send({ message: "relationship deleted in users"});
-  } else {
-    res.status(200).send({ message: "relationship deleted", data: result.data });
-  }
+    for (const relationship of checkedRelationships) {
+      if(relationship.active === true) {
+        console.log("ACTIVE RELATIONSHIP", relationship.relationship_id)
+        await db(`DELETE FROM users_relationships WHERE user_id = ${user_id} AND relationship_id= ${relationship.relationship_id};`)
+      } else {
+        console.log("INACTIVE RELATIONSHIP", relationship.relationship_id)
+        await db(`DELETE FROM relationships WHERE id= ${relationship.relationship_id};`)
+        
+      }
+    }
+    res.status(200).send({ message: "Relationship abandoned"});
     
   } catch (err) {
     res.status(400).send({ message: err.message });
