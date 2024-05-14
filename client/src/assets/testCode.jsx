@@ -71,3 +71,6 @@
 // //THIS RETURNS USER_ID AND RELATIONSHIP_ID
 // "SELECT DISTINCT ur1.user_id, ur1.relationship_id FROM users u1 JOIN users_relationships ur1 ON u1.id = ur1.user_id JOIN relationships r1 ON ur1.relationship_id = r1.id JOIN users_relationships ur2 ON r1.id = ur2.relationship_id JOIN users u2 ON ur2.user_id = u2.id WHERE u1.id = 2 AND u2.firstname = "john";"
 // "SELECT * FROM relationships WHERE relationship.id = "
+
+`SELECT DISTINCT u2.firstname, u2.Percentage_Words_of_Affirmation, u2.Percentage_Quality_Time, u2.Percentage_Receiving_Gifts, u2.Percentage_Acts_of_Service, u2.Percentage_Physical_Touch FROM users u1 JOIN users_relationships ur1 ON u1.id = ur1.user_id JOIN relationships r1 ON ur1.relationship_id = r1.id JOIN users_relationships ur2 ON r1.id = ur2.relationship_id JOIN users u2 ON ur2.user_id = u2.id WHERE u1.id = 2 AND u2.id != 2 AND u2.firstname != ;`
+
