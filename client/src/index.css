@@ -38,6 +38,8 @@ body {
   background-color: #F3F2FF; /* Cambia esto al color deseado */
 }
 
+
+
 /* Home Styling */
 
 .home-container {
@@ -158,6 +160,11 @@ btn-primary:active {
 
 .button-container {
   text-align: center;
+}
+
+/* Navbar */
+.nav-link {
+  white-space: nowrap; /* Prevent text from wrapping onto the next line */
 }
 
 
