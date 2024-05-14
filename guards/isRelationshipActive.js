@@ -12,7 +12,7 @@ const isRelationshipActive = async (req, res, next) => {
                 const result = await db(
                     `SELECT COUNT(user_id) AS count FROM users_relationships WHERE relationship_id= ${relationship.relationship_id};`
                 );
-                console.log("result.data in isactive", result.data);
+                //console.log("result.data in isactive", result.data);
                 const userCount = result.data[0].count;
                 return {
                     ...relationship,
@@ -20,7 +20,7 @@ const isRelationshipActive = async (req, res, next) => {
                 };
             })
         );
-console.log("RELATIONSHIPCHECK", relationshipCheck)
+        //console.log("RELATIONSHIPCHECK", relationshipCheck)
         req.checkedRelationships = relationshipCheck;
         next();
 
