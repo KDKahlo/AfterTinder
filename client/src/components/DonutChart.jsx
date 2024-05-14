@@ -108,7 +108,7 @@ export default function DonutChart({userLoveLanguages, results}) {
 
     return (
     <>
-    {userLoveLanguages && (<div style={{width:"50%", height:"50%"}}>
+    {userLoveLanguages && (<div style={{width:"20%", height:"20%"}}>
     <Doughnut data={data} options= {options}/>;
     </div>)}
    {showModal && <Modal header={modalHeader} showModal={showModal} message={message} handleClose={(status)=> handleClose(status)} />}

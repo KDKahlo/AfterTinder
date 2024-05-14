@@ -17,20 +17,21 @@ function PairWithPartner() {
          
   
   const navigate = useNavigate();
-  const [userCode, setUserCode] = useState("");
-  const [partnerCode, setPartnerCode] = useState(""); // State to hold partner's code
+  const [relationshipCode, setRelationshipCode] = useState()
+  const [userCode, setUsercode] = useState()
   const [showModal, setShowModal] = useState (false) // State variable to control modal visibility
 
 
   function generateCode() {
     const code = uuidv4();
-    setUserCode(code);
+    setUsercode(code)
+    handleEnterCode(code)
   }
 
   async function copyCode() { // Function to handleCopyCode
     try {
-      await navigator.clipboard.writeText(userCode);
-      console.log('Content copied to clipboard', userCode);
+      await navigator.clipboard.writeText(relationshipCode);
+      console.log('Content copied to clipboard', relationshipCode);
     } catch (err) {
       console.error('Failed to copy: ', err);
     }
@@ -47,11 +48,11 @@ function PairWithPartner() {
   /* Logica para enviar el codigo ingresado en el campo "Enter Code" al backend y crear la relacion,
      una vez se da clic en este boton, esto añade al usuario en el "Relationships Profile" */
 
-     async function handleEnterCode() {
+     async function handleEnterCode(relationshipCode) {
       const token = localStorage.getItem("token");
       try {
         // Send the partner's code to the backend
-        await axios.post("http://localhost:4000/users/relationships", { code: partnerCode }, 
+        await axios.post("http://localhost:4000/users/relationships", { relationshipCode }, 
         {
           headers: {
               authorization: `Bearer ${token}`,
@@ -97,10 +98,10 @@ function PairWithPartner() {
                   type="text" 
                   className="form-control mb-2" 
                   placeholder="Enter code" 
-                  value={partnerCode} // THIS IS THE CODE THAT MUST BE SENT TO THE BACKEND
-                  onChange={(e) => setPartnerCode(e.target.value)}
+                  value={relationshipCode} // THIS IS THE CODE THAT MUST BE SENT TO THE BACKEND
+                  onChange={(e) => setRelationshipCode(e.target.value)}
                 />
-                <button onClick={handleEnterCode} className="btn custom-btn">Enter partner's code</button>
+                <button onClick={()=>handleEnterCode(relationshipCode)} className="btn custom-btn">Enter partner's code</button>
               </div>
             </div>
           </div>
