@@ -75,8 +75,8 @@ btn-primary:active {
   }
 
 .custom-btn:hover{
-  color: #fff;
-  background-color: #857ff0c8;
+  color: #857ff0;
+  background-color: #ffffff;
   border-color: #857ff0; 
 }
 
