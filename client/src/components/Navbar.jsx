@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../contexts/AuthContext";
-import After_tinder_logo_NAVBAR from "../assets/After_tinder_logo_NAVBAR.png";
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import AuthContext from '../contexts/AuthContext';
+import After_tinder_logo_NAVBAR from "../assets/After_tinder_logo_NAVBAR.png"
 
 function Navbar() {
   const { isLoggedIn, logout } = useContext(AuthContext);
