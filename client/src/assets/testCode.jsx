@@ -55,9 +55,9 @@
 
 
 //USERS LOVE LANGUAGES UPDATE REGISTRATION TO TEST IN POSTMAN
-//URL: 
+//URL: user
 //Token: the token you receive when you log in. It can be found in Postman's response for the login or in the browser--> inspect-->application(key and value table. when there's a token, ke key is "token" and the value is the token itself)
-//BODY:
+//BODY:http://localhost:4000/users/lovelanguages
 // {
 //     "touch": 40,
 //     "wordsOfAffirmation": 10,
@@ -65,9 +65,3 @@
 //     "receiveGifts": 0,
 //     "qualityTime": 50
 //   }
-
-// //THIS RETURNS THE RELATIONSHIP ID
-// "SELECT DISTINCT r1.id FROM users u1 JOIN users_relationships ur1 ON u1.id = ur1.user_id JOIN relationships r1 ON ur1.relationship_id = r1.id JOIN users_relationships ur2 ON r1.id = ur2.relationship_id JOIN users u2 ON ur2.user_id = u2.id WHERE u1.id = 2 AND u2.firstname = "john";"
-// //THIS RETURNS USER_ID AND RELATIONSHIP_ID
-// "SELECT DISTINCT ur1.user_id, ur1.relationship_id FROM users u1 JOIN users_relationships ur1 ON u1.id = ur1.user_id JOIN relationships r1 ON ur1.relationship_id = r1.id JOIN users_relationships ur2 ON r1.id = ur2.relationship_id JOIN users u2 ON ur2.user_id = u2.id WHERE u1.id = 2 AND u2.firstname = "john";"
-// "SELECT * FROM relationships WHERE relationship.id = "

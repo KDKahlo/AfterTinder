@@ -1,9 +1,5 @@
 # After Tinder
 After Tinder aims to provide tools for healthy love relationships.
-## Current Bugs/ Things that need to be fixed/added
-
-- ❌ README file: section "Guidelines" must be updated with current project info.
-
 
 ## Setup
 
@@ -49,12 +45,12 @@ After Tinder aims to provide tools for healthy love relationships.
 
 
 ## Guidelines
-- NOTE: in the backend, the login logic is held in the users file and the logic to get/post other data is held in index.js.
+- NOTE: in the backend, the login logic is held in the users file and the logic to get/post AI data is held in index.js.
 - NOTE: your database tables will be empty when you first open the app. After configuration, you should be able to populate them using the front end. If you need to manually test it in Postman, there's a sample code and instructions in client/src/assets/testcode. This file is not connected to the app: it's used to try and store code samples that might be useful for the developing process.
 - NOTE: the code to pair partners is used in the backend with uuid. We need to npm install, should we include this on readmefile?
 
 
-- Resources you may need: XXXXXXXXXXX
+- Resources you may need: 
   - [MDN docs](https://developer.mozilla.org/en-US/)
   - [Express docs](https://expressjs.com/en/api.html)
   - [MySQL docs](https://dev.mysql.com/doc/refman/8.0/en/database-use.html)
@@ -67,8 +63,10 @@ After Tinder aims to provide tools for healthy love relationships.
   - [Axios docs](https://axios-http.com/es/docs/intro)
   - [Love quotes API](https://rapidapi.com/colebidex-mO-Ew1CYzUS/api/love-quote)
   - [Gemini API docs](https://ai.google.dev/gemini-api/docs/get-started/node)
-
-
-  - [React calendar](https://www.npmjs.com/package/react-calendar)
+  - [Progress bar docs](https://www.npmjs.com/package/@ramonak/react-progress-bar)
   - [React chartsjs-2](https://react-chartjs-2.js.org/)
- - [MDN docs window.alert](https://developer.mozilla.org/es/docs/Web/API/Window/alert)
+  - [MDN docs window docs](https://developer.mozilla.org/en-US/docs/Web/API/Window)
+  - [Font Awesome docs](https://docs.fontawesome.com/)
+  - [uuid docs](https://www.uuidgenerator.net/dev-corner/javascript)
+  -[Jason Wew Token docs](https://www.npmjs.com/package/jsonwebtoken)
+  -[bycrypt docs](https://www.npmjs.com/package/bcrypt)
