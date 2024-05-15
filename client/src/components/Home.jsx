@@ -92,13 +92,13 @@ export default function Home() {
                 >
                   Relationships
                 </h5>
-                <p
-                  className="card-text"
+                <h6
+                  className="card-subtitle mb-2 text-muted"
                   style={{ fontSize: "18px", paddingBottom: "30px" }}
                 >
                   Relationships go two ways. Once you discover your love language, it's time to share.
-                  Add the person (or persons) you are dating to the app so you can love them better.
-                </p>
+                  Add the person (or persons) you are dating to the app so you can learn love them better.
+                </h6>
                 <Link to={"/relationships"}>
                   <button className="btn btn-primary">
                     Go to my Relationships
@@ -155,7 +155,7 @@ export default function Home() {
                 Need ideas? Ask our AI and get personalized suggestions for your loved ones.
                 </h6>
                 <Link to={"/chatwithai"}>
-                  <button className="btn btn-primary">Chat with AI</button>
+                  <button className="btn btn-primary">Take me there</button>
                 </Link>
               </div>
             </div>
