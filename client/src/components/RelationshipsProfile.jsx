@@ -12,12 +12,12 @@ export default function RelationshipsProfile() {
     const [userLoveLanguages, setUserLoveLanguages] = useState([])
 
     useEffect(() => {
-        setLoadingPartners(false)
+        console.log(userLoveLanguages)
         }, [userLoveLanguages]);
     
     function updateUserLoveLanguages(data) { 
         setUserLoveLanguages(data)
-
+      
       }
 
 
@@ -32,10 +32,9 @@ export default function RelationshipsProfile() {
       {/* Adds HeroRelationships */}
       <HeroRelationships />
       
-      <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
+      <PartnersData setLoadingPartners = {setLoadingPartners} updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
 
-
-    {loadingPartners ? <p>Loading partners...</p> :
+    {!userLoveLanguages && !userLoveLanguages.length ? <p>Loading partners...</p> :
       <>
       <h4>Your partners:</h4> 
       {userLoveLanguages.map((partner, index)=>(
