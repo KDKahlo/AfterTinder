@@ -1,7 +1,12 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
+import React, { useContext } from "react";
 
 export default function Hero() {
+  const { isLoggedIn } = useContext(AuthContext);
+
+
   return (
     <section className="hero">
       <div className="container">
@@ -19,9 +24,12 @@ export default function Hero() {
                 connections together.
               </div>
               <div className="cta">
-                <Link to="/login" className="btn custom-btn">
+
+                {isLoggedIn ? <button  onClick={() => window.scrollTo({ top: 800, behavior: "smooth" })} to="/login" className="btn custom-btn">
                   Try it now!
-                </Link>
+                </button > :<Link to="/login" className="btn custom-btn">
+                  Try it now!
+                </Link>}
               </div>
             </div>
           </div>
