@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 import React, { useContext } from "react";
 
-export default function Hero() {
+export default function Hero({scrollToQuizzes}) {
   const { isLoggedIn } = useContext(AuthContext);
 
 
@@ -25,7 +25,10 @@ export default function Hero() {
               </div>
               <div className="cta">
 
-                {isLoggedIn ? <button  onClick={() => window.scrollTo({ top: 800, behavior: "smooth" })} to="/login" className="btn custom-btn">
+                {isLoggedIn ? 
+                <button  
+                  onClick={scrollToQuizzes} 
+                  className="btn custom-btn">
                   Try it now!
                 </button > :<Link to="/login" className="btn custom-btn">
                   Try it now!
