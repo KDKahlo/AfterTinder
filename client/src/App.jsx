@@ -16,6 +16,8 @@ import RelationshipsProfile from "./components/RelationshipsProfile.jsx";
 import QuizResults from "./components/QuizResults"
 import ShowPartnersData from "./components/ShowPartnersData.jsx";
 import PairWithPartner from "./components/PairWithPartner.jsx";
+import ExitRelationship from "./components/ExitRelationship.jsx";
+
 
 
 
@@ -60,6 +62,7 @@ function App() {
         <Route path="/QuizQuestions/:index" element={<PrivateRoute><Quiz/></PrivateRoute>}/>
         <Route path="/pairwithpartner" element={<PrivateRoute><PairWithPartner /></PrivateRoute>}/>
         <Route path="/relationships" element={<PrivateRoute><RelationshipsProfile/></PrivateRoute>}/>
+        <Route path="/relationships/delete" element={<PrivateRoute><ExitRelationship/></PrivateRoute>}/>
         <Route path="/relationships/:idx" element={<PrivateRoute><ShowPartnersData /></PrivateRoute>}/>
         <Route path="/chatwithai" element={<PrivateRoute><AIDropDownInput /></PrivateRoute>}/>
         <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>}/> 

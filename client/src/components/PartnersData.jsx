@@ -43,7 +43,9 @@ export default function PartnersData({updateUserLoveLanguages}) {
     
     function isThereData (data) {
         if (!data.length) {
-            return window.alert("You haven't registered any relationship yet")
+            window.alert("We couldn't find an active relationship. You will be able to access this section when both you and your partner have registered the relationship")
+            navigate("/")
+            
         } else{ sendLoveLanguageToParent(data)}
     }
 
