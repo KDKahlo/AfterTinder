@@ -168,6 +168,16 @@ btn-primary:active {
 }
 
 
+/* Navbar */
+.nav-link {
+  white-space: nowrap; /* Prevent text from wrapping onto the next line */
+}
+
+/* Navbar */
+.nav-link {
+  white-space: nowrap; /* Prevent text from wrapping onto the next line */
+}
+
 
 
 /* QUIZ */
@@ -175,6 +185,15 @@ btn-primary:active {
 .banner-container {
   background-color: #857ff0;
 }
+
+
+
+/* QUIZ */
+
+.banner-container {
+  background-color: #857ff0;
+}
+
 
 
 

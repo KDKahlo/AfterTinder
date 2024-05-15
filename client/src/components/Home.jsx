@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import LoveQuote from "./LoveQuote";
 import Hero from "./Hero";
 import Home_Container1 from "../assets/Home_Container1.png";
@@ -9,11 +9,21 @@ import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
 export default function Home() {
+
+  const quizzesRef = useRef(null);
+
+  const scrollToQuizzes = () => {
+    quizzesRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <div className="home-container">
       {/* Hero Section */}
       <section className="hero-section">
-        <Hero />
+        <Hero scrollToQuizzes={scrollToQuizzes}/>
       </section>
 
       {/* LoveQuote Section */}
@@ -29,6 +39,7 @@ export default function Home() {
 
       {/* Quizzes Section */}
       <section
+        ref={quizzesRef}
         className="quizzes-section mt-5 colored-section"
         style={{ backgroundColor: "white" }}
       >
@@ -69,6 +80,7 @@ export default function Home() {
         </div>
       </section>
 
+
       {/* Relationships Section */}
       <section className="relationships-section mt-5 colored-section">
         <div className="container">
@@ -82,13 +94,15 @@ export default function Home() {
                 >
                   Relationships
                 </h5>
-                <p
-                  className="card-text"
+
+                <h6
+                  className="card-subtitle mb-2 text-muted"
                   style={{ fontSize: "18px", paddingBottom: "30px" }}
                 >
                   Relationships go two ways. Once you discover your love language, it's time to share.
-                  Add the person (or persons) you are dating to the app so you can love them better.
-                </p>
+                  Add the person (or persons) you are dating to the app so you can learn love them better.
+                </h6>
+
                 <Link to={"/relationships"}>
                   <button className="btn btn-primary">
                     Go to my Relationships
@@ -145,7 +159,9 @@ export default function Home() {
                 Need ideas? Ask our AI and get personalized suggestions for your loved ones.
                 </h6>
                 <Link to={"/chatwithai"}>
-                  <button className="btn btn-primary">Chat with AI</button>
+
+                  <button className="btn btn-primary">Take me there</button>
+
                 </Link>
               </div>
             </div>

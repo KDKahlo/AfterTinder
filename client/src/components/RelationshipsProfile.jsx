@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import PartnersData from "./PartnersData";
-import{Link } from "react-router-dom";
 import{useNavigate } from "react-router-dom"
+import { Link} from "react-router-dom";
+import HeroRelationships from "./HeroRelationships";
+
+
 
 export default function RelationshipsProfile() {
     const [loadingPartners, setLoadingPartners] = useState(true)
@@ -17,15 +20,21 @@ export default function RelationshipsProfile() {
 
       }
 
+
+
     function handleDeleteClick() {
         navigate("/relationships/delete")
 
     }
     
-    return(
+  return (
+    <div className="home-container">
+      {/* Adds HeroRelationships */}
+      <HeroRelationships />
+      
+      <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
 
-    <>
-       <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
+
     {loadingPartners ? <p>Loading partners...</p> :
       <>
       <h4>Your partners:</h4> 
@@ -39,13 +48,15 @@ export default function RelationshipsProfile() {
               >{partner.firstname}</Link>
           </div>
       ))}
+
+
       </> }
         
-      
-        
+
          
         <button onClick={handleDeleteClick}>Delete relationship</button>
          
-    </>
+    </div>
     )
 }
+

@@ -1,5 +1,8 @@
 import quizData from "../assets/lovelanguagequiz";
-import { Link } from "react-router-dom";
+
+import {Link} from "react-router-dom";
+
+
 import React from "react";
 import HeroQuizInstructions from "./HeroQuizInstructions";
 

@@ -1,7 +1,16 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Hero() {
+
+import AuthContext from "../contexts/AuthContext";
+import React, { useContext } from "react";
+
+export default function Hero({scrollToQuizzes}) {
+  const { isLoggedIn } = useContext(AuthContext);
+
+
+
   return (
     <section className="hero">
       <div className="container">
@@ -19,9 +28,17 @@ export default function Hero() {
                 connections together.
               </div>
               <div className="cta">
-                <Link to="/login" className="btn custom-btn">
+
+
+                {isLoggedIn ? 
+                <button  
+                  onClick={scrollToQuizzes} 
+                  className="btn custom-btn">
                   Try it now!
-                </Link>
+                </button > :<Link to="/login" className="btn custom-btn">
+                  Try it now!
+                </Link>}
+
               </div>
             </div>
           </div>
