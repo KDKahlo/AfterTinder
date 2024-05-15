@@ -46,7 +46,8 @@ export default function PartnersData({updateUserLoveLanguages}) {
             window.alert("We couldn't find an active relationship. You will be able to access this section when both you and your partner have registered the relationship")
             navigate("/")
             
-        } else{ sendLoveLanguageToParent(data)}
+        } else{ 
+          sendLoveLanguageToParent(data)}
     }
 
     function sendLoveLanguageToParent(data){
