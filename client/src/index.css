@@ -195,6 +195,55 @@ btn-primary:active {
 }
 
 
+/* RELATIONSHIPS */
+.user-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: auto; 
+  margin-right: auto; 
+  max-width: 1200px; 
+  padding: 0 20px; 
+}
+
+.user-card {
+  width: calc(20% - 40px); /* Ancho del 33.33% con 10px de espacio entre tarjetas */
+  margin-bottom: 20px; /* Espacio entre filas */
+  box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho */
+}
+
+
+
+.user-name-link {
+  font-size: 16px; /* Ajusta el tamaño de la fuente según sea necesario */
+  text-decoration: none;
+  color: #000; /* Color del texto */
+  /* Añade cualquier otro estilo deseado para el enlace */
+}
+
+
+
+
+.user-card {
+  width: calc(33.33% - 10px); /* Ancho del 33.33% con 10px de espacio entre tarjetas */
+  margin-bottom: 20px; /* Espacio entre filas */
+  box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho */
+}
+
+/* Estilos adicionales para la imagen y el enlace dentro de las tarjetas si es necesario */
+.user-photo {
+  width: 100%;
+  height: auto;
+  border-radius: 50%; /* Ajusta según sea necesario */
+}
+
+.user-name-link {
+  display: block;
+  text-align: center; /* Centra el texto si es necesario */
+}
+
+
+
 
 
 
