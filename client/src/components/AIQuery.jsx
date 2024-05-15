@@ -51,7 +51,7 @@ function refineText(rawAIText) {
   return (
     <>
       
-      <div className="card">
+      <div className="container mt-5 p-3 shadow bg-white rounded text-center">
         {generatedText && Array.isArray(generatedText) && generatedText.map((recommendation, index)=>  (<p key={index}> {recommendation}</p>))}
       </div>
     </>

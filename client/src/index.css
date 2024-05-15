@@ -124,7 +124,7 @@ btn-primary:active {
 }
 .profile-buttons-section .col-lg-4 {
   width: 300 px;
-  margin-bottom: 20px; /* Ajusta el espacio entre cada columna según sea necesario */
+  margin-bottom: 20px; 
 }
 
 .image-container {
@@ -168,15 +168,7 @@ btn-primary:active {
 }
 
 
-/* Navbar */
-.nav-link {
-  white-space: nowrap; /* Prevent text from wrapping onto the next line */
-}
 
-/* Navbar */
-.nav-link {
-  white-space: nowrap; /* Prevent text from wrapping onto the next line */
-}
 
 
 
@@ -188,11 +180,6 @@ btn-primary:active {
 
 
 
-/* QUIZ */
-
-.banner-container {
-  background-color: #857ff0;
-}
 
 
 /* RELATIONSHIPS */
@@ -212,17 +199,12 @@ btn-primary:active {
   box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho */
 }
 
-
-
 .user-name-link {
   font-size: 16px; /* Ajusta el tamaño de la fuente según sea necesario */
   text-decoration: none;
   color: #000; /* Color del texto */
   /* Añade cualquier otro estilo deseado para el enlace */
 }
-
-
-
 
 .user-card {
   width: calc(33.33% - 10px); /* Ancho del 33.33% con 10px de espacio entre tarjetas */
@@ -239,11 +221,35 @@ btn-primary:active {
 
 .user-name-link {
   display: block;
-  text-align: center; /* Centra el texto si es necesario */
+  text-align: center; /* Centra el texto */
 }
 
 
 
+/* ROMANTIC IDEAS */
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  flex: 0 0 250px; /* Establece un ancho fijo para la etiqueta */
+  text-align: right;
+}
+
+.input-container {
+  flex: 1;
+  
+}
+
+
+.form-container {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
 
 
 

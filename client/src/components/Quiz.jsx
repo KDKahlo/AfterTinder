@@ -175,10 +175,11 @@ export default function Quiz() {
 
       {/* PROGRESS BAR */}
       <div className="container">
-      <ProgressBar completed={progressBarCompleted} maxCompleted={100} />;
+      <ProgressBar completed={progressBarCompleted} maxCompleted={100} />
       </div>
-      {/* Its more meaningful to me when... */}
-      <p className="text-center">{quizData[0].Quiz.Statement}</p>
+      <div style={{ marginBottom: '20px' }}></div>
+      {/* Its more meaningful to me when: */}
+      <h6 className="text-center">{quizData[0].Quiz.Statement}</h6>
 
       {/* Option 1 and Option 2 */}
       <div className="quiz-answer-holder d-flex align-items-center justify-content-center">
@@ -189,7 +190,7 @@ export default function Quiz() {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="bg-white shadow-sm rounded-4 p-4">
-                {/* Cambio aquí: Mover el mapeo dentro del contenedor */}
+                
                 {Object.entries(quizData[0].Quiz.Options[pathIndex]).map(
                   ([letter, option], index) => (
                     <div key={index} className="option-container mb-3">

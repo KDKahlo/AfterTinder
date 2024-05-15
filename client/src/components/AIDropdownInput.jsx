@@ -82,65 +82,109 @@ export default function AIDropDownInput() {
     <div className="home-container">
       {/* Adds HeroRomanticIdeas */}
       <HeroRomanticIdeas />
-
-      <h5>Show you care! do you want some recommendations?</h5>
-      <form onSubmit={(event) => handleSubmit(event)}>
-        <label>
-          {" "}
-          Type of recommendation
-          <select
-            className="input-box"
-            value={recommendationsInput.type}
-            onChange={handleSelectDropdown}
-            name="type"
-          >
-            {type.map((type, index) => (
-              <option value={type.value} key={index}>
-                {type.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {" "}
-          Occasion
-          <select
-            className="input-box"
-            value={recommendationsInput.occasion}
-            name="occasion"
-            onChange={handleSelectDropdown}
-          >
-            {occasion.map((option, index) => (
-              <option value={option.value} key={index}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          {" "}
-          Primary love language
-          <select
-            className="input-box"
-            value={recommendationsInput.primaryLoveLanguage}
-            name="primaryLoveLanguage"
-            onChange={handleSelectDropdown}
-          >
-            {primaryLoveLanguage.map((option, index) => (
-              <option value={option.value} key={index}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <button disabled={loading}>
-          {loading ? "Generating..." : "Generate Text"}
-        </button>
-      </form>
+  
+      {/* Formulario */}
+      <section className="form-section mt-5">
+        <div className="container text-center">
+          {/* Contenedor de los elementos del formulario */}
+          <div className="form-container">
+            {/* Contenedor 1 */}
+            <div className="form-element">
+              <div className="input-group">
+                <label>Type of recommendation</label>
+                <div className="input-container">
+                  <select
+                    className="input-box"
+                    value={recommendationsInput.type}
+                    onChange={handleSelectDropdown}
+                    name="type"
+                    style={{
+                      width: '200px', // Establece el ancho deseado
+                      border: '1px solid #ccc', // Establece el borde con un color particular
+                      borderRadius: '5px', // Hace que los bordes sean redondeados
+                      padding: '8px' // Agrega un espacio interno entre el borde y el contenido
+                    }}
+                  >
+                    {type.map((type, index) => (
+                      <option value={type.value} key={index}>
+                        {type.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+  
+            {/* Contenedor 2 */}
+            <div className="form-element">
+              <div className="input-group">
+                <label >Occasion</label>
+                <div className="input-container">
+                  <select
+                    className="input-box"
+                    value={recommendationsInput.occasion}
+                    name="occasion"
+                    onChange={handleSelectDropdown}
+                    style={{
+                      width: '200px', // Establece el ancho deseado
+                      border: '1px solid #ccc', // Establece el borde con un color particular
+                      borderRadius: '5px', // Hace que los bordes sean redondeados
+                      padding: '8px' // Agrega un espacio interno entre el borde y el contenido
+                    }}
+                  >
+                    {occasion.map((option, index) => (
+                      <option value={option.value} key={index}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+  
+            {/* Contenedor 3 */}
+            <div className="form-element">
+              <div className="input-group">
+                <label>Primary love language</label>
+                <div className="input-container">
+                  <select
+                    className="input-box"
+                    value={recommendationsInput.primaryLoveLanguage}
+                    name="primaryLoveLanguage"
+                    onChange={handleSelectDropdown}
+                    style={{
+                      width: '200px', // Establece el ancho deseado
+                      border: '1px solid #ccc', // Establece el borde con un color particular
+                      borderRadius: '5px', // Hace que los bordes sean redondeados
+                      padding: '8px' // Agrega un espacio interno entre el borde y el contenido
+                    }}
+                  >
+                    {primaryLoveLanguage.map((option, index) => (
+                      <option value={option.value} key={index}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+  
+            {/* Botón */}
+            <div className="form-element">
+              <button className="btn btn-primary" disabled={loading} onClick={handleSubmit}>
+                {loading ? "Generating..." : "Give me ideas!"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      {/* AIQuery Section */}
       <AIQuery
         prompt={prompt}
         handleLoading={(status) => handleLoading(status)}
       />
     </div>
   );
-}
+  
+                  }  
