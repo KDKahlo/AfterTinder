@@ -134,6 +134,7 @@ router.delete("/relationships", userShouldBeLoggedIn, findSharedRelationship, is
   //const {firstname} = req.body
   const user_id = req.user_id;
   const checkedRelationships= req.checkedRelationships;
+  const {firstname} = req.body
   
   console.log("relationships users", checkedRelationships)
   console.log()
