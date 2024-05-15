@@ -71,15 +71,6 @@ function Navbar() {
                 </Link>
                 <Link
                   className="nav-link active"
-                  to="/Profile"
-                  style={{ color: "white", transition: "color 0.3s" }}
-                  onMouseEnter={(e) => (e.target.style.color = "black")}
-                  onMouseLeave={(e) => (e.target.style.color = "white")}
-                >
-                  Profile
-                </Link>
-                <Link
-                  className="nav-link active"
                   to="/relationships"
                   style={{ color: "white", transition: "color 0.3s" }}
                   onMouseEnter={(e) => (e.target.style.color = "black")}
@@ -87,6 +78,16 @@ function Navbar() {
                 >
                   Relationships
                 </Link>
+                <Link
+                  className="nav-link active"
+                  to="/Profile"
+                  style={{ color: "white", transition: "color 0.3s" }}
+                  onMouseEnter={(e) => (e.target.style.color = "black")}
+                  onMouseLeave={(e) => (e.target.style.color = "white")}
+                >
+                  Profile
+                </Link>
+                
                 
                 <button
                   className="btn custom-btn"

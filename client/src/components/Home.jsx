@@ -145,7 +145,7 @@ export default function Home() {
                 Need ideas? Ask our AI and get personalized suggestions for your loved ones.
                 </h6>
                 <Link to={"/chatwithai"}>
-                  <button className="btn btn-primary">Chat with AI</button>
+                  <button className="btn btn-primary">Take me there</button>
                 </Link>
               </div>
             </div>
