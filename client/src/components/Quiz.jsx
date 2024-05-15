@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useParams } from "react";
 import axios from "axios";
 import quizData from "../assets/lovelanguagequiz";
+import ProgressBar from "@ramonak/react-progress-bar";
 import { Link } from "react-router-dom";
 //useNavigate will take the user to the view we want programmatically.
 //That means it doesn't depend on a user action. It depends on if a condition is met or not.
@@ -19,6 +20,7 @@ export default function Quiz() {
     (element) => element.checked
   );
   const [userAnswers, setUserAnswers] = useState({});
+  const progressBarCompleted = Math.floor((100/quizData[0].Quiz.Options.length)*pathIndex)
   const [results, setResults] = useState({
     A: 0,
     B: 0,
@@ -101,11 +103,11 @@ export default function Quiz() {
     //converting the percentage strings obtainted from percentages
     //into integers using parseInt
     const loveLanguageScores = {
-      qualityTime: parseInt(percentageResults["A"]),
-      touch: parseInt(percentageResults["B"]),
-      wordsOfAffirmation: parseInt(percentageResults["C"]),
+      qualityTime: parseInt(percentageResults["B"]),
+      touch: parseInt(percentageResults["E"]),
+      wordsOfAffirmation: parseInt(percentageResults["A"]),
       actsOfService: parseInt(percentageResults["D"]),
-      receiveGifts: parseInt(percentageResults["E"]),
+      receiveGifts: parseInt(percentageResults["C"]),
     };
     console.log(loveLanguageScores);
     // setResults(percentageResults); -->we don't need to store the results in a state variable  because we don't need them in the frontend. But how are they stored then? temporarily?
@@ -171,6 +173,10 @@ export default function Quiz() {
         </div>
       </section>
 
+      {/* PROGRESS BAR */}
+      <div className="container">
+      <ProgressBar completed={progressBarCompleted} maxCompleted={100} />;
+      </div>
       {/* Its more meaningful to me when... */}
       <p className="text-center">{quizData[0].Quiz.Statement}</p>
 
