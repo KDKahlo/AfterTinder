@@ -1,10 +1,14 @@
 
+import React from "react";
 import { Link } from "react-router-dom";
+
+
 import AuthContext from "../contexts/AuthContext";
 import React, { useContext } from "react";
 
 export default function Hero({scrollToQuizzes}) {
   const { isLoggedIn } = useContext(AuthContext);
+
 
 
   return (
@@ -25,6 +29,7 @@ export default function Hero({scrollToQuizzes}) {
               </div>
               <div className="cta">
 
+
                 {isLoggedIn ? 
                 <button  
                   onClick={scrollToQuizzes} 
@@ -33,6 +38,7 @@ export default function Hero({scrollToQuizzes}) {
                 </button > :<Link to="/login" className="btn custom-btn">
                   Try it now!
                 </Link>}
+
               </div>
             </div>
           </div>

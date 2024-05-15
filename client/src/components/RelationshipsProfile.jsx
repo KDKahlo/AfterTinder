@@ -5,10 +5,10 @@ import { Link} from "react-router-dom";
 import HeroRelationships from "./HeroRelationships";
 
 
+
 export default function RelationshipsProfile() {
     const [loadingPartners, setLoadingPartners] = useState(true)
     const navigate = useNavigate()
-
     const [userLoveLanguages, setUserLoveLanguages] = useState([])
 
     useEffect(() => {
@@ -19,6 +19,8 @@ export default function RelationshipsProfile() {
         setUserLoveLanguages(data)
 
       }
+
+
 
     function handleDeleteClick() {
         navigate("/relationships/delete")
@@ -31,6 +33,7 @@ export default function RelationshipsProfile() {
       <HeroRelationships />
       
       <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
+
 
     {loadingPartners ? <p>Loading partners...</p> :
       <>
@@ -46,8 +49,10 @@ export default function RelationshipsProfile() {
           </div>
       ))}
 
+
       </> }
         
+
          
         <button onClick={handleDeleteClick}>Delete relationship</button>
          
