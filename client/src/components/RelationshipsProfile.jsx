@@ -51,7 +51,7 @@ export default function RelationshipsProfile() {
          
         <button onClick={handleDeleteClick}>Delete relationship</button>
          
-    </>
+    </div>
     )
 }
 
