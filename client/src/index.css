@@ -167,7 +167,22 @@ btn-primary:active {
   white-space: nowrap; /* Prevent text from wrapping onto the next line */
 }
 
+/* Navbar */
+.nav-link {
+  white-space: nowrap; /* Prevent text from wrapping onto the next line */
+}
 
+/* Navbar */
+.nav-link {
+  white-space: nowrap; /* Prevent text from wrapping onto the next line */
+}
+
+
+/* QUIZ */
+
+.banner-container {
+  background-color: #857ff0;
+}
 
 
 /* QUIZ */

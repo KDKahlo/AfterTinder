@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
 
 export default function Registration() {
   // State to hold and update form data (email, firstname and password)
@@ -12,8 +13,8 @@ export default function Registration() {
 
   // State to display any error messages or success messages we want to show to the user
   const [message, setMessage] = useState("");
-
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext); 
 
   // Update state when form inputs change
   const handleChange = (e) => {
@@ -41,7 +42,12 @@ export default function Registration() {
         formData
       ); // Display success message from backend
       setMessage(response.data.message);
-      navigate("/login");
+
+       // Automatically log in the user after registration
+       await login({ email: formData.email, password: formData.password });
+
+       // Navigate to home page after successful login
+       navigate("/");
     } catch (error) {
       // Display error message
       setMessage(

@@ -1,32 +1,37 @@
 import React, { useState, useEffect } from "react";
 import PartnersData from "./PartnersData";
+import{useNavigate } from "react-router-dom"
 import { Link} from "react-router-dom";
 import HeroRelationships from "./HeroRelationships";
+
 
 export default function RelationshipsProfile() {
     const [loadingPartners, setLoadingPartners] = useState(true)
     const navigate = useNavigate()
-  const [userLoveLanguages, setUserLoveLanguages] = useState([]);
 
-  useEffect(() => {
-    setLoadingPartners(false)
-    }, [userLoveLanguages]);
+    const [userLoveLanguages, setUserLoveLanguages] = useState([])
 
-  function updateUserLoveLanguages(data) {
-    setUserLoveLanguages(data);
-  }
+    useEffect(() => {
+        setLoadingPartners(false)
+        }, [userLoveLanguages]);
+    
+    function updateUserLoveLanguages(data) { 
+        setUserLoveLanguages(data)
 
-  function handleDeleteClick() {
-    navigate("/relationships/delete")
+      }
 
-}
+    function handleDeleteClick() {
+        navigate("/relationships/delete")
 
+    }
+    
   return (
     <div className="home-container">
       {/* Adds HeroRelationships */}
       <HeroRelationships />
       
       <PartnersData updateUserLoveLanguages={(userData)=> updateUserLoveLanguages(userData)}/>
+
     {loadingPartners ? <p>Loading partners...</p> :
       <>
       <h4>Your partners:</h4> 
@@ -40,8 +45,13 @@ export default function RelationshipsProfile() {
               >{partner.firstname}</Link>
           </div>
       ))}
-       </> }
-       </div>
-  );
 
+      </> }
+        
+         
+        <button onClick={handleDeleteClick}>Delete relationship</button>
+         
+    </>
+    )
 }
+

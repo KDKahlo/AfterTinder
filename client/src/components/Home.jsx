@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import LoveQuote from "./LoveQuote";
 import Hero from "./Hero";
 import Home_Container1 from "../assets/Home_Container1.png";
@@ -9,11 +9,20 @@ import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
 export default function Home() {
+  const quizzesRef = useRef(null);
+
+  const scrollToQuizzes = () => {
+    quizzesRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <div className="home-container">
       {/* Hero Section */}
       <section className="hero-section">
-        <Hero />
+        <Hero scrollToQuizzes={scrollToQuizzes}/>
       </section>
 
       {/* LoveQuote Section */}
@@ -29,6 +38,7 @@ export default function Home() {
 
       {/* Quizzes Section */}
       <section
+        ref={quizzesRef}
         className="quizzes-section mt-5 colored-section"
         style={{ backgroundColor: "white" }}
       >
