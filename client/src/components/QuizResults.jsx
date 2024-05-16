@@ -19,6 +19,22 @@ export default function QuizResults() {
       {/* Adds MyQuizHero */}
       <MyQuizHero />
 
+      {/* Banner Card */}
+      
+      <div className="banner-card mt-5">
+        <div className="container">
+          <div className="row">
+            
+            <div className="banner-container shadow-sm rounded-4 p-2 pb-2">
+              <h5 className="banner-title" style={{ color: "#FFFFFF", margin: "center" }}>
+                {userLoveLanguages && userLoveLanguages.firstname ? `${userLoveLanguages.firstname}, these are your results:` : "Loading..."}
+              </h5>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
       <div>
         <GetOneselfData
           updateUserLoveLanguages={(data) => updateUserLoveLanguages(data)}
@@ -28,7 +44,7 @@ export default function QuizResults() {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
       {userLoveLanguages && userLoveLanguages.firstname ? (
         <>
-          <h2>{userLoveLanguages.firstname}</h2>
+          
           <DonutChart
             results={resultsExplanation}
             userLoveLanguages={userLoveLanguages}

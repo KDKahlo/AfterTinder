@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 import HeroProfile from "./HeroProfile";
+import Profilepicture from "../assets/Profilepicture.jpg"
 
 function Profile() {
   const [userData, setUserData] = useState([]);
@@ -47,8 +48,8 @@ function Profile() {
       </section>
 
       {/* First Section: Profile Info */}
-      <section>
-        <div className="profile-info-section row justify-content-center align-items-center text-center mt-4 profile-info-row">
+      
+        <div className="profile-info-section row justify-content-center align-items-center text-center mt-4 profile-info-row" style={{ paddingTop: "30px" }}>
           {/* User Info Container */}
           <div className="col-md-8">
             <div className="row">
@@ -62,7 +63,7 @@ function Profile() {
                   </h3>
                   <p>
                     Remember, you deserve the love you keep trying to give
-                    everyone else.
+                    everyone else 💜
                   </p>
                 </div>
               </div>
@@ -71,7 +72,7 @@ function Profile() {
               <div className="col-lg-6">
                 {userData && (
                   <img
-                    src={userData.profilePicture || "src/assets/TestPic.jpg"}
+                    src={Profilepicture}
                     alt="Profile"
                     className="profile-picture rounded-circle mb-3"
                     style={{
@@ -85,34 +86,34 @@ function Profile() {
             </div>
           </div>
         </div>
-      </section>
+      
 
       {/* Second Section: Buttons */}
-<section>
-  <div className="profile-buttons-section row justify-content-center md-8">
+
+  <div className="profile-buttons-section row justify-content-center md-8" >
 
     {/* Primera fila */}
     <div className="col-md-4 mb-3">
       {/* Pair with a Partner */}
-      <div className="image-container" style={{backgroundImage: "url(src/assets/After_tinder_logo.png)"}}>
+      <div className="image-container" style={{backgroundImage: "url(src/assets/Profile_card1.png)"}}>
         <div className="image-overlay">
-          <p>Texto al hacer hover</p>
+          <p>Add all your partners in one click</p>
         </div>
       </div>
       <div className="button-container">
-        <button onClick={() => navigate("/pairwithpartner")} className="btn btn-primary btn-lg btn-block">Pair with a Partner</button>
+        <button onClick={() => navigate("/pairwithpartner")} className="btn btn-primary btn-md">Pair with a Partner</button>
       </div>
     </div>
 
     <div className="col-md-4 mb-3">
       {/* My Quiz */}
-      <div className="image-container" style={{backgroundImage: "url(src/assets/After_tinder_logo.png)"}}>
+      <div className="image-container" style={{backgroundImage: "url(src/assets/Profile_card2.png)"}}>
         <div className="image-overlay">
-          <p>Texto al hacer hover</p>
+          <p>See your love languages test results</p>
         </div>
       </div>
       <div className="button-container">
-        <button onClick={() => navigate("/quizresults")} className="btn btn-primary btn-lg btn-block">My Quiz</button>
+        <button onClick={() => navigate("/quizresults")} className="btn btn-primary btn-md">My Quiz</button>
       </div>
     </div>
 
@@ -120,30 +121,30 @@ function Profile() {
     <div className="w-100"></div> {/* Clearfix for new row */}
     <div className="col-md-4 mb-3">
       {/* My Relationships */}
-      <div className="image-container" style={{backgroundImage: "url(src/assets/After_tinder_logo.png)"}}>
+      <div className="image-container" style={{backgroundImage: "url(src/assets/Profile_card3.png)"}}>
         <div className="image-overlay">
-          <p>Texto al hacer hover</p>
+          <p>See and manage your relationships here</p>
         </div>
       </div>
       <div className="button-container">
-        <button onClick={() => navigate("/relationships")} className="btn btn-primary btn-lg btn-block">My Relationships</button>
+        <button onClick={() => navigate("/relationships")} className="btn btn-primary btn-md">My Relationships</button>
       </div>
     </div>
 
     <div className="col-md-4 mb-3">
       {/* Settings */}
-      <div className="image-container" style={{backgroundImage: "url(src/assets/After_tinder_logo.png)"}}>
-        <div className="image-overlay">
-          <p>Texto al hacer hover</p>
+      <div className="image-container" style={{backgroundImage: "url(src/assets/Profile_card4.png)"}}>
+        <div className="image-overlay text-center">
+          <p>I put this pic here because I miss Seymour, my pug in Ecuador. The button just allows you to logout :)</p>
         </div>
       </div>
       <div className="button-container">
-        <button onClick={() => navigate("/settings")} className="btn btn-primary btn-lg btn-block">Settings</button>
+        <button onClick={() => navigate("/logout")} className="btn btn-primary btn-md">Settings</button>
       </div>
     </div>
 
   </div>
-</section>
+
 
     </div>
   );

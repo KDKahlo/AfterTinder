@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useParams } from "react";
 import axios from "axios";
 import quizData from "../assets/lovelanguagequiz";
+import ProgressBar from "@ramonak/react-progress-bar";
 import { Link } from "react-router-dom";
 //useNavigate will take the user to the view we want programmatically.
 //That means it doesn't depend on a user action. It depends on if a condition is met or not.
@@ -19,6 +20,7 @@ export default function Quiz() {
     (element) => element.checked
   );
   const [userAnswers, setUserAnswers] = useState({});
+  const progressBarCompleted = Math.floor((100/quizData[0].Quiz.Options.length)*pathIndex)
   const [results, setResults] = useState({
     A: 0,
     B: 0,
@@ -101,11 +103,11 @@ export default function Quiz() {
     //converting the percentage strings obtainted from percentages
     //into integers using parseInt
     const loveLanguageScores = {
-      qualityTime: parseInt(percentageResults["A"]),
-      touch: parseInt(percentageResults["B"]),
-      wordsOfAffirmation: parseInt(percentageResults["C"]),
+      qualityTime: parseInt(percentageResults["B"]),
+      touch: parseInt(percentageResults["E"]),
+      wordsOfAffirmation: parseInt(percentageResults["A"]),
       actsOfService: parseInt(percentageResults["D"]),
-      receiveGifts: parseInt(percentageResults["E"]),
+      receiveGifts: parseInt(percentageResults["C"]),
     };
     console.log(loveLanguageScores);
     // setResults(percentageResults); -->we don't need to store the results in a state variable  because we don't need them in the frontend. But how are they stored then? temporarily?
@@ -171,43 +173,53 @@ export default function Quiz() {
         </div>
       </section>
 
-      {/* Its more meaningful to me when... */}
-      <p className="text-center">{quizData[0].Quiz.Statement}</p>
+      {/* PROGRESS BAR */}
+      <div className="container">
+      <ProgressBar completed={progressBarCompleted} maxCompleted={100} />
+      </div>
+      <div style={{ marginBottom: '20px' }}></div>
+      {/* Its more meaningful to me when: */}
+      <h6 className="text-center">{quizData[0].Quiz.Statement}</h6>
 
-      {/* Option 1 and Option 2 */}
-      <div className="quiz-answer-holder d-flex align-items-center justify-content-center">
-        <button className="btn btn-primary" onClick={() => handleClick("prev")}>
-          ‹‹
-        </button>
-        <div className="container mt-3">
-          <div className="row justify-content-center">
-            <div className="col-lg-8">
-              <div className="bg-white shadow-sm rounded-4 p-4">
-                {/* Cambio aquí: Mover el mapeo dentro del contenedor */}
-                {Object.entries(quizData[0].Quiz.Options[pathIndex]).map(
-                  ([letter, option], index) => (
-                    <div key={index} className="option-container mb-3">
-                      <input
-                        key={index}
-                        value={letter}
-                        type="radio"
-                        name="options"
-                        onChange={handleOptionSelect}
-                      />
-                      <label htmlFor={letter} className="ml-2">
-                        {option}
-                      </label>
-                    </div>
-                  )
-                )}
-              </div>
+      {/* Quiz Options and Navigation Buttons */}
+    <div className="quiz-answer-holder d-flex flex-column align-items-center">
+      <div className="container mt-3 mb-3">
+        <div className="row justify-content-center">
+          <div className="col-lg-8">
+            <div className="bg-white shadow-sm rounded-4 p-4">
+              {/* Quiz Options */}
+              {Object.entries(quizData[0].Quiz.Options[pathIndex]).map(
+                ([letter, option], index) => (
+                  <div key={index} className="option-container mb-3">
+                    <input
+                      key={index}
+                      value={letter}
+                      type="radio"
+                      name="options"
+                      onChange={handleOptionSelect}
+                    />
+                    <label htmlFor={letter} className="ml-2">
+                      {option}
+                    </label>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>
-        <button className="btn btn-primary" onClick={() => handleClick("next")}>
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-primary" style={{ marginRight: '10px' }} onClick={() => handleClick("prev")}>
+          ‹‹
+        </button>
+        <button className="btn btn-primary ml-5" style={{ marginRight: '10px' }} onClick={() => handleClick("next")}>
           ››
         </button>
       </div>
+    </div>
+
 
       {/* User Answers */}
       {showResults && (
