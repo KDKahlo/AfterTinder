@@ -26,7 +26,7 @@ async function runGenerativeAI(prompt) {
         const response = await axios.post('http://localhost:4000/generate-text', { prompt });
         const rawAIText= response.data.generatedText
         refineText(rawAIText);
-        //console.log(generatedText)
+        console.log(rawAIText)
     } catch (error) {
         console.error(error);
         setGeneratedText("There was an error in your request");
