@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 import HeroProfile from "./HeroProfile";
+import Profilepicture from "../assets/Profilepicture.jpg"
 
 function Profile() {
   const [userData, setUserData] = useState([]);
@@ -62,7 +63,7 @@ function Profile() {
                   </h3>
                   <p>
                     Remember, you deserve the love you keep trying to give
-                    everyone else.
+                    everyone else 💜
                   </p>
                 </div>
               </div>
@@ -71,7 +72,7 @@ function Profile() {
               <div className="col-lg-6">
                 {userData && (
                   <img
-                    src={userData.profilePicture || "src/assets/TestPic.jpg"}
+                    src={Profilepicture}
                     alt="Profile"
                     className="profile-picture rounded-circle mb-3"
                     style={{
