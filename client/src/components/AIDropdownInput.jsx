@@ -82,7 +82,7 @@ export default function AIDropDownInput() {
     <div className="home-container">
       {/* Adds HeroRomanticIdeas */}
       <HeroRomanticIdeas />
-  
+
       {/* Formulario */}
       <section className="form-section mt-5">
         <div className="container text-center">
@@ -99,10 +99,10 @@ export default function AIDropDownInput() {
                     onChange={handleSelectDropdown}
                     name="type"
                     style={{
-                      width: '200px', // Establece el ancho deseado
-                      border: '1px solid #ccc', // Establece el borde con un color particular
-                      borderRadius: '5px', // Hace que los bordes sean redondeados
-                      padding: '8px' // Agrega un espacio interno entre el borde y el contenido
+                      width: "200px", // Establece el ancho deseado
+                      border: "1px solid #ccc", // Establece el borde con un color particular
+                      borderRadius: "5px", // Hace que los bordes sean redondeados
+                      padding: "8px", // Agrega un espacio interno entre el borde y el contenido
                     }}
                   >
                     {type.map((type, index) => (
@@ -114,11 +114,11 @@ export default function AIDropDownInput() {
                 </div>
               </div>
             </div>
-  
+
             {/* Contenedor 2 */}
             <div className="form-element">
               <div className="input-group">
-                <label >Occasion</label>
+                <label>Occasion</label>
                 <div className="input-container">
                   <select
                     className="input-box"
@@ -126,10 +126,10 @@ export default function AIDropDownInput() {
                     name="occasion"
                     onChange={handleSelectDropdown}
                     style={{
-                      width: '200px', // Establece el ancho deseado
-                      border: '1px solid #ccc', // Establece el borde con un color particular
-                      borderRadius: '5px', // Hace que los bordes sean redondeados
-                      padding: '8px' // Agrega un espacio interno entre el borde y el contenido
+                      width: "200px", // Establece el ancho deseado
+                      border: "1px solid #ccc", // Establece el borde con un color particular
+                      borderRadius: "5px", // Hace que los bordes sean redondeados
+                      padding: "8px", // Agrega un espacio interno entre el borde y el contenido
                     }}
                   >
                     {occasion.map((option, index) => (
@@ -141,7 +141,7 @@ export default function AIDropDownInput() {
                 </div>
               </div>
             </div>
-  
+
             {/* Contenedor 3 */}
             <div className="form-element">
               <div className="input-group">
@@ -153,10 +153,10 @@ export default function AIDropDownInput() {
                     name="primaryLoveLanguage"
                     onChange={handleSelectDropdown}
                     style={{
-                      width: '200px', // Establece el ancho deseado
-                      border: '1px solid #ccc', // Establece el borde con un color particular
-                      borderRadius: '5px', // Hace que los bordes sean redondeados
-                      padding: '8px' // Agrega un espacio interno entre el borde y el contenido
+                      width: "200px", // Establece el ancho deseado
+                      border: "1px solid #ccc", // Establece el borde con un color particular
+                      borderRadius: "5px", // Hace que los bordes sean redondeados
+                      padding: "8px", // Agrega un espacio interno entre el borde y el contenido
                     }}
                   >
                     {primaryLoveLanguage.map((option, index) => (
@@ -168,17 +168,21 @@ export default function AIDropDownInput() {
                 </div>
               </div>
             </div>
-  
+
             {/* Botón */}
             <div className="form-element">
-              <button className="btn btn-primary" disabled={loading} onClick={handleSubmit}>
+              <button
+                className="btn btn-primary"
+                disabled={loading}
+                onClick={handleSubmit}
+              >
                 {loading ? "Generating..." : "Give me ideas!"}
               </button>
             </div>
           </div>
         </div>
       </section>
-  
+
       {/* AIQuery Section */}
       <AIQuery
         prompt={prompt}
@@ -186,5 +190,4 @@ export default function AIDropDownInput() {
       />
     </div>
   );
-  
-                  }  
+}

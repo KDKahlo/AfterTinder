@@ -6,6 +6,7 @@ import axios from 'axios';
 export default function AIQuery({ prompt, handleLoading}) {
 
 const [generatedText, setGeneratedText] = useState([]);
+const [loading, setLoading] = useState(false);
 
 
 useEffect(() => {
@@ -20,7 +21,7 @@ useEffect(() => {
 async function runGenerativeAI(prompt) {
   //Make sure generatedText variable is empty before doing anything else.
   setGeneratedText([])
-  handleLoading(true);
+  setLoading(true); // set loading state
     try {
         const response = await axios.post('http://localhost:4000/generate-text', { prompt });
         const rawAIText= response.data.generatedText
@@ -30,7 +31,7 @@ async function runGenerativeAI(prompt) {
         console.error(error);
         setGeneratedText("There was an error in your request");
     } finally {
-        handleLoading(false);
+        setLoading(false);
     }
 }
 
@@ -38,22 +39,24 @@ async function runGenerativeAI(prompt) {
 //separate individual recommendations.
 //get rid of empty spaces and punctuation marks
 //populate the generatedText variable.
-function refineText(rawAIText) {
-    const lines = rawAIText.split('\n')
-    const refinedText = lines.map((line)=> {
-      return line.slice(2)
-    })
+   function refineText(rawAIText) {
+    const lines = rawAIText.split('\n');
+    const refinedText = lines.map((line) => line.slice(2));
     setGeneratedText(refinedText);
-    console.log(refinedText)
-   }
+    console.log(refineText)
+  }
 
 
   return (
-    <>
-      
       <div className="container mt-5 p-3 shadow bg-white rounded text-center">
-        {generatedText && Array.isArray(generatedText) && generatedText.map((recommendation, index)=>  (<p key={index}> {recommendation}</p>))}
-      </div>
-    </>
+        <h4>💜 Your romantic ideas 💜</h4>
+        {loading ? (
+        <p>Generating ideas...</p>
+      ) : (
+        generatedText.map((recommendation, index) => (
+          <p key={index}>{recommendation}</p>
+        ))
+      )}
+    </div>
   );
-};
+}
