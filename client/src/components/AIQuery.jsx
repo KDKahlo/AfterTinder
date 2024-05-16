@@ -49,7 +49,7 @@ async function runGenerativeAI(prompt) {
 
   return (
       <div className="container mt-5 p-3 shadow bg-white rounded text-center">
-        <h4>💜 Your romantic ideas 💜</h4>
+        <h5>💜 Your romantic ideas 💜</h5>
         {loading ? (
         <p>Generating ideas...</p>
       ) : (

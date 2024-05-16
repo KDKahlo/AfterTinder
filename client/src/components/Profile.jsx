@@ -97,7 +97,7 @@ function Profile() {
       {/* Pair with a Partner */}
       <div className="image-container" style={{backgroundImage: "url(src/assets/Profile_card1.png)"}}>
         <div className="image-overlay">
-          <p>Texto al hacer hover</p>
+          <p>Add all your partners in one click</p>
         </div>
       </div>
       <div className="button-container">
@@ -109,7 +109,7 @@ function Profile() {
       {/* My Quiz */}
       <div className="image-container" style={{backgroundImage: "url(src/assets/Profile_card2.png)"}}>
         <div className="image-overlay">
-          <p>Texto al hacer hover</p>
+          <p>See your love languages test results</p>
         </div>
       </div>
       <div className="button-container">
@@ -123,7 +123,7 @@ function Profile() {
       {/* My Relationships */}
       <div className="image-container" style={{backgroundImage: "url(src/assets/Profile_card3.png)"}}>
         <div className="image-overlay">
-          <p>Texto al hacer hover</p>
+          <p>See and manage your relationships here</p>
         </div>
       </div>
       <div className="button-container">
@@ -135,11 +135,11 @@ function Profile() {
       {/* Settings */}
       <div className="image-container" style={{backgroundImage: "url(src/assets/Profile_card4.png)"}}>
         <div className="image-overlay text-center">
-          <p>I put this pic here because I miss Seymour, my dog in Ecuador. The button just allows you to logout :)</p>
+          <p>I put this pic here because I miss Seymour, my pug in Ecuador. The button just allows you to logout :)</p>
         </div>
       </div>
       <div className="button-container">
-        <button onClick={() => navigate("/settings")} className="btn btn-primary btn-md">Settings</button>
+        <button onClick={() => navigate("/logout")} className="btn btn-primary btn-md">Settings</button>
       </div>
     </div>
 

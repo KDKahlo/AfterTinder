@@ -42,5 +42,7 @@ export default function QuizInstructions() {
         </Link>
       </div>
     </div>
+
+    
   );
 }

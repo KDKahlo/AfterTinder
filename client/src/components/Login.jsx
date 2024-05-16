@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
+import aftertinderlogo from "../assets/After_tinder_logo.png";
 
 export default function Login() {
   // State to hold form data
@@ -51,13 +52,15 @@ export default function Login() {
 };
 
   return (
-    <div className="container col-lg-8 position-absolute top-50 start-50 translate-middle bg-white shadow-sm rounded-4">
+    <div className="container-fluid d-flex align-items-center justify-content-center vh-100">
+    <div className="container col-lg-8 bg-white shadow-sm rounded-4">
       <div className="row justify-content-center align-items-center text-center">
         <div className="col-lg-8 p-4 w-50">
           <div className="mb-3 text-center">
             <img
-              src="src/assets/After_tinder_logo.png"
-              className="img-fluid w-80"
+              src={aftertinderlogo}
+              className="img-fluid"
+              style={{ width: "50%", marginTop: "1rem", marginBottom: "1rem" }} 
               alt=""
             />
             <p className="mt-2">welcome back!</p>
@@ -140,6 +143,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
