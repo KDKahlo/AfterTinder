@@ -181,40 +181,45 @@ export default function Quiz() {
       {/* Its more meaningful to me when: */}
       <h6 className="text-center">{quizData[0].Quiz.Statement}</h6>
 
-      {/* Option 1 and Option 2 */}
-      <div className="quiz-answer-holder d-flex align-items-center justify-content-center">
-        <button className="btn btn-primary" onClick={() => handleClick("prev")}>
-          ‹‹
-        </button>
-        <div className="container mt-3">
-          <div className="row justify-content-center">
-            <div className="col-lg-8">
-              <div className="bg-white shadow-sm rounded-4 p-4">
-                
-                {Object.entries(quizData[0].Quiz.Options[pathIndex]).map(
-                  ([letter, option], index) => (
-                    <div key={index} className="option-container mb-3">
-                      <input
-                        key={index}
-                        value={letter}
-                        type="radio"
-                        name="options"
-                        onChange={handleOptionSelect}
-                      />
-                      <label htmlFor={letter} className="ml-2">
-                        {option}
-                      </label>
-                    </div>
-                  )
-                )}
-              </div>
+      {/* Quiz Options and Navigation Buttons */}
+    <div className="quiz-answer-holder d-flex flex-column align-items-center">
+      <div className="container mt-3 mb-3">
+        <div className="row justify-content-center">
+          <div className="col-lg-8">
+            <div className="bg-white shadow-sm rounded-4 p-4">
+              {/* Quiz Options */}
+              {Object.entries(quizData[0].Quiz.Options[pathIndex]).map(
+                ([letter, option], index) => (
+                  <div key={index} className="option-container mb-3">
+                    <input
+                      key={index}
+                      value={letter}
+                      type="radio"
+                      name="options"
+                      onChange={handleOptionSelect}
+                    />
+                    <label htmlFor={letter} className="ml-2">
+                      {option}
+                    </label>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>
-        <button className="btn btn-primary" onClick={() => handleClick("next")}>
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-primary" style={{ marginRight: '10px' }} onClick={() => handleClick("prev")}>
+          ‹‹
+        </button>
+        <button className="btn btn-primary ml-5" style={{ marginRight: '10px' }} onClick={() => handleClick("next")}>
           ››
         </button>
       </div>
+    </div>
+
 
       {/* User Answers */}
       {showResults && (
