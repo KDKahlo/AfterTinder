@@ -70,54 +70,58 @@ function PairWithPartner() {
     }
 
 
-  return (
-    <>
-    <HeroPairwithPartner />
-    <div className="main-container">
-    <div className="container col-lg-8 position-absolute top-50 start-50 translate-middle">
-      <div className="row justify-content-center align-items-center text-center bg-white shadow-sm rounded-4 p-4">
-        <div className="col-lg-8">
-          <h2>Partner Pairing</h2>
-          <p>Pair with your partner and swap quiz results</p>
-
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="mb-3">
-                <h4>I want to invite my partner</h4>
-                <p>My code: <span className="generated-code">{userCode}</span></p>
-                <button onClick={handleGenerateCodeClick} className="btn custom-btn me-2">Generate my code</button>
-                <FontAwesomeIcon icon={faCopy} onClick={handleCopyCodeClick} className="copy-icon" />
-              </div>
-            </div>
-            
-
-            <div className="col-lg-6">
-              <div className="mb-3">
-                <h4>I have my partner's code</h4>
-                <input 
-                  type="text" 
-                  className="form-control mb-2" 
-                  placeholder="Enter code" 
-                  value={relationshipCode} // THIS IS THE CODE THAT MUST BE SENT TO THE BACKEND
-                  onChange={(e) => setRelationshipCode(e.target.value)}
-                />
-                <button onClick={()=>handleEnterCode(relationshipCode)} className="btn custom-btn">Enter partner's code</button>
+  
+    return (
+      <div className="home-container">
+        {/* Adds HeroPairwithPartner */}
+        <HeroPairwithPartner />
+    
+        {/* Contenedor para el emparejamiento de pareja */}
+        <div className="container mt-5">
+          <div className="row justify-content-center">
+            <div className="col-lg-8">
+              <div className="bg-white shadow-sm rounded-4 p-4">
+                <div className="row justify-content-center">
+                  <div className="col-lg-8">
+                    <h2 className="text-center">Partner Pairing</h2>
+                    <p className="text-center" >Pair with your partner and swap quiz results</p>
+    
+                    {/* Sección para generar el código */}
+                    <div className="mb-3 text-center">
+                      <h4>I want to invite my partner</h4>
+                      <p>My code: <span className="generated-code">{userCode}</span></p>
+                      <button onClick={handleGenerateCodeClick} className="btn custom-btn me-2">Generate my code</button>
+                      <FontAwesomeIcon icon={faCopy} onClick={handleCopyCodeClick} className="copy-icon" />
+                    </div>
+                    
+                    {/* Sección para ingresar el código del compañero */}
+                    <div className="mb-3 text-center">
+                      <h4>I have my partner's code</h4>
+                      <input 
+                        type="text" 
+                        className="form-control mb-2" 
+                        placeholder="Enter code" 
+                        value={relationshipCode} // THIS IS THE CODE THAT MUST BE SENT TO THE BACKEND
+                        onChange={(e) => setRelationshipCode(e.target.value)}
+                      />
+                      <button onClick={()=>handleEnterCode(relationshipCode)} className="btn custom-btn">Enter partner's code</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    
+    
     <Modal
         message="Relationship created successfully. You can see it now on the Relationships tab"
         header="Success"
         showModal={showModal}
         handleClose={closeModal}
       />
-  
-
     </div>
-    </>
+    
   );
 }
 

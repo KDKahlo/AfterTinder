@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
+import aftertinderlogo from "../assets/After_tinder_logo.png";
 
 export default function Registration() {
   // State to hold and update form data (email, firstname and password)
@@ -57,12 +58,18 @@ export default function Registration() {
   };
 
   return (
-    <div className="container col-lg-8 position-absolute top-50 start-50 translate-middle bg-white shadow-sm rounded-4">
+    <div className="container-fluid d-flex align-items-center justify-content-center vh-100">
+    <div className="container col-lg-8 bg-white shadow-sm rounded-4">
         <div className="row justify-content-center align-items-center text-center">
             <div className="col-lg-8 p-4 w-50">
                 
                 <div className="mb-3 text-center">
-                    <img src="src/assets/After_tinder_logo.png" className="img-fluid w-80" alt="" />
+                <img
+              src={aftertinderlogo}
+              className="img-fluid"
+              style={{ width: "50%", marginTop: "1rem", marginBottom: "1rem" }} 
+              alt=""
+            /> 
                     <p className="mt-2">real love starts here!</p>
                 </div>
 
@@ -129,6 +136,7 @@ export default function Registration() {
                 </div>
             </div>
         </div>
+    </div>
     </div>
 );
 }
