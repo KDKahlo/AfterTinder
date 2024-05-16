@@ -20,11 +20,13 @@ function PairWithPartner() {
   const [relationshipCode, setRelationshipCode] = useState()
   const [userCode, setUsercode] = useState()
   const [showModal, setShowModal] = useState (false) // State variable to control modal visibility
+  const [message, setMessage] = useState()
 
 
   function generateCode() {
     const code = uuidv4();
     setUsercode(code)
+    setMessage("Code generated, you can copy it and send it to your partner")
     handleEnterCode(code)
   }
 
@@ -39,6 +41,11 @@ function PairWithPartner() {
 
   function handleGenerateCodeClick() {
     generateCode();
+  }
+
+  function handlePartnerCodeClick() {
+    setMessage("Relationship created successfully. You can see it now on the Relationships tab")
+    handleEnterCode()
   }
 
   function handleCopyCodeClick() {
@@ -67,6 +74,7 @@ function PairWithPartner() {
 
     function closeModal() {
       setShowModal(false);
+      setRelationshipCode("")
     }
 
 
@@ -104,7 +112,7 @@ function PairWithPartner() {
                         value={relationshipCode} // THIS IS THE CODE THAT MUST BE SENT TO THE BACKEND
                         onChange={(e) => setRelationshipCode(e.target.value)}
                       />
-                      <button onClick={()=>handleEnterCode(relationshipCode)} className="btn custom-btn">Enter partner's code</button>
+                      <button onClick={handlePartnerCodeClick} className="btn custom-btn">Enter partner's code</button>
                     </div>
                   </div>
                 </div>
@@ -115,7 +123,7 @@ function PairWithPartner() {
     
     
     <Modal
-        message="Relationship created successfully. You can see it now on the Relationships tab"
+        message={message}
         header="Success"
         showModal={showModal}
         handleClose={closeModal}
