@@ -96,9 +96,10 @@ export default function RelationshipsProfile() {
                     }
                     alt={partner.firstname}
                     style={{
-                      width: "150px",
-                      height: "150px",
-                      borderRadius: "10%",
+                      width: "200px",
+                      height: "200px",
+                      borderRadius: "50%",
+                      objectFit: "cover",
                       display: "inline-block",
                       verticalAlign: "middle",
                     }}

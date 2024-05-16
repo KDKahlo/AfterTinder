@@ -3,7 +3,8 @@ var router = express.Router();
 require("dotenv").config();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const  geminiAPIKey = "AIzaSyCQva7qxEBql-j5YtQUeZmC8LXBO9THBNM";
+// const  geminiAPIKey = "AIzaSyAZXTCclhmyysk0YVg4veajuiqwsvt1pd8g";
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -14,7 +15,7 @@ router.post('/generate-text', async (req, res) => {
   try {
       const { prompt } = req.body;
       console.log(prompt)
-      const genAI = new GoogleGenerativeAI(geminiAPIKey);
+      const genAI = new GoogleGenerativeAI(process.env.BARD_API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
       
       const result = await model.generateContent(prompt);

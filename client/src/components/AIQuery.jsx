@@ -59,4 +59,12 @@ async function runGenerativeAI(prompt) {
       )}
     </div>
   );
-}
+  
+  // <>
+      
+  //     <div className="card">
+  //       {generatedText && Array.isArray(generatedText) && generatedText.map((recommendation, index)=>  (<p key={index}> {recommendation}</p>))}
+  //     </div>
+  //   </>
+  // );
+};
