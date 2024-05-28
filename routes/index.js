@@ -3,7 +3,6 @@ var router = express.Router();
 require("dotenv").config();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// const  geminiAPIKey = "AIzaSyAZXTCclhmyysk0YVg4veajuiqwsvt1pd8g";
 
 
 /* GET home page. */

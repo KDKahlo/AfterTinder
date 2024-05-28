@@ -45,7 +45,7 @@ function PairWithPartner() {
 
   function handlePartnerCodeClick() {
     setMessage("Relationship created successfully. You can see it now on the Relationships tab")
-    handleEnterCode()
+    handleEnterCode(relationshipCode)
   }
 
   function handleCopyCodeClick() {

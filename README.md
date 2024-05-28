@@ -1,5 +1,5 @@
 # After Tinder
-After Tinder aims to provide tools for healthy love relationships.
+After Tinder aims to provide couples with tools to build and maintain healthy love relationships.
 
 ## Setup
 
@@ -12,8 +12,8 @@ After Tinder aims to provide tools for healthy love relationships.
 
 - 1. Access the MySQL interface in your terminal by running `mysql -u root -p`. (Or your password, if not 'root')
 
-- 2. Create a new database called 'AfterTinder' by running the command `create database AfterTinder;`. If you already have a table called AfterTinder, give the database the name you prefer and follow these steps: 
-    · Inside "model" folder, in the database.js file (around line 14), change the name "AfterTinder" for the name of your database.
+- 2. Create a new database called 'AfterTinder' by running the command `create database AfterTinder;`. If you already have a table called AfterTinder, give the database the name you prefer and follow these steps:
+    · Inside "/model" folder, in the "database.js" file (around line 14), change the name "AfterTinder" for the name of your database, like so:
           const con = mysql.createConnection({
             host: DB_HOST || "127.0.0.1",
             user: DB_USER || "root",
@@ -36,7 +36,7 @@ After Tinder aims to provide tools for healthy love relationships.
 
 ### Gemini API set up
 
-- 1. Make sure you have a VPN connected to a country where Gemini API is available. You can check a list of available regions and languages in the Gemini API documentation.
+- 1. Make sure you have a VPN connected to a country where Gemini API is available. You can check a list of available regions and languages in the Gemini API documentation. You can use services like Express VPN to achieve that.
 
 - 2. Follow the documentation instructions (https://ai.google.dev/gemini-api/docs/get-started/node) to get an API.
 
@@ -45,12 +45,10 @@ After Tinder aims to provide tools for healthy love relationships.
 
 
 ## Guidelines
-- NOTE: in the backend, the login logic is held in the users file and the logic to get/post AI data is held in index.js.
-- NOTE: your database tables will be empty when you first open the app. After configuration, you should be able to populate them using the front end. If you need to manually test it in Postman, there's a sample code and instructions in client/src/assets/testcode. This file is not connected to the app: it's used to try and store code samples that might be useful for the developing process.
-- NOTE: the code to pair partners is used in the backend with uuid. We need to npm install, should we include this on readmefile?
+- NOTE: in the backend, the login logic as well as all the endpoints related to the database are held in the users file and the endpoints to get/post AI data is held in index.js.
+- NOTE: your database tables will be empty when you first open the app. After configuration, you should be able to populate them using the app. If you need to manually test it in Postman, there's a sample code and instructions in client/src/assets/testcode. This file is not connected to the app: it's used to try and store code samples that might be useful for further developing process.
 
-
-- Resources you may need: 
+- Resources:
   - [MDN docs](https://developer.mozilla.org/en-US/)
   - [Express docs](https://expressjs.com/en/api.html)
   - [MySQL docs](https://dev.mysql.com/doc/refman/8.0/en/database-use.html)
@@ -68,5 +66,5 @@ After Tinder aims to provide tools for healthy love relationships.
   - [MDN docs window docs](https://developer.mozilla.org/en-US/docs/Web/API/Window)
   - [Font Awesome docs](https://docs.fontawesome.com/)
   - [uuid docs](https://www.uuidgenerator.net/dev-corner/javascript)
-  -[Jason Wew Token docs](https://www.npmjs.com/package/jsonwebtoken)
-  -[bycrypt docs](https://www.npmjs.com/package/bcrypt)
+  - [Jason Wew Token docs](https://www.npmjs.com/package/jsonwebtoken)
+  - [bycrypt docs](https://www.npmjs.com/package/bcrypt)
